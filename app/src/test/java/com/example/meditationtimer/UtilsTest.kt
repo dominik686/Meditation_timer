@@ -7,7 +7,7 @@ import org.junit.Test
  class UtilsTest {
 
     @Test
-    fun createListDivisibleByFive_minOneMaxHundred_twentyElements_returnsTrue()
+    fun createListDivisibleByFive_minOneMaxHundred_equalToList_returnsTrue()
     {
         // Given
         val min = 1
@@ -22,7 +22,7 @@ import org.junit.Test
     }
 
      @Test
-     fun createListDivisibleByFive_minOneMaxHundred_twentyElements_returnsFalse()
+     fun createListDivisibleByFive_minOneMaxHundred_notEqualToList_returnsFalse()
      {
          // Given
          val min = 1
@@ -31,8 +31,68 @@ import org.junit.Test
 
          // When
          val result = Utils.createListDivisibleByFive(min, max)
-         val bool = list == result
+
          // Then
          assertEquals(false, list == result)
      }
-}
+
+     @Test
+     fun createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsTrue()
+     {
+         // Given
+         val min = 10
+         val max = 0
+         val list = listOf<Int>()
+
+         // When
+         val result = Utils.createListDivisibleByFive(min, max)
+
+         // Then
+         assertEquals(true, list == result)
+     }
+     @Test
+     fun createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsFalse()
+     {
+         // Given
+         val min = 10
+         val max = 0
+         val list = listOf<Int>(44)
+
+         // When
+         val result = Utils.createListDivisibleByFive(min, max)
+
+         // Then
+         assertEquals(false, list == result)
+     }
+
+     @Test
+     fun createListDivisibleByFive_minTenMaxZero_notSameSize_ReturnsFalse()
+     {
+         // Given
+         val min = 10
+         val max = 0
+         val list = listOf<Int>(44)
+
+         // When
+         val result = Utils.createListDivisibleByFive(min, max)
+
+         // Then
+         assertEquals(false, list.size == result.size)
+     }
+
+     @Test
+     fun createListDivisibleByFive_minTenMaxZero_sameSize_ReturnsTrue()
+     {
+         // Given
+         val min = 1
+         val max = 5
+         val list = listOf<Int>(44)
+
+         // When
+         val result = Utils.createListDivisibleByFive(min, max)
+
+         // Then
+         assertEquals(true, list.size == result.size)
+     }
+
+ }
