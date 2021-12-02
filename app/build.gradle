@@ -6,9 +6,12 @@ plugins {
 android {
     compileSdk 31
 
-    configurations.all {
-        resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+    apply plugin: 'com.android.application'
+    apply plugin: 'kotlin-android'
+    buildFeatures {
+        viewBinding true
     }
+
     defaultConfig {
         applicationId "com.example.meditationtimer"
         minSdk 21
@@ -49,6 +52,7 @@ ViewModel
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     // Testing Navigation
@@ -58,7 +62,11 @@ ViewModel
 
 
 
+
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
     implementation 'androidx.core:core-ktx:1.7.0'
+
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
