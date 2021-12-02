@@ -18,7 +18,7 @@ open class ChooseTimeDialog : DialogFragment()
 
         // Set the maximum and minimum time of meditation (in minutes)
         numberPicker.minValue = 1
-        numberPicker.minValue = 120
+        numberPicker.maxValue = 120
 
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Choose a value")
