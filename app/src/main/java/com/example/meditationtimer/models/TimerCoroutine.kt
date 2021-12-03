@@ -27,7 +27,8 @@ class TimerCoroutine
                 secondsLeft--
                 action()
             }
-
+        timer.cancel()
+        Log.d("Timer", "Coroutine finished")
 
 
     }
