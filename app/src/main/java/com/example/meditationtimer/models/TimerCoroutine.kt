@@ -7,6 +7,8 @@ import kotlinx.coroutines.*
 /*
 Code based on: https://stackoverflow.com/a/58448610
  */
+
+// Iimpelenmt Kotlin flow to update the UI
 class TimerCoroutine
 {
     private val job = SupervisorJob()
