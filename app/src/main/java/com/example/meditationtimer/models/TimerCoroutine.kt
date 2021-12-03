@@ -11,28 +11,30 @@ class TimerCoroutine
 {
     private val job = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.Default + job)
-
+    private var secondsLeft = 10
     private fun startCoroutineTimer(delayMillis: Long = 0, repeatMillis: Long = 0,
                                     action: () -> Unit) = scope.launch(Dispatchers.IO)
     {
+
                                         delay((delayMillis))
-        if(repeatMillis > 0)
-        {
-            while(true)
-            {
+            if (repeatMillis > 0) {
+                while (secondsLeft > 0) {
+                    secondsLeft--
+                    action()
+                    delay(repeatMillis)
+                }
+            } else {
+                secondsLeft--
                 action()
-                delay(repeatMillis)
             }
-        }
-        else{
-            action()
-        }
+
 
 
     }
-    private val timer: Job = startCoroutineTimer (delayMillis = 0, repeatMillis = 20000)
+    private val timer: Job = startCoroutineTimer (delayMillis = 0, repeatMillis = 1000)
     {
         Log.d("Timer", "Background - tick")
+
         //doSomethingBackGround()
         scope.launch(Dispatchers.Main)
         {
@@ -42,8 +44,9 @@ class TimerCoroutine
     }
 
 
-    fun startTimer()
+    fun startTimer(seconds : Int)
     {
+        secondsLeft = seconds
         timer.start()
     }
 
