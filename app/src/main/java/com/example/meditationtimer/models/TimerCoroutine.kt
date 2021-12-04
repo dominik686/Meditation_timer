@@ -3,16 +3,22 @@ package com.example.meditationtimer.models
 import android.nfc.Tag
 import android.util.Log
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
 
 /*
 Code based on: https://stackoverflow.com/a/58448610
  */
 
-// Iimpelenmt Kotlin flow to update the UI
+// Iimpelenmt Kotlin  stateflow to update the UI>
 class TimerCoroutine
 {
     private val job = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.Default + job)
+    var secondsLeftFlow : MutableStateFlow<Int> = MutableStateFlow(0)
+
     private var secondsLeft = 10
     private fun startCoroutineTimer(delayMillis: Long = 0, repeatMillis: Long = 0,
                                     action: () -> Unit) = scope.launch(Dispatchers.IO)
@@ -22,6 +28,7 @@ class TimerCoroutine
             if (repeatMillis > 0) {
                 while (secondsLeft > 0) {
                     secondsLeft--
+                    secondsLeftFlow.value = secondsLeft
                     action()
                     delay(repeatMillis)
                 }
@@ -39,18 +46,22 @@ class TimerCoroutine
         Log.d("Timer", "Background - tick")
 
         //doSomethingBackGround()
+        secondsLeftFlow.value = secondsLeft
+
         scope.launch(Dispatchers.Main)
         {
             Log.d("Timer", "Main thread - tick")
+
             //doSomethingMainThread()
         }
     }
 
-
-    fun startTimer(seconds : Int)
+    // Should this method be async, since it returns secondLeftFlow?
+    fun startTimer(seconds : Int) : StateFlow<Int>
     {
         secondsLeft = seconds
         timer.start()
+        return secondsLeftFlow
     }
 
     fun cancelTimer()
