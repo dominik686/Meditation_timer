@@ -23,6 +23,7 @@
         android:id="@+id/timeLeftTextView"
         android:layout_width="202dp"
         android:layout_height="120dp"
+        android:gravity="center"
         android:text="TextView"
         android:textIsSelectable="false"
         android:textSize="34sp"

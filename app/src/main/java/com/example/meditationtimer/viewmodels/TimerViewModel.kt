@@ -1,9 +1,11 @@
 package com.example.meditationtimer.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.models.TimerCoroutine
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 class TimerViewModel : ViewModel() {
 
@@ -14,14 +16,15 @@ class TimerViewModel : ViewModel() {
     private lateinit var meditation : Meditation
     private lateinit var timer : TimerCoroutine
 
-    fun startTimer(minutes : Int)
+
+    fun startTimer(minutes : Int) : LiveData<Int>
     {
         timer = TimerCoroutine()
         // Timer should tick every second, so minutes * 60
-        var seconds =  timer.startTimer(minutes * 60).collect{
+        var livedata =  timer.startTimer(minutes * 60)
 
-        }
 
+        return livedata
 
 
 
