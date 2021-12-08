@@ -49,9 +49,7 @@ open class ChooseTimeDialog : DialogFragment()
         }
         builder.setNegativeButton("CANCEL") {
             dialog, which ->
-            valueChangeListener.onValueChange(
-                numberPicker,
-                numberPicker.value, numberPicker.value)
+
         }
 
         builder.setView(numberPicker)

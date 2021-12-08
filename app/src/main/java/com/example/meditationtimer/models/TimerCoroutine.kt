@@ -1,14 +1,9 @@
 package com.example.meditationtimer.models
 
-import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
 
 /*
 Code based on: https://stackoverflow.com/a/58448610
@@ -19,7 +14,7 @@ class TimerCoroutine
 {
     private val job = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.Default + job)
-    var secondsLeftFlow : MutableLiveData<Int> = MutableLiveData(0)
+    var secondsLeftLiveData : MutableLiveData<Int> = MutableLiveData(0)
 
     private var secondsLeft = 10
     private fun startCoroutineTimer(delayMillis: Long = 0, repeatMillis: Long = 0,
@@ -47,11 +42,10 @@ class TimerCoroutine
         Log.d("Timer", "Background - tick")
 
         //doSomethingBackGround()
-
         scope.launch(Dispatchers.Main)
         {
             Log.d("Timer", "Main thread - tick")
-            secondsLeftFlow.value = secondsLeft
+            secondsLeftLiveData.value = secondsLeft
             //doSomethingMainThread()
         }
     }
@@ -60,17 +54,15 @@ class TimerCoroutine
     fun startTimer(seconds : Int) : LiveData<Int>
     {
         //If the timer is already running, cancel it before starting again
-        /*
-        if(timer.isActive)
-        {
-            timer.cancel()
-        }
 
-         */
+
         secondsLeft = seconds
-        secondsLeftFlow.value = seconds
+        secondsLeftLiveData.value = seconds
+
+
+
         timer.start()
-        return secondsLeftFlow
+        return secondsLeftLiveData
     }
 
     fun cancelTimer()

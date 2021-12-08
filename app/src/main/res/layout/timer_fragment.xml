@@ -24,7 +24,7 @@
         android:layout_width="202dp"
         android:layout_height="120dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Timer not set"
         android:textIsSelectable="false"
         android:textSize="34sp"
         android:textStyle="normal|bold"
@@ -34,4 +34,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_anchor="@id/bottom_app_bar"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
