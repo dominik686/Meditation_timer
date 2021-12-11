@@ -1,13 +1,13 @@
 package com.example.meditationtimer
 
-import org.junit.Assert.*
-
+import junit.framework.TestCase
 import org.junit.Test
 
- class UtilsTest {
+
+ class UtilsTest : TestCase(){
 
     @Test
-    fun createListDivisibleByFive_minOneMaxHundred_equalToList_returnsTrue()
+    fun test_createListDivisibleByFive_minOneMaxHundred_equalToList_returnsTrue()
     {
         // Given
         val min = 1
@@ -22,7 +22,7 @@ import org.junit.Test
     }
 
      @Test
-     fun createListDivisibleByFive_minOneMaxHundred_notEqualToList_returnsFalse()
+     fun test_createListDivisibleByFive_minOneMaxHundred_notEqualToList_returnsFalse()
      {
          // Given
          val min = 1
@@ -37,7 +37,7 @@ import org.junit.Test
      }
 
      @Test
-     fun createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsTrue()
+     fun test_createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsTrue()
      {
          // Given
          val min = 10
@@ -51,7 +51,7 @@ import org.junit.Test
          assertEquals(true, list == result)
      }
      @Test
-     fun createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsFalse()
+     fun test_createListDivisibleByFive_minTenMaxZero_equalToList_ReturnsFalse()
      {
          // Given
          val min = 10
@@ -66,7 +66,7 @@ import org.junit.Test
      }
 
      @Test
-     fun createListDivisibleByFive_minTenMaxZero_notSameSize_ReturnsFalse()
+     fun test_createListDivisibleByFive_minTenMaxZero_notSameSize_ReturnsFalse()
      {
          // Given
          val min = 10
@@ -81,7 +81,7 @@ import org.junit.Test
      }
 
      @Test
-     fun createListDivisibleByFive_minTenMaxZero_sameSize_ReturnsTrue()
+     fun test_createListDivisibleByFive_minTenMaxZero_sameSize_ReturnsTrue()
      {
          // Given
          val min = 1
