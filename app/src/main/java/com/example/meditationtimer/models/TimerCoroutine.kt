@@ -9,7 +9,6 @@ import kotlinx.coroutines.*
 Code based on: https://stackoverflow.com/a/58448610
  */
 
-// Iimpelenmt Kotlin  stateflow to update the UI>
 class TimerCoroutine
 {
     private val job = SupervisorJob()
@@ -56,7 +55,8 @@ class TimerCoroutine
         //If the timer is already running, cancel it before starting again
 
 
-        secondsLeft = seconds
+       // secondsLeft = seconds
+        secondsLeft = 10;
         secondsLeftLiveData.value = seconds
 
 

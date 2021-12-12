@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Meditation timer</string>
+    <string name="timer_not_set">Timer not set</string>
 </resources>
