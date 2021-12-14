@@ -55,8 +55,7 @@ class TimerCoroutine
         //If the timer is already running, cancel it before starting again
 
 
-       // secondsLeft = seconds
-        secondsLeft = 10;
+        secondsLeft = seconds
         secondsLeftLiveData.value = seconds
 
 

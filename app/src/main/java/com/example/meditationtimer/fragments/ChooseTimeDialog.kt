@@ -1,8 +1,7 @@
-package com.example.meditationtimer.dialogs
+package com.example.meditationtimer.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener

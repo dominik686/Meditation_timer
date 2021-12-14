@@ -13,8 +13,8 @@ data class TimeLeft(var hours : Int, var minutes : Int, var seconds : Int)
 
     private fun convertSecondsToMinutes()
     {
-        // Divide  by 3600
-        // The product of the division is the hours, subtract that * 3600 from seconds
+        // Divide  by 60
+        // The product of the division is the minutes, subtract that * 60 from seconds
         minutes = seconds / 60
         seconds -= minutes * 60
     }
