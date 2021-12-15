@@ -10,9 +10,9 @@ import com.example.meditationtimer.Utils
 
 open class ChooseTimeDialog : DialogFragment()
 {
-    lateinit var valueChangeListener : NumberPicker.OnValueChangeListener
+    private lateinit var valueChangeListener : NumberPicker.OnValueChangeListener
     var minValue : Int = 1
-    var maxValue  : Int = 120
+    private var maxValue  : Int = 120
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val numberPicker =  NumberPicker(activity)
