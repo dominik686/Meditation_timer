@@ -9,6 +9,8 @@ android {
 
     apply plugin: 'com.android.application'
     apply plugin: 'kotlin-android'
+
+
     buildFeatures {
         viewBinding true
     }
@@ -41,7 +43,8 @@ android {
 
 dependencies {
 
-
+    implementation 'com.google.android.gms:play-services-base:17.5.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
 /*
 ViewModel
  */
