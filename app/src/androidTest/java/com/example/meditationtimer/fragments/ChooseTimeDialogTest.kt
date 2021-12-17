@@ -1,8 +1,15 @@
 package com.example.meditationtimer.fragments
 
+import android.view.InputDevice
+import android.view.MotionEvent
 import androidx.fragment.app.testing.launchFragment
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.GeneralClickAction
+import androidx.test.espresso.action.GeneralLocation
+import androidx.test.espresso.action.Press
+import androidx.test.espresso.action.Tap
+import androidx.test.espresso.action.ViewActions.actionWithAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -21,36 +28,71 @@ import org.junit.runner.RunWith
 class ChooseTimeDialogTest
 {
 
+
+
+
+
     // Test if number picker is visible
+    //Test what happens when cancel is pressed
+    // Test what happens when ok is pressed
+
+
+    /* Both clickTopCenter and clickBottomCentre methods were derived from this tutorial
+    https://blog.stylingandroid.com/numberpicker-espresso-testing/
+     */
+
+    //Function for clicking on top of number picker(decrements the number)
+    private val clickTopCentre =
+        actionWithAssertions(
+            GeneralClickAction(
+                Tap.SINGLE,
+                GeneralLocation.TOP_CENTER,
+                Press.FINGER,
+                InputDevice.SOURCE_UNKNOWN,
+                MotionEvent.BUTTON_PRIMARY)
+            )
+
+    //Function for clicking on bottom of number picker(increments the number)
+    private val clickBottomCentre =
+        actionWithAssertions(
+            GeneralClickAction(
+                Tap.SINGLE,
+                GeneralLocation.BOTTOM_CENTER,
+                Press.FINGER,
+                InputDevice.SOURCE_UNKNOWN,
+                MotionEvent.BUTTON_PRIMARY
+            )
+        )
+
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     lateinit var chooseTimeDialogFragment : ChooseTimeDialog
- //   @get:Rule
-   // val fragmentRule =
+
 @Before
 fun init()
  {
     with(launchFragment<ChooseTimeDialog>())
     {
-
+       onFragment{
+           fragment ->
+           chooseTimeDialogFragment = fragment
+       }
     }
 
 }
 
+    //yoo is this good?
     @Test
      fun testChooseTimeDialogFragment()
     {
+      assertEquals(true, chooseTimeDialogFragment.dialog != null)
+      assertEquals(true, chooseTimeDialogFragment.requireDialog().isShowing)
+      chooseTimeDialogFragment.dismiss()
+        chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
+      assertEquals(true, chooseTimeDialogFragment.dialog == null)
 
-        with(launchFragment<ChooseTimeDialog>()){
-            onFragment{ fragment ->
-                assertEquals(true, fragment.dialog != null)
-                assertEquals(true, fragment.requireDialog().isShowing)
-                fragment.dismiss()
-                fragment.parentFragmentManager.executePendingTransactions()
-                assertEquals(true, fragment.dialog == null)
-            }
-        }
+
     }
 
     @Test
@@ -63,7 +105,6 @@ fun init()
      fun pressTheOKButton()
     {
         onView(withId(R.id.dialog_number_picker))
-
 
     }
 

@@ -13,13 +13,14 @@ import com.example.meditationtimer.Utils
 open class ChooseTimeDialog : DialogFragment()
 {
     private lateinit var valueChangeListener : NumberPicker.OnValueChangeListener
-    var minValue : Int = 1
+    private var minValue : Int = 1
     private var maxValue  : Int = 120
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val numberPicker =  NumberPicker(activity)
-        val id = View.generateViewId()
         numberPicker.id = R.id.dialog_number_picker
+
+
         // Set the maximum and minimum time of meditation (in minutes)
 
        var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
