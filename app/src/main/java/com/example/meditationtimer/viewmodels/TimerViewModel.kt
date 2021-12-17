@@ -32,9 +32,14 @@ class TimerViewModel : ViewModel() {
         // store the rest of the data in the model?
     }
 
+    //Cancel the timer if its already running
     fun cancelTimer()
     {
-        timer.cancelTimer()
+        if(this::timer.isInitialized)
+        {
+            timer.cancelTimer()
+            // Maybe change the value of timer to null?
+        }
     }
 
 

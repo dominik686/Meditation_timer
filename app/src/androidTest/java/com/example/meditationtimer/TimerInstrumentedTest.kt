@@ -1,6 +1,9 @@
 package com.example.meditationtimer
 
 
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -15,6 +18,11 @@ import androidx.test.filters.LargeTest
 @LargeTest
 class TimerInstrumentedTest
 {
-
+    @Test
+    fun userDoesntChooseANumber()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+            //onView(withId(R.id.))
+    }
 
 }

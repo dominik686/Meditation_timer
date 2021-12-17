@@ -3,9 +3,11 @@ package com.example.meditationtimer.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import androidx.fragment.app.DialogFragment
+import com.example.meditationtimer.R
 import com.example.meditationtimer.Utils
 
 open class ChooseTimeDialog : DialogFragment()
@@ -16,7 +18,8 @@ open class ChooseTimeDialog : DialogFragment()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val numberPicker =  NumberPicker(activity)
-
+        val id = View.generateViewId()
+        numberPicker.id = R.id.dialog_number_picker
         // Set the maximum and minimum time of meditation (in minutes)
 
        var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
