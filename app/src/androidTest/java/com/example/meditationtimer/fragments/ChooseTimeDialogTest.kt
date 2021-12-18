@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.launch
 import android.view.InputDevice
 import android.view.MotionEvent
+import android.view.View
 import android.widget.NumberPicker
 import androidx.fragment.app.testing.launchFragment
 import androidx.fragment.app.testing.launchFragmentInContainer
@@ -83,6 +84,7 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     lateinit var chooseTimeDialogFragment : ChooseTimeDialog
+    var minutes = 0;
 
 @Before
 fun init()
@@ -90,6 +92,7 @@ fun init()
     with(launchFragment<ChooseTimeDialog>())
     {
        onFragment{
+
            fragment ->
            chooseTimeDialogFragment = fragment
            GlobalScope.launch(Dispatchers.Main) {
@@ -99,6 +102,7 @@ fun init()
        }
     }
 
+     minutes = 0;
 }
 
     @Test
@@ -108,6 +112,8 @@ fun init()
       assertEquals(true, chooseTimeDialogFragment.requireDialog().isShowing)
 
       GlobalScope.launch(Dispatchers.Main){
+
+          chooseTimeDialogFragment.dismiss()
           chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
           assertEquals(true, chooseTimeDialogFragment.dialog == null)
       }
@@ -117,37 +123,44 @@ fun init()
     }
 
     @Test
-     fun testNumberPicker()
+     fun test_numberPicker_isDisplayed()
     {
 
         onNumberPicker().check(matches(isDisplayed()))
     }
-    @Test
-     fun testPressTheOKButton()
-    {
-        onView(withId(R.id.dialog_number_picker))
-
-    }
-
-
 
     @Test
-    fun testDefault()
+    fun test_defaultValue_okButton()
     {
-        onView(allOf(withId(R.id.dialog_number_picker), isDisplayed())).perform(clickTopCentre)
+        onView(allOf(withId(R.id.dialog_number_picker), isDisplayed()))
 
         Thread.sleep(1000)
 
 
 
         // Error because the value change listener isnt implemented yet. Guess this means bad code?
-      //  onView(withText("OK")).perform(click())
+        onView(withText("OK")).perform(click())
 
+        assertEquals(5, minutes)
+
+    }
+
+    @Test
+    fun test_decrementValue_okButton()
+    {
+        onNumberPicker().perform(clickTopCentre)
+       // chooseTimeDialogFragment.
     }
     private fun onNumberPicker()  =  onView(withId(R.id.dialog_number_picker))
     private fun onNumberPickerInput()  = onView(withParent(withId(R.id.dialog_number_picker)))
+
     override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
-        Thread.sleep(1)
+        if (p0 != null) {
+
+             minutes = (p0.value + 1) * 5
+            //Add one because the list postion started at 0, and multiply by 5 becausue positions were increments of 5
+
+        };
     }
 }
 
