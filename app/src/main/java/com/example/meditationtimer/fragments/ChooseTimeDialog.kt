@@ -49,10 +49,11 @@ open class ChooseTimeDialog : DialogFragment()
                 numberPicker,
                 numberPicker.value, numberPicker.value
             )
+
+
         }
         builder.setNegativeButton("CANCEL") {
             dialog, which ->
-
         }
 
         builder.setView(numberPicker)
@@ -65,6 +66,7 @@ open class ChooseTimeDialog : DialogFragment()
     fun getValueChangeListener(): OnValueChangeListener? {
         return valueChangeListener
     }
+
 
     @JvmName("setValueChangeListener1")
      fun setValueChangeListener(valueChangeListener: OnValueChangeListener?) {

@@ -1,7 +1,10 @@
 package com.example.meditationtimer.fragments
 
+import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 import android.view.InputDevice
 import android.view.MotionEvent
+import android.widget.NumberPicker
 import androidx.fragment.app.testing.launchFragment
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
@@ -10,6 +13,7 @@ import androidx.test.espresso.action.GeneralLocation
 import androidx.test.espresso.action.Press
 import androidx.test.espresso.action.Tap
 import androidx.test.espresso.action.ViewActions.actionWithAssertions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -17,6 +21,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.meditationtimer.MainActivity
 import com.example.meditationtimer.R
+import kotlinx.coroutines.Dispatchers
+import org.hamcrest.Matchers.allOf
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -25,7 +31,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class ChooseTimeDialogTest
+class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
 {
 
 
@@ -63,7 +69,16 @@ class ChooseTimeDialogTest
                 MotionEvent.BUTTON_PRIMARY
             )
         )
-
+    private val clickBottomRight =
+        actionWithAssertions(
+            GeneralClickAction(
+                Tap.SINGLE,
+                GeneralLocation.BOTTOM_RIGHT,
+                Press.FINGER,
+                InputDevice.SOURCE_UNKNOWN,
+                MotionEvent.BUTTON_PRIMARY
+            )
+        )
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
@@ -77,20 +92,26 @@ fun init()
        onFragment{
            fragment ->
            chooseTimeDialogFragment = fragment
+           GlobalScope.launch(Dispatchers.Main) {
+               chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
+               chooseTimeDialogFragment.setValueChangeListener(this@ChooseTimeDialogTest)
+           }
        }
     }
 
 }
 
-    //yoo is this good?
     @Test
      fun testChooseTimeDialogFragment()
     {
       assertEquals(true, chooseTimeDialogFragment.dialog != null)
       assertEquals(true, chooseTimeDialogFragment.requireDialog().isShowing)
-      chooseTimeDialogFragment.dismiss()
-        chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
-      assertEquals(true, chooseTimeDialogFragment.dialog == null)
+
+      GlobalScope.launch(Dispatchers.Main){
+          chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
+          assertEquals(true, chooseTimeDialogFragment.dialog == null)
+      }
+
 
 
     }
@@ -102,12 +123,31 @@ fun init()
         onNumberPicker().check(matches(isDisplayed()))
     }
     @Test
-     fun pressTheOKButton()
+     fun testPressTheOKButton()
     {
         onView(withId(R.id.dialog_number_picker))
 
     }
 
+
+
+    @Test
+    fun testDefault()
+    {
+        onView(allOf(withId(R.id.dialog_number_picker), isDisplayed())).perform(clickTopCentre)
+
+        Thread.sleep(1000)
+
+
+
+        // Error because the value change listener isnt implemented yet. Guess this means bad code?
+      //  onView(withText("OK")).perform(click())
+
+    }
     private fun onNumberPicker()  =  onView(withId(R.id.dialog_number_picker))
     private fun onNumberPickerInput()  = onView(withParent(withId(R.id.dialog_number_picker)))
+    override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
+        Thread.sleep(1)
+    }
 }
+
