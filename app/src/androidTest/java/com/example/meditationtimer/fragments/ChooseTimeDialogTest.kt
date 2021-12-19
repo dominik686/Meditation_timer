@@ -48,7 +48,7 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
     https://blog.stylingandroid.com/numberpicker-espresso-testing/
      */
 
-    //Function for clicking on top of number picker(decrements the number)
+    //Function for clicking on top of number picker(increments the number)
     private val clickTopCentre =
         actionWithAssertions(
             GeneralClickAction(
@@ -59,7 +59,7 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
                 MotionEvent.BUTTON_PRIMARY)
             )
 
-    //Function for clicking on bottom of number picker(increments the number)
+    //Function for clicking on bottom of number picker(decrements the number)
     private val clickBottomCentre =
         actionWithAssertions(
             GeneralClickAction(
@@ -70,16 +70,7 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
                 MotionEvent.BUTTON_PRIMARY
             )
         )
-    private val clickBottomRight =
-        actionWithAssertions(
-            GeneralClickAction(
-                Tap.SINGLE,
-                GeneralLocation.BOTTOM_RIGHT,
-                Press.FINGER,
-                InputDevice.SOURCE_UNKNOWN,
-                MotionEvent.BUTTON_PRIMARY
-            )
-        )
+
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
@@ -134,11 +125,6 @@ fun init()
     {
         onView(allOf(withId(R.id.dialog_number_picker), isDisplayed()))
 
-        Thread.sleep(1000)
-
-
-
-        // Error because the value change listener isnt implemented yet. Guess this means bad code?
         onView(withText("OK")).perform(click())
 
         assertEquals(5, minutes)
@@ -148,8 +134,47 @@ fun init()
     @Test
     fun test_decrementValue_okButton()
     {
+        onNumberPicker().perform(clickBottomCentre)
+
+        onView(withText("OK")).perform(click())
+
+        assertEquals(120, minutes)
+    }
+    @Test
+    fun test_incrementValue_okButton()
+    {
         onNumberPicker().perform(clickTopCentre)
-       // chooseTimeDialogFragment.
+
+        onView(withText("OK")).perform(click())
+
+        assertEquals(10, minutes)
+    }
+    @Test
+    fun test_incrementValue_cancelButton()
+    {
+        onNumberPicker().perform(clickTopCentre)
+
+        onView(withText("CANCEL")).perform(click())
+
+        assertEquals(0, minutes)
+    }
+    @Test
+    fun test_decrementValue_cancelButton()
+    {
+        onNumberPicker().perform(clickBottomCentre)
+
+        onView(withText("CANCEL")).perform(click())
+
+       assertEquals(0, minutes)
+    }
+
+    @Test
+    fun test_defaultValue_cancelButton()
+    {
+
+        onView(withText("CANCEL")).perform(click())
+
+        assertEquals(0, minutes)
     }
     private fun onNumberPicker()  =  onView(withId(R.id.dialog_number_picker))
     private fun onNumberPickerInput()  = onView(withParent(withId(R.id.dialog_number_picker)))
