@@ -1,13 +1,9 @@
 package com.example.meditationtimer.fragments
 
-import kotlinx.coroutines.*
-import kotlinx.coroutines.launch
 import android.view.InputDevice
 import android.view.MotionEvent
-import android.view.View
 import android.widget.NumberPicker
 import androidx.fragment.app.testing.launchFragment
-import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.GeneralClickAction
 import androidx.test.espresso.action.GeneralLocation
@@ -17,32 +13,21 @@ import androidx.test.espresso.action.ViewActions.actionWithAssertions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.example.meditationtimer.MainActivity
 import com.example.meditationtimer.R
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import org.hamcrest.Matchers.allOf
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+@DelicateCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
 {
-
-
-
-
-
-    // Test if number picker is visible
-    //Test what happens when cancel is pressed
-    // Test what happens when ok is pressed
-
 
     /* Both clickTopCenter and clickBottomCentre methods were derived from this tutorial
     https://blog.stylingandroid.com/numberpicker-espresso-testing/
@@ -71,11 +56,10 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
             )
         )
 
-    @get:Rule
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
-    lateinit var chooseTimeDialogFragment : ChooseTimeDialog
-    var minutes = 0;
+
+    private lateinit var chooseTimeDialogFragment : ChooseTimeDialog
+    private var minutes = 0
 
 @Before
 fun init()
@@ -93,8 +77,8 @@ fun init()
        }
     }
 
-     minutes = 0;
-}
+     minutes = 0
+ }
 
     @Test
      fun testChooseTimeDialogFragment()
@@ -177,15 +161,14 @@ fun init()
         assertEquals(0, minutes)
     }
     private fun onNumberPicker()  =  onView(withId(R.id.dialog_number_picker))
-    private fun onNumberPickerInput()  = onView(withParent(withId(R.id.dialog_number_picker)))
 
     override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
         if (p0 != null) {
 
              minutes = (p0.value + 1) * 5
-            //Add one because the list postion started at 0, and multiply by 5 becausue positions were increments of 5
+            //Add one because the list position started at 0, and multiply by 5 because positions were increments of 5
 
-        };
+        }
     }
 }
 

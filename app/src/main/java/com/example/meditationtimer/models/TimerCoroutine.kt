@@ -1,6 +1,6 @@
 package com.example.meditationtimer.models
 
-import android.util.Log
+import  android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*

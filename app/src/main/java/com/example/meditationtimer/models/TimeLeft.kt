@@ -37,4 +37,8 @@ data class TimeLeft(var hours : Int, var minutes : Int, var seconds : Int)
         }
         return "$minutes:$seconds"
     }
+
+    // ADD MINUTES AS WELL
+
+    // THIS FUNCTION IS UNFINISHED
 }
