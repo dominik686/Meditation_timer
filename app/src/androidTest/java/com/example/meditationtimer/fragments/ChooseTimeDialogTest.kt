@@ -33,7 +33,12 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
     https://blog.stylingandroid.com/numberpicker-espresso-testing/
      */
 
-    //Function for clicking on top of number picker(increments the number)
+    /*
+    When ran together some tests fail, but when you run them separately they pass.
+    I think it might have to do something with the minutes variable
+
+     */
+    //Variable for clicking on top of number picker(increments the number)
     private val clickTopCentre =
         actionWithAssertions(
             GeneralClickAction(
@@ -44,7 +49,7 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
                 MotionEvent.BUTTON_PRIMARY)
             )
 
-    //Function for clicking on bottom of number picker(decrements the number)
+    //Variable for clicking on bottom of number picker(decrements the number)
     private val clickBottomCentre =
         actionWithAssertions(
             GeneralClickAction(
