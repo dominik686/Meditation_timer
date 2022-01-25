@@ -43,7 +43,7 @@ open class ChooseTimeDialog : DialogFragment()
 
 
         builder.setPositiveButton(
-            "OK"
+            resources.getString(R.string.ok)
         ) { dialog, which ->
             valueChangeListener.onValueChange(
                 numberPicker,

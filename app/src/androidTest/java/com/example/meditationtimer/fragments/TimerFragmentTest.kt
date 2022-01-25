@@ -31,41 +31,46 @@ class TimerFragmentTest
 
 
 
-
-    @Test
-    fun testIsFragmentVisible()
+    /*
+    Should I add some sort of check at the end of each test?
+     */
+    @Before
+    fun init()
     {
-
-        // Does it throw an error because of properties in the layout??
-        // The test time fragment worked after removing margins in the layout. maybe hardociding layout height and width will fix it here?
-
-        val scenario =  launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
+        launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
+    }
+    @Test
+    fun testIfFragmentVisible()
+    {
+        //launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
 
 
         onView(withId(R.id.timer_fragment)).check(matches(isDisplayed()))
         onView(withId(R.id.floatingActionButton)).perform(click())
-
-
-        /*
-       val scenario =  launchFragmentInContainer<TestTimerFragment>(themeResId = R.style.Theme_MaterialComponents)
-
-        Thread.sleep(1000)
-
-        onView(withId(R.id.test_button)).check(matches(isDisplayed()))
-        onView(withId(R.id.test_button)).perform(click())
-
-         */
     }
 
     @Test
-    fun pressStartFAB()
+    fun testPressStartFAB()
     {
-       // onView(allOf(withId(R.id.floatingActionButton), isDescendantOfA(withId(R.id.timer_coordinatorlayout)))).perform(click())
-
-        // Get the ChooseTimeDialog from the fragment manager
-       // scenario.childFragmentManager.fragments[2]
+        onView(withId(R.id.floatingActionButton)).perform(click())
     }
 
+    @Test
+    fun testStartTimer()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText(R.string.ok)).perform(click())
+
+    }
+
+
+    @Test
+    fun testStartAndStopTimer()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.cancel)).perform(click())
+    }
     // Three tests
 
     // Press fab and check if the fragment pops up?
