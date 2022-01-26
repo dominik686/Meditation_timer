@@ -30,7 +30,15 @@ class TimerFragmentTest
     // https://developer.android.com/training/testing/espresso/cheat-sheet
 
 
+// Three tests
 
+    // Press fab and check if the fragment pops up?
+
+    // after choosing time check if the timer is running?
+
+    // After this check press the cancel button and check if the timer is stopped?
+
+    // check if the timer stops after the chosen interval?
     /*
     Should I add some sort of check at the end of each test?
      */
@@ -40,23 +48,20 @@ class TimerFragmentTest
         launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
     }
     @Test
-    fun testIfFragmentVisible()
+    fun test_IsFragmentVisible()
     {
-        //launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
-
-
         onView(withId(R.id.timer_fragment)).check(matches(isDisplayed()))
         onView(withId(R.id.floatingActionButton)).perform(click())
     }
 
     @Test
-    fun testPressStartFAB()
+    fun test_PressStartFAB()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
     }
 
     @Test
-    fun testStartTimer()
+    fun test_StartTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
@@ -65,20 +70,23 @@ class TimerFragmentTest
 
 
     @Test
-    fun testStartAndStopTimer()
+    fun test_StartAndStopTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
         onView(withText(R.string.cancel)).perform(click())
     }
-    // Three tests
 
-    // Press fab and check if the fragment pops up?
+    @Test
+    fun test_StartStop_StartAndStopTimer()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.cancel)).perform(click())
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.cancel)).perform(click())
+    }
 
-    // after choosing time check if the timer is running?
-
-    // After this check press the cancel button and check if the timer is stopped?
-
-    // check if the timer stops after the chosen interval?
 
 }

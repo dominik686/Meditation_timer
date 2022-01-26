@@ -1,20 +1,26 @@
 package com.example.meditationtimer.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.meditationtimer.databases.MeditationRoomDatabase
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.models.TimerCoroutine
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 class TimerViewModel : ViewModel() {
 
+    //Working on the room db
 
 //    https://medium.com/android-dev-hacks/exploring-livedata-and-kotlin-flow-7c8d8e706324
-
+   // https://github.com/googlecodelabs/android-room-with-a-view/blob/kotlin/app/src/main/java/com/example/android/roomwordssample/NewWordActivity.kt
+    // https://developer.android.com/training/data-storage/room#kotlin
     //var secondsLeft : MutableLiveData<Int>??
     private lateinit var meditation : Meditation
     private lateinit var timer : TimerCoroutine
+
 
 
     fun startTimer(minutes : Int) : LiveData<Int>
