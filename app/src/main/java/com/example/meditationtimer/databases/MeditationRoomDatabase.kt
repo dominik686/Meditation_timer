@@ -5,13 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.meditationtimer.converters.MeditationConverters
 import com.example.meditationtimer.daos.MeditationDao
 import com.example.meditationtimer.models.Meditation
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.util.*
+import kotlin.time.Duration
 
-@Database(entities = [Meditation::class], version = 1)
-@TypeConverters(MeditationConverters::class)
+@Database(entities = [Meditation::class], version = 2, exportSchema = false)
+//@TypeConverters(MeditationConverters::class)
 abstract class MeditationRoomDatabase : RoomDatabase() {
 abstract fun meditatonDao() : MeditationDao
 
@@ -34,12 +40,32 @@ companion object{
             // Wipes and rebuilds instead of migrating if no Migration object
             // Migration is not part of this codelab
                 .fallbackToDestructiveMigration()
-               // .addCallback(MeditationDatabaseCallback(scope))
+                .addCallback(MeditationDatabaseCallback(scope))
                 .build()
             INSTANCE = instance
-            // return instance
             instance
         }
+    }
+
+    private class MeditationDatabaseCallback(
+    private val scope : CoroutineScope) : RoomDatabase.Callback()
+    {
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            INSTANCE?.let { database ->
+                scope.launch (Dispatchers.IO) {
+                    populateDatabase(database.meditatonDao())
+            }
+            }
+        }
+    }
+
+    suspend fun populateDatabase(meditationDao : MeditationDao)
+    {
+        // Start tyhe app with a clean database every time\
+       // // not neeeded if tyou only populate on creation med
+        val meditation = Meditation(1, "", 5, Date(2020, 12, 11, 14,15).toString())
+        meditationDao.insertMeditation(meditation)
     }
 }
 }
