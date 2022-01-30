@@ -4,19 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.meditationtimer.converters.MeditationConverters
 import com.example.meditationtimer.daos.MeditationDao
 import com.example.meditationtimer.models.Meditation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 import java.util.*
-import kotlin.time.Duration
 
-@Database(entities = [Meditation::class], version = 2, exportSchema = false)
+@Database(entities = [Meditation::class], version = 1, exportSchema = false)
 //@TypeConverters(MeditationConverters::class)
 abstract class MeditationRoomDatabase : RoomDatabase() {
 abstract fun meditatonDao() : MeditationDao
@@ -64,7 +60,7 @@ companion object{
     {
         // Start tyhe app with a clean database every time\
        // // not neeeded if tyou only populate on creation med
-        val meditation = Meditation(1, "", 5, Date(2020, 12, 11, 14,15).toString())
+        val meditation = Meditation(description = "", duration = 5, date = Date(2020, 12, 11, 14,15).toString())
         meditationDao.insertMeditation(meditation)
     }
 }

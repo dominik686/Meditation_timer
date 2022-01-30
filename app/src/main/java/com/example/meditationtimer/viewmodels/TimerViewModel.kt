@@ -25,7 +25,8 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
     private lateinit var meditation: Meditation
     private lateinit var timer: TimerCoroutine
 
-
+     var timerRunning = false
+    var timerStarted = false
 
     fun insertMeditation(meditation : Meditation)
     {
@@ -38,8 +39,8 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
         timer = TimerCoroutine()
         // Timer should tick every second, so minutes * 60
         var livedata = timer.startTimer(minutes * 60)
-
-
+        timerRunning = true
+        timerStarted = true
         return livedata
 
 
@@ -47,12 +48,31 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
         // store the rest of the data in the model?
     }
 
+    // Pause the timer
+    fun pauseTimer()
+    {
+        timer.cancelTimer()
+        timerRunning = false
+    }
+
+    // Resume the timer
+    fun resumeTimer()
+    {
+        timer.resumeTimer()
+        timerRunning = true
+    }
+
     //Cancel the timer if its already running
     fun cancelTimer() {
         if (this::timer.isInitialized) {
             timer.cancelTimer()
+            timerRunning = false
             // Maybe change the value of timer to null?
+            timerStarted = false
+            timerRunning = false
         }
+
+
     }
 }
 class TimerViewModelFactory(private val repository: MeditationRepository) : ViewModelProvider.Factory
