@@ -25,6 +25,7 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
     private lateinit var meditation: Meditation
     private lateinit var timer: TimerCoroutine
 
+    private lateinit var secondsLeft : LiveData<Int>
      var timerRunning = false
     var timerStarted = false
 
@@ -35,13 +36,13 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
             }
     }
 
-    fun startTimer(minutes: Int): LiveData<Int> {
+    fun startTimer(seconds: Int): LiveData<Int> {
         timer = TimerCoroutine()
         // Timer should tick every second, so minutes * 60
-        var livedata = timer.startTimer(minutes * 60)
+        secondsLeft = timer.startTimer( seconds)
         timerRunning = true
         timerStarted = true
-        return livedata
+        return secondsLeft
 
 
         // Create a new meditation object now to store the duration and minutes, and then after it finishes
@@ -56,10 +57,14 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
     }
 
     // Resume the timer
-    fun resumeTimer()
+    fun resumeTimer() : LiveData<Int>
     {
+        timer = TimerCoroutine()
+        secondsLeft = timer.startTimer(secondsLeft.value!!)
         timer.resumeTimer()
         timerRunning = true
+
+        return secondsLeft
     }
 
     //Cancel the timer if its already running
@@ -69,10 +74,28 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
             timerRunning = false
             // Maybe change the value of timer to null?
             timerStarted = false
-            timerRunning = false
         }
 
 
+    }
+
+    fun isTimerFinished() : Boolean
+    {
+       return secondsLeft.value == 0
+    }
+    fun isTimerStartedAndRunning() : Boolean
+    {
+        return timerStarted && timerRunning
+    }
+
+    fun isTimerStartedAndPaused() : Boolean
+    {
+        return timerStarted && !timerRunning
+    }
+
+    fun isTimerNotStartedAndNotRunning() : Boolean
+    {
+        return  !timerStarted && !timerRunning
     }
 }
 class TimerViewModelFactory(private val repository: MeditationRepository) : ViewModelProvider.Factory
