@@ -9,7 +9,8 @@ class MeditationRepository(private val meditationDao: MeditationDao)
 {
     // Room executes all queries on a separate thread
     // Observed Flow will notify the observer when teh data has changed.
-   // val allMeditations : Flow<List<Meditation>> =meditationDao.getMeditations()
+    val allMeditations : Flow<List<Meditation>> =meditationDao.getMeditations()
+
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -17,4 +18,6 @@ suspend fun insertMeditation(meditation: Meditation)
 {
     meditationDao.insertMeditation(meditation)
 }
+
+
 }
