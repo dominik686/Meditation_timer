@@ -32,7 +32,7 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         setDescription(meditation.description)
         setDate(meditation.date)
-        setDuration(meditation.description)
+        setDuration(meditation.duration)
 
     }
 
@@ -41,9 +41,9 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         itemView.findViewById<TextView>(R.id.description_textview).text = description
 
     }
-    private fun setDuration(duration : String)
+    private fun setDuration(duration : Int)
     {
-        itemView.findViewById<TextView>(R.id.duration_textview).text = duration
+        itemView.findViewById<TextView>(R.id.duration_textview).text = duration.toString() + " minutes"
     }
     private fun setDate(date : String)
     {

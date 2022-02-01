@@ -10,9 +10,20 @@ import androidx.room.PrimaryKey
 data class Meditation(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                       val description: String,
                       val duration: Int,
-                      val date: String)
+                      val date: String )
 {
-// Create a Meditation data class that stores data using Room/Realm
 // Display all those meditations in a calendar
 //    https://github.com/kizitonwose/CalendarView
+
+
+
+
+
+    /*
+    GMT only works in my timezone. Need to figure out a way to trim it for all timezones
+     */
+    fun getTrimmedDate() : String
+    {
+        return date.subSequence(0, date.indexOf("GMT")).toString()
+    }
 }
