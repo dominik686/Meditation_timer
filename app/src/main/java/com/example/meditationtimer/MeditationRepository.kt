@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class MeditationRepository(private val meditationDao: MeditationDao)
 {
     // Room executes all queries on a separate thread
-    // Observed Flow will notify the observer when teh data has changed.
+    // Observed Flow will notify the observer when the data has changed.
     val allMeditations : Flow<List<Meditation>> =meditationDao.getMeditations()
 
 

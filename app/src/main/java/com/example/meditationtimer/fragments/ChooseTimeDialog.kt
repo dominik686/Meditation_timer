@@ -21,11 +21,9 @@ open class ChooseTimeDialog : DialogFragment()
         numberPicker.id = R.id.dialog_number_picker
 
 
-        // Set the maximum and minimum time of meditation (in minutes)
 
        var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
 
-        // Cast minutes into a type that Number Picker will take (array of strings)
         val arrayList : ArrayList<String> = ArrayList(minutes.size)
         for(i in 0 until minutes.size)
         {

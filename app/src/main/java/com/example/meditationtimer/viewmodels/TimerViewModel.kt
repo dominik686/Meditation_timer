@@ -16,13 +16,6 @@ import java.lang.IllegalArgumentException
 
 class TimerViewModel(private val repository : MeditationRepository) : ViewModel() {
 
-    //Working on the room db
-
-    //    https://medium.com/android-dev-hacks/exploring-livedata-and-kotlin-flow-7c8d8e706324
-    // https://github.com/googlecodelabs/android-room-with-a-view/blob/kotlin/app/src/main/java/com/example/android/roomwordssample/NewWordActivity.kt
-    // https://developer.android.com/training/data-storage/room#kotlin
-    //var secondsLeft : MutableLiveData<Int>??
-    private lateinit var meditation: Meditation
     private lateinit var timer: TimerCoroutine
 
     private lateinit var secondsLeft : LiveData<Int>
@@ -40,7 +33,7 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
 
     fun startTimer(seconds: Int): LiveData<Int> {
         timer = TimerCoroutine()
-        // Timer should tick every second, so minutes * 60
+
         secondsLeft = timer.startTimer( seconds)
         initialDuration = seconds/60
         timerRunning = true
@@ -48,18 +41,16 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
         return secondsLeft
 
 
-        // Create a new meditation object now to store the duration and minutes, and then after it finishes
-        // store the rest of the data in the model?
+
     }
 
-    // Pause the timer
     fun pauseTimer()
     {
         timer.cancelTimer()
         timerRunning = false
     }
 
-    // Resume the timer
+
     fun resumeTimer() : LiveData<Int>
     {
         timer = TimerCoroutine()
@@ -70,12 +61,10 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
         return secondsLeft
     }
 
-    //Cancel the timer if its already running
     fun cancelTimer() {
         if (this::timer.isInitialized) {
             timer.cancelTimer()
             timerRunning = false
-            // Maybe change the value of timer to null?
             timerStarted = false
         }
 

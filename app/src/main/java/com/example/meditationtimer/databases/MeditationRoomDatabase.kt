@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @Database(entities = [Meditation::class], version = 1, exportSchema = false)
-//@TypeConverters(MeditationConverters::class)
 abstract class MeditationRoomDatabase : RoomDatabase() {
 abstract fun meditatonDao() : MeditationDao
 
