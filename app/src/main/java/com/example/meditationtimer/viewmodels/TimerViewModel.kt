@@ -26,11 +26,13 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
     private lateinit var timer: TimerCoroutine
 
     private lateinit var secondsLeft : LiveData<Int>
-     var timerRunning = false
-    var timerStarted = false
+     private var initialDuration : Int = 0
+     private var timerRunning = false
+    private var timerStarted = false
 
-    fun insertMeditation(meditation : Meditation)
+    fun insertMeditation(description : String)
     {
+        val meditation = Meditation(description = description, duration = initialDuration)
         viewModelScope.launch {
             repository.insertMeditation(meditation)
             }
@@ -40,6 +42,7 @@ class TimerViewModel(private val repository : MeditationRepository) : ViewModel(
         timer = TimerCoroutine()
         // Timer should tick every second, so minutes * 60
         secondsLeft = timer.startTimer( seconds)
+        initialDuration = seconds/60
         timerRunning = true
         timerStarted = true
         return secondsLeft
