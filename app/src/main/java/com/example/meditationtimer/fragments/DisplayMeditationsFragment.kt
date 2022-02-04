@@ -47,6 +47,7 @@ class DisplayMeditationsFragment : Fragment() {
 
     private fun createAllMeditationsObserver()
     {
+
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
             setupRecyclerview(allMeditations)
         }

@@ -12,13 +12,13 @@ import com.example.meditationtimer.Utils
 
 open class ChooseTimeDialog : DialogFragment()
 {
-    private lateinit var valueChangeListener : NumberPicker.OnValueChangeListener
+    private lateinit var valueChangeListener : OnValueChangeListener
     private var minValue : Int = 1
     private var maxValue  : Int = 120
-
+    private lateinit var builder : AlertDialog.Builder
+    private lateinit var numberPicker : NumberPicker
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val numberPicker =  NumberPicker(activity)
-        numberPicker.id = R.id.dialog_number_picker
+      initializeNumberPicker()
 
 
 
@@ -35,9 +35,9 @@ open class ChooseTimeDialog : DialogFragment()
         array =  arrayList.toArray(array)
         numberPicker.displayedValues = array
 
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle("How many minutes would you like to meditate for:")
-        builder.setMessage("Choose a number")
+        createDialogBuilder()
+        buildDialogTitle()
+        buildBuilderMessage()
 
 
         builder.setPositiveButton(
@@ -60,6 +60,34 @@ open class ChooseTimeDialog : DialogFragment()
         return builder.create()
     }
 
+   private fun initializeNumberPicker()
+    {
+    numberPicker =  NumberPicker(activity)
+    numberPicker.id = R.id.dialog_number_picker
+    }
+    fun createListOfFiveMinuteIntervals()
+    {
+        var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
+
+    }
+
+    fun convertListToString()
+    {
+
+    }
+
+    private fun createDialogBuilder()
+    {
+        builder = AlertDialog.Builder(activity)
+    }
+    private fun buildDialogTitle()
+    {
+        builder.setTitle("How many minutes would you like to meditate for:")
+    }
+    private fun buildBuilderMessage()
+    {
+        builder.setMessage("Choose a number")
+    }
     @JvmName("getValueChangeListener1")
     fun getValueChangeListener(): OnValueChangeListener? {
         return valueChangeListener

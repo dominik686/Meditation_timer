@@ -39,6 +39,8 @@ companion object {
         }
     }
 }
+
+
     private class MeditationDatabaseCallback(
     private val scope : CoroutineScope) : RoomDatabase.Callback()
     {
