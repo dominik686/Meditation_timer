@@ -50,7 +50,7 @@ open class ChooseTimeDialog : DialogFragment()
 
 
         }
-        builder.setNegativeButton("CANCEL") {
+        builder.setNegativeButton(resources.getString(android.R.string.cancel)) {
             dialog, which ->
         }
 

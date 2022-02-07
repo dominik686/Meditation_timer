@@ -75,6 +75,7 @@ class TimerFragmentTest
 
 
 
+
     //After pressing the Fab button
     // Test if the number picker is visible
 
@@ -89,10 +90,43 @@ class TimerFragmentTest
     fun test_PressStartFAB()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText("How many minutes would you like to meditate for:")).check(matches(
-            isDisplayed()))
+     //   onView(withText("How many minutes would you like to meditate for:")).check(matches(
+    //        isDisplayed()))
 
     }
+    @Test
+    fun test_IsNumberPickerVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withId(R.id.dialog_number_picker)).check(matches(isDisplayed()))
+    }
+    @Test
+    fun test_Is_DialogTitleVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText("How many minutes would you like to meditate for:")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_Is_DialogMessageVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText("Choose a number")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_Is_NumberPickerOkButtonVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText((R.string.ok))).check(matches(isDisplayed()))
+    }
+    @Test
+    fun test_Is_NumberPickerCancelButtonVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText((android.R.string.cancel))).check(matches(isDisplayed()))
+    }
+
 
     @Test
     fun test_StartTimer()
@@ -108,13 +142,21 @@ class TimerFragmentTest
         assertNotEquals(withId(R.id.timeLeftTextView),  withText(R.string.timer_not_set))
     }
 
+    @Test
+    fun test_StartTimer_IsCancelButtonVisible()
+    {
+
+        onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText(R.string.ok)).perform(click())
+        onView(withId(R.id.cancelTimerButton)).check(matches(isDisplayed()))
+    }
 
     @Test
     fun test_StartAndStopTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
-        onView(withText(R.string.cancel)).perform(click())
+        onView(withId(R.id.cancelTimerButton)).perform(click())
     }
 
     @Test
@@ -122,10 +164,10 @@ class TimerFragmentTest
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
-        onView(withText(R.string.cancel)).perform(click())
+        onView(withId(R.id.cancelTimerButton)).perform(click())
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
-        onView(withText(R.string.cancel)).perform(click())
+        onView(withId(R.id.cancelTimerButton)).perform(click())
     }
 
 
