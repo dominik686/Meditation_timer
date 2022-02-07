@@ -10,6 +10,7 @@ import androidx.test.espresso.matcher.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.meditationtimer.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -23,13 +24,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @DelicateCoroutinesApi
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 @LargeTest
 class TimerFragmentTest
 {
     // https://developer.android.com/training/testing/espresso/cheat-sheet
 
 
+    // Create a test timer object?
 // Three tests
 
     // Press fab and check if the fragment pops up?
@@ -48,16 +50,48 @@ class TimerFragmentTest
         launchFragmentInContainer<TimerFragment>(themeResId = R.style.Theme_MaterialComponents)
     }
     @Test
-    fun test_IsFragmentVisible()
+    fun test_Is_FragmentVisible()
     {
         onView(withId(R.id.timer_fragment)).check(matches(isDisplayed()))
-        onView(withId(R.id.floatingActionButton)).perform(click())
     }
+
+    @Test
+    fun test_Is_FabVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_Is_TimeLeftTextViewVisible()
+    {
+        onView(withId(R.id.floatingActionButton)).check(matches(isDisplayed()))
+    }
+    @Test
+    fun test_Is_MeditationHistoryButtonVisible()
+    {
+        onView(withId(R.id.history_button)).check(matches(isDisplayed()))
+
+    }
+
+
+
+    //After pressing the Fab button
+    // Test if the number picker is visible
+
+
+    // After choosing a time interval
+    // Check if the fab icon changed
+    // Check if timeLeft textview changed and is changing
+    // check if cancel button is visible
+    // check if after pressing the fab button again the icon changes back
 
     @Test
     fun test_PressStartFAB()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withText("How many minutes would you like to meditate for:")).check(matches(
+            isDisplayed()))
+
     }
 
     @Test
@@ -66,6 +100,12 @@ class TimerFragmentTest
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
 
+        // Check if the displayed textview has the value of the string?
+        // Or check if the fab icon is changed?
+        // Or check if the cancel button is showing?
+        val a = withId(R.id.timeLeftTextView)
+        val b = withText(R.string.timer_not_set)
+        assertNotEquals(withId(R.id.timeLeftTextView),  withText(R.string.timer_not_set))
     }
 
 

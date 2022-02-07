@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import java.lang.IllegalArgumentException
 
 class DisplayMeditationsViewModel(private val repository: MeditationRepository) : ViewModel() {
-    // TODO: Implement the ViewModel
 
     val allMeditations = repository.allMeditations.asLiveData()
 
