@@ -56,6 +56,7 @@ abstract class MeditationRoomDatabase : RoomDatabase() {
 
 
         suspend fun populateDatabase(meditationDao: MeditationDao) {
+            /*
             meditationDao.insertMeditation(Meditation(description = "1", duration = 5,))
             meditationDao.insertMeditation(Meditation(description = "2", duration = 5,))
             meditationDao.insertMeditation(Meditation(description = "3", duration = 5,))
@@ -66,6 +67,8 @@ abstract class MeditationRoomDatabase : RoomDatabase() {
             meditationDao.insertMeditation(Meditation(description = "8", duration = 5,))
             meditationDao.insertMeditation(Meditation(description = "9", duration = 5,))
             meditationDao.insertMeditation(Meditation(description = "10", duration = 5,))
+
+             */
         }
     }
 }

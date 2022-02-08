@@ -3,7 +3,7 @@
     <string name="timer_not_set">Timer not set</string>
     <string name="ok">OK</string>
     <string name="meditation_history">Meditation history</string>
-    <string name="description_label">Description</string>
+    <string name="description_label">Description:</string>
     <string name="duration_label">Duration</string>
     <string name="date_label">Date</string>
 </resources>

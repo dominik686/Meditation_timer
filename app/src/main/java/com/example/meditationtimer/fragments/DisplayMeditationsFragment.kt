@@ -1,12 +1,13 @@
 package com.example.meditationtimer.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meditationtimer.MeditationApplication
 import com.example.meditationtimer.adapters.DisplayMeditationsAdapter
@@ -14,6 +15,7 @@ import com.example.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModel
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModelFactory
+
 
 class DisplayMeditationsFragment : Fragment() {
 
@@ -57,16 +59,28 @@ class DisplayMeditationsFragment : Fragment() {
     {
         setupAdapter(meditations)
         setupLayoutManager()
+        addItemDivider()
     }
-    private fun setupAdapter(meditations: List<Meditation>)
+     fun setupAdapter(meditations: List<Meditation>)
     {
         val adapter = DisplayMeditationsAdapter(meditations)
         _binding!!.displayMeditationsRecyclerview.adapter = adapter
     }
+
     private fun setupLayoutManager()
     {
         val layoutManager =  LinearLayoutManager(context)
         _binding!!.displayMeditationsRecyclerview.layoutManager = layoutManager
+    }
+
+    private fun addItemDivider()
+    {
+        _binding!!.displayMeditationsRecyclerview.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun observeAllMeditations()

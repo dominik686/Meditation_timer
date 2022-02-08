@@ -15,6 +15,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.meditationtimer.R
 import kotlinx.coroutines.*
 import org.hamcrest.Matchers.allOf
@@ -24,7 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @DelicateCoroutinesApi
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 @LargeTest
 class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
 {
