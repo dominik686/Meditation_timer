@@ -7,52 +7,41 @@ import android.view.View
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.meditationtimer.MeditationApplication
 import com.example.meditationtimer.R
 import com.example.meditationtimer.Utils
+import com.example.meditationtimer.viewmodels.ChooseTimeDialogViewModel
+import com.example.meditationtimer.viewmodels.ChooseTimeDialogViewModelFactory
+import com.example.meditationtimer.viewmodels.TimerViewModel
+import com.example.meditationtimer.viewmodels.TimerViewModelFactory
 
-open class ChooseTimeDialog : DialogFragment()
-{
-    private lateinit var valueChangeListener : OnValueChangeListener
-    private var minValue : Int = 1
-    private var maxValue  : Int = 120
+open class ChooseTimeDialog : DialogFragment() {
+    private lateinit var valueChangeListener: OnValueChangeListener
+
+    private val viewModel: ChooseTimeDialogViewModel by viewModels{
+        ChooseTimeDialogViewModelFactory()
+    }
+
     private lateinit var builder : AlertDialog.Builder
     private lateinit var numberPicker : NumberPicker
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-      initializeNumberPicker()
 
 
 
-       var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
-
-        val arrayList : ArrayList<String> = ArrayList(minutes.size)
-        for(i in 0 until minutes.size)
-        {
-            arrayList.add(minutes[i].toString())
-        }
-        numberPicker.minValue = 0
-        numberPicker.maxValue = minutes.size - 1
-        var array = emptyArray<String>()
-        array =  arrayList.toArray(array)
-        numberPicker.displayedValues = array
+        initializeNumberPicker()
+        setMinAndMaxValue()
+        setDisplayedValues()
 
         createDialogBuilder()
         buildDialogTitle()
         buildBuilderMessage()
 
 
-        builder.setPositiveButton(
-            resources.getString(R.string.ok)
-        ) { dialog, which ->
-            valueChangeListener.onValueChange(
-                numberPicker,
-                numberPicker.value, numberPicker.value
-            )
-
-
-        }
-        builder.setNegativeButton(resources.getString(android.R.string.cancel)) {
-            dialog, which ->
-        }
+        buildPositiveButton()
+        buildNegativeButton()
 
         builder.setView(numberPicker)
 
@@ -60,34 +49,63 @@ open class ChooseTimeDialog : DialogFragment()
         return builder.create()
     }
 
+
    private fun initializeNumberPicker()
     {
-    numberPicker =  NumberPicker(activity)
-    numberPicker.id = R.id.dialog_number_picker
-    }
-    fun createListOfFiveMinuteIntervals()
-    {
-        var  minutes : MutableList<Int> = Utils.createListDivisibleByFive(minValue, maxValue)
-
+     numberPicker =  NumberPicker(activity)
+     numberPicker.id = R.id.dialog_number_picker
     }
 
-    fun convertListToString()
+    private fun setMinAndMaxValue()
     {
+        numberPicker.minValue = 0
+        numberPicker.maxValue = viewModel.getListOfIntervalsSize() - 1
+    }
 
+    private fun setDisplayedValues()
+    {
+        var array = emptyArray<String>()
+        array =  viewModel.getListOfIntervalsAsArray()
+        numberPicker.displayedValues = array
     }
 
     private fun createDialogBuilder()
     {
         builder = AlertDialog.Builder(activity)
     }
+
     private fun buildDialogTitle()
     {
         builder.setTitle("How many minutes would you like to meditate for:")
     }
+
     private fun buildBuilderMessage()
     {
         builder.setMessage("Choose a number")
     }
+
+    private fun buildPositiveButton()
+    {
+        builder.setPositiveButton(
+            resources.getString(R.string.ok)
+        ) { _, _ ->
+            valueChangeListener.onValueChange(
+                numberPicker,
+                numberPicker.value, numberPicker.value
+            )
+
+
+        }
+    }
+
+    private fun buildNegativeButton()
+    {
+        builder.setNegativeButton(resources.getString(android.R.string.cancel)) {
+                _, _ ->
+        }
+    }
+
+
     @JvmName("getValueChangeListener1")
     fun getValueChangeListener(): OnValueChangeListener? {
         return valueChangeListener

@@ -31,6 +31,7 @@ class TimerFragmentTest
     // https://developer.android.com/training/testing/espresso/cheat-sheet
 
 
+
     // Create a test timer object?
 // Three tests
 
@@ -76,14 +77,11 @@ class TimerFragmentTest
 
 
 
-    //After pressing the Fab button
-    // Test if the number picker is visible
 
 
     // After choosing a time interval
     // Check if the fab icon changed
     // Check if timeLeft textview changed and is changing
-    // check if cancel button is visible
     // check if after pressing the fab button again the icon changes back
 
     @Test
@@ -134,12 +132,6 @@ class TimerFragmentTest
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withText(R.string.ok)).perform(click())
 
-        // Check if the displayed textview has the value of the string?
-        // Or check if the fab icon is changed?
-        // Or check if the cancel button is showing?
-        val a = withId(R.id.timeLeftTextView)
-        val b = withText(R.string.timer_not_set)
-        assertNotEquals(withId(R.id.timeLeftTextView),  withText(R.string.timer_not_set))
     }
 
     @Test

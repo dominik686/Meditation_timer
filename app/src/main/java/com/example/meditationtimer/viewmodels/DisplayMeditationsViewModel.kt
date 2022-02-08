@@ -8,6 +8,8 @@ import com.example.meditationtimer.models.Meditation
 import kotlinx.coroutines.flow.Flow
 import java.lang.IllegalArgumentException
 
+
+//TODO: Create a universal viewmodel factory class for viewmodels that depend on the depository?
 class DisplayMeditationsViewModel(private val repository: MeditationRepository) : ViewModel() {
 
     val allMeditations = repository.allMeditations.asLiveData()
