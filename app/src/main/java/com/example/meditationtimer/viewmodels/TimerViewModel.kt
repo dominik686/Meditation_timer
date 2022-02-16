@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.meditationtimer.IMeditationRepository
 import com.example.meditationtimer.MeditationRepository
 import com.example.meditationtimer.databases.MeditationRoomDatabase
 import com.example.meditationtimer.models.Meditation
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import java.lang.IllegalArgumentException
 
-class TimerViewModel(private val repository : MeditationRepository) : ViewModel() {
+class TimerViewModel(private val repository : IMeditationRepository) : ViewModel() {
 
     private lateinit var timer: TimerCoroutine
 

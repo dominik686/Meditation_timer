@@ -8,11 +8,12 @@ class TimeLeftTest : TestCase() {
 
 
     @Test
-    fun test_convertSecondsToMinutes_minutesEqualToSixty_returnsTrue()
+    fun test_convertSecondsToMinutes_minutesEqualToSixty()
     {
         var timeLeft = TimeLeft(3600)
+        var minutesLeft = timeLeft.minutes
 
-        assertEquals(60, timeLeft.minutes)
+        assertEquals(60, minutesLeft)
     }
 
     @Test

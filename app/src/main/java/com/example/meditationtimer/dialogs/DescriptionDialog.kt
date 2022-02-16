@@ -22,7 +22,7 @@ class DescriptionDialog(val context : Context, private val listener: SaveDescrip
     private fun buildInputEditText()
     {
         inputEditText = EditText(context)
-        inputEditText.setHint("Enter text")
+        inputEditText.hint = "Enter text"
 
         inputEditText.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(inputEditText)

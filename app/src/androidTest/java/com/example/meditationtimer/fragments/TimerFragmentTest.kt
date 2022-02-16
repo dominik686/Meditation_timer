@@ -20,6 +20,7 @@ import org.hamcrest.Matchers.allOf
 import org.junit.Assert.*
 
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -32,19 +33,9 @@ class TimerFragmentTest
 
 
 
-    // Create a test timer object?
-// Three tests
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
 
-    // Press fab and check if the fragment pops up?
-
-    // after choosing time check if the timer is running?
-
-    // After this check press the cancel button and check if the timer is stopped?
-
-    // check if the timer stops after the chosen interval?
-    /*
-    Should I add some sort of check at the end of each test?
-     */
     @Before
     fun init()
     {

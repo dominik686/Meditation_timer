@@ -48,30 +48,21 @@ class TimerCoroutine
             //doSomethingMainThread()
         }
     }
-    /*
-    Cancel the timer
-     */
+
     fun pauseTimer()
     {
         timer.cancel()
     }
-    /*
-    Start the timer again
-     */
+
     fun resumeTimer()
     {
         startTimer(secondsLeft)
     }
-    // Should this method be async, since it returns secondLeftFlow?
+    //
     fun startTimer(seconds : Int) : LiveData<Int>
     {
-        //If the timer is already running, cancel it before starting again
-
-
         secondsLeft = seconds
         secondsLeftLiveData.value = seconds
-
-
 
         timer.start()
         return secondsLeftLiveData
