@@ -5,29 +5,34 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.meditationtimer.MeditationRepository
 import com.example.meditationtimer.data.source.FakeMeditationDao
 import com.example.meditationtimer.data.source.FakeMeditationRepository
+import com.example.meditationtimer.models.Meditation
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
 
 @RunWith(AndroidJUnit4::class)
 class TimerViewModelTest
 {
+
+
     private lateinit var timerViewModel : TimerViewModel
+    private lateinit var meditationRepository: FakeMeditationRepository
 
     @Before
     fun setupViewModel()
     {
-        val meditationRepository = FakeMeditationRepository(FakeMeditationDao())
+         meditationRepository = FakeMeditationRepository(FakeMeditationDao())
         timerViewModel = TimerViewModel(meditationRepository)
     }
 
     @Test
-    fun test_insertMeditation_()
+     fun test_insertMeditation_equalsTrue()
     {
-        timerViewModel.insertMeditation("description")
+         val meditation = Meditation(description = "description", duration = 5)
+        timerViewModel.insertMeditation(meditation.description)
     }
 
     @Test
@@ -41,7 +46,7 @@ class TimerViewModelTest
     fun test_pauseTimer_NoTicks()
     {
         val secondsLeft = timerViewModel.startTimer(2)
-        secondsLeft.observe()
+       // secondsLeft.observe()
         timerViewModel.pauseTimer()
 
         assertEquals(2, secondsLeft.value)
