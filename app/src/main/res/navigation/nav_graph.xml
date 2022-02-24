@@ -11,6 +11,9 @@
         android:label="timer_fragment"
         tools:layout="@layout/timer_fragment" >
         <action
+            android:id="@+id/action_timer_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
             android:id="@+id/action_timer_to_displayMeditationsFragment"
             app:destination="@id/displayMeditationsFragment" />
     </fragment>
@@ -18,5 +21,23 @@
         android:id="@+id/displayMeditationsFragment"
         android:name="com.example.meditationtimer.fragments.DisplayMeditationsFragment"
         android:label="display_meditations_fragment"
-        tools:layout="@layout/display_meditations_fragment" />
+        tools:layout="@layout/display_meditations_fragment" >
+        <action
+            android:id="@+id/action_displayMeditationsFragment_to_timer"
+            app:destination="@id/timer" />
+        <action
+            android:id="@+id/action_displayMeditationsFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.meditationtimer.fragments.CalendarFragment"
+        android:label="CalendarFragment" >
+        <action
+            android:id="@+id/action_calendarFragment_to_timer"
+            app:destination="@id/timer" />
+        <action
+            android:id="@+id/action_calendarFragment_to_displayMeditationsFragment"
+            app:destination="@id/displayMeditationsFragment" />
+    </fragment>
 </navigation>
