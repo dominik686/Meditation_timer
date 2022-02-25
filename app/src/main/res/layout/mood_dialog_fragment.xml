@@ -17,7 +17,9 @@
             app:layout_constraintEnd_toStartOf="@+id/sadish_emoji"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
         <ImageButton
             android:id="@+id/neutral_emoji"
@@ -27,7 +29,9 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/neutral"
             app:layout_constraintEnd_toStartOf="@+id/happy_emoji"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
         <ImageButton
             android:id="@+id/sadish_emoji"
@@ -37,7 +41,9 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/confused"
             app:layout_constraintEnd_toStartOf="@+id/neutral_emoji"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
         <ImageButton
             android:id="@+id/happy_emoji"
@@ -47,7 +53,9 @@
             android:layout_marginEnd="11dp"
             android:src="@drawable/smile"
             app:layout_constraintEnd_toStartOf="@+id/happiest_emoji"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
         <ImageButton
             android:id="@+id/happiest_emoji"
@@ -57,7 +65,9 @@
             android:layout_marginEnd="60dp"
             android:src="@drawable/smiling"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
 
 

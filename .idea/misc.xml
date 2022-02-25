@@ -11,7 +11,11 @@
         <entry key="..\:/Users/Rutko/Desktop/meditation_app/Software/app/src/main/res/layout/calendar_fragment.xml" value="0.3378623188405797" />
         <entry key="..\:/Users/Rutko/Desktop/meditation_app/Software/app/src/main/res/layout/testlayout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Rutko/Desktop/meditation_app/Software/app/src/main/res/layout/timer_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/confused_background.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/outline_timer_24.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/sad_background.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/smile_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/bottomappbar_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/calendar_fragment.xml" value="0.20520833333333333" />
@@ -21,6 +25,10 @@
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/timer_fragment.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/menu/bottomappbar_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/confused.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/confused_round.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/sad.xml" value="0.2601851851851852" />
       </map>
     </option>
   </component>
