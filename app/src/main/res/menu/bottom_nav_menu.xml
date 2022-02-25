@@ -7,7 +7,7 @@
     <item
         android:id="@id/timer"
         android:title="Timer"
-        android:icon="@drawable/ic_baseline_add_alarm_24"/>
+        android:icon="@drawable/outline_timer_24"/>
     <item
         android:id="@id/calendarFragment"
         android:title="Calendar"

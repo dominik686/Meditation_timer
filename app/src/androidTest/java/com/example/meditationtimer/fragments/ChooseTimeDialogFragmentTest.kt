@@ -13,7 +13,6 @@ import androidx.test.espresso.action.ViewActions.actionWithAssertions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.meditationtimer.R
@@ -27,7 +26,7 @@ import org.junit.runner.RunWith
 @DelicateCoroutinesApi
 @RunWith(AndroidJUnit4ClassRunner::class)
 @LargeTest
-class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
+class ChooseTimeDialogFragmentTest : NumberPicker.OnValueChangeListener
 {
 
     /* Both clickTopCenter and clickBottomCentre methods were derived from this tutorial
@@ -64,13 +63,13 @@ class ChooseTimeDialogTest : NumberPicker.OnValueChangeListener
 
 
 
-    private lateinit var chooseTimeDialogFragment : ChooseTimeDialog
+    private lateinit var chooseTimeDialogFragment : ChooseTimeDialogFragment
     private var minutes = 0
 
 @Before
 fun init()
  {
-    with(launchFragment<ChooseTimeDialog>())
+    with(launchFragment<ChooseTimeDialogFragment>())
     {
        onFragment{
 
@@ -78,7 +77,7 @@ fun init()
            chooseTimeDialogFragment = fragment
            GlobalScope.launch(Dispatchers.Main) {
                chooseTimeDialogFragment.parentFragmentManager.executePendingTransactions()
-               chooseTimeDialogFragment.setValueChangeListener(this@ChooseTimeDialogTest)
+               chooseTimeDialogFragment.setValueChangeListener(this@ChooseTimeDialogFragmentTest)
            }
        }
     }

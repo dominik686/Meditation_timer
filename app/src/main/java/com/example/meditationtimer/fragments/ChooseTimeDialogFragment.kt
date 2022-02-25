@@ -18,7 +18,7 @@ import com.example.meditationtimer.viewmodels.ChooseTimeDialogViewModelFactory
 import com.example.meditationtimer.viewmodels.TimerViewModel
 import com.example.meditationtimer.viewmodels.TimerViewModelFactory
 
-open class ChooseTimeDialog : DialogFragment() {
+open class ChooseTimeDialogFragment : DialogFragment() {
     private lateinit var valueChangeListener: OnValueChangeListener
 
     private val viewModel: ChooseTimeDialogViewModel by viewModels{
