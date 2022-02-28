@@ -64,8 +64,7 @@ open class ChooseTimeDialogFragment : DialogFragment() {
 
     private fun setDisplayedValues()
     {
-        var array = emptyArray<String>()
-        array =  viewModel.getListOfIntervalsAsArray()
+        val array = viewModel.getListOfIntervalsAsArray()
         numberPicker.displayedValues = array
     }
 

@@ -9,6 +9,7 @@ import com.example.meditationtimer.IMeditationRepository
 import com.example.meditationtimer.MeditationRepository
 import com.example.meditationtimer.databases.MeditationRoomDatabase
 import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.models.TimerCoroutine
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -24,9 +25,9 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
      private var timerRunning = false
     private var timerStarted = false
 
-    fun insertMeditation(description : String)
+    fun insertMeditation(description : String, emoji: MoodEmoji)
     {
-        val meditation = Meditation(description = description, duration = initialDuration)
+        val meditation = Meditation(description = description, duration = initialDuration, emoji = emoji)
         viewModelScope.launch {
             repository.insertMeditation(meditation)
             }
@@ -35,7 +36,8 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
     fun startTimer(seconds: Int): LiveData<Int> {
         timer = TimerCoroutine()
 
-        secondsLeft = timer.startTimer( seconds)
+        //secondsLeft = timer.startTimer( seconds)
+        secondsLeft = timer.startTimer( 2)
         initialDuration = seconds/60
         timerRunning = true
         timerStarted = true

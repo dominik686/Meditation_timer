@@ -1,6 +1,7 @@
 package com.example.meditationtimer.converters
 
 import androidx.room.TypeConverter
+import com.example.meditationtimer.models.MoodEmoji
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.time.Duration
@@ -8,8 +9,10 @@ import kotlin.time.Duration
 class MeditationConverters
 {
     @TypeConverter
-    fun dateToString(date : Date) : String
-    {
-       return date.toString()
+    fun fromMoodEmoji(value : MoodEmoji) : String{
+        return value.toString()
+    }
+    fun toMoodEmoji(string : String) : MoodEmoji{
+        return enumValueOf(string)
     }
 }
