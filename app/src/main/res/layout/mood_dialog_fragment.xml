@@ -7,15 +7,17 @@
 
 
         <com.google.android.material.chip.ChipGroup
-            android:layout_width="0dp"
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.48000002"
+            app:layout_constraintVertical_bias="0.005"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -63,70 +65,23 @@
                     android:text="Great"
                     app:chipIcon="@drawable/smiling"
                     app:chipIconVisible="true" />
-                <!--
-                <ImageButton
-                    android:id="@+id/sad_emoji"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="10dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/sad"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toStartOf="@+id/sadish_emoji"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/neutral_emoji"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="10dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/neutral"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/neutral"
-                    app:layout_constraintEnd_toStartOf="@+id/happy_emoji"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/sadish_emoji"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="10dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/confused"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toStartOf="@+id/neutral_emoji"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/happy_emoji"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="11dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/smile"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toStartOf="@+id/happiest_emoji"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/happiest_emoji"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="60dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/smiling"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />-->
         </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Enter how you feel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

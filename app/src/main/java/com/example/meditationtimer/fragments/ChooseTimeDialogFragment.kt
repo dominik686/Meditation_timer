@@ -76,7 +76,7 @@ open class ChooseTimeDialogFragment : DialogFragment() {
 
     private fun buildDialogTitle()
     {
-        builder.setTitle("How many minutes would you like to meditate for:")
+        builder.setTitle("How many minutes would you like to meditate for")
     }
 
     private fun buildBuilderMessage()

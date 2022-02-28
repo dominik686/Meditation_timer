@@ -27,10 +27,16 @@ class MoodDialogFragment : DialogFragment()
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         builder = AlertDialog.Builder(activity)
-        builder.setTitle("Describe your mood:")
-         //builder.setView(dialogView)
+        builder.setTitle("Describe your mood")
 
-        //builder.create().show()
+        builder.setPositiveButton(
+            resources.getString(R.string.ok)
+        ) { _, _ ->
+
+
+
+
+        }
         return super.onCreateDialog(savedInstanceState)
     }
 
