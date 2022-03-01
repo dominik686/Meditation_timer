@@ -24,7 +24,6 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private lateinit var dialog : AlertDialog
 
     private lateinit var animContext : Context
-    private lateinit var currentEmoji: MoodEmoji
     private val viewModel : MoodDialogFragmentViewModel by viewModels{
         MoodDialogFragmentViewModelFactory()
     }
@@ -38,13 +37,11 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         initializeBuilder()
+        initializeBinding()
+
         setDialogTitle()
         setEmptyOKButtonListener()
-
-        initializeBinding()
         builder.setView(binding.root)
-
-
         setupMoodEmojis()
         createDialog()
         showDialog()
@@ -172,7 +169,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     }
     private fun finishDialog()
     {
-        listener.onOkButtonPressed(currentEmoji, binding.descriptionEdittext.toString())
+        listener.onOkButtonPressed(viewModel.currentEmoji, binding.descriptionEdittext.text.toString())
         dismiss()
     }
     private fun shakeAnimation(view : View)

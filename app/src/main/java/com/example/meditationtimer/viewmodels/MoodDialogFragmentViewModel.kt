@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException
 
 class MoodDialogFragmentViewModel : ViewModel()
 {
-    private lateinit var currentEmoji: MoodEmoji
+     lateinit var currentEmoji: MoodEmoji
 
     fun setCurrentEmojiToVeryBad()
     {
@@ -42,7 +42,7 @@ class MoodDialogFragmentViewModelFactory() : ViewModelProvider.Factory
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(MoodDialogFragmentViewModel::class.java))
             @Suppress("UNCHECKED_CAST")
-             return ChooseTimeDialogFragment() as T
+             return MoodDialogFragmentViewModel() as T
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

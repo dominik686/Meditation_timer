@@ -14,13 +14,15 @@
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/confused_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/outline_timer_24.xml" value="0.26481481481481484" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/pause_icon.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/play_icon.xml" value="0.23020833333333332" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/sad_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/drawable/smile_background.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/bottomappbar_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/calendar_fragment.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_fragment.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_item.xml" value="0.67" />
+        <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_item.xml" value="0.5" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/mood_dialog_fragment.xml" value="0.43453510436432635" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/layout/timer_fragment.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />

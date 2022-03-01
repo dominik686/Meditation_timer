@@ -28,4 +28,5 @@ data class Meditation(@PrimaryKey(autoGenerate = true) val id: Int = 0,
 enum class MoodEmoji{
     VERY_BAD, BAD, NEUTRAL, GOOD, GREAT;
 
+
 }
