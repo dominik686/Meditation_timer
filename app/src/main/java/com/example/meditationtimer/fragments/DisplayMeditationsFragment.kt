@@ -64,18 +64,18 @@ class DisplayMeditationsFragment : Fragment() {
      fun setupAdapter(meditations: List<Meditation>)
     {
         val adapter = DisplayMeditationsAdapter(meditations)
-        _binding!!.displayMeditationsRecyclerview.adapter = adapter
+        binding.displayMeditationsRecyclerview.adapter = adapter
     }
 
     private fun setupLayoutManager()
     {
         val layoutManager =  LinearLayoutManager(context)
-        _binding!!.displayMeditationsRecyclerview.layoutManager = layoutManager
+        binding.displayMeditationsRecyclerview.layoutManager = layoutManager
     }
 
     private fun addItemDivider()
     {
-        _binding!!.displayMeditationsRecyclerview.addItemDecoration(
+        binding.displayMeditationsRecyclerview.addItemDecoration(
             DividerItemDecoration(
                 context,
                 DividerItemDecoration.VERTICAL
