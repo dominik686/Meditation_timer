@@ -105,13 +105,11 @@ open class ChooseTimeDialogFragment : DialogFragment() {
     }
 
 
-    @JvmName("getValueChangeListener1")
     fun getValueChangeListener(): OnValueChangeListener? {
         return valueChangeListener
     }
 
 
-    @JvmName("setValueChangeListener1")
      fun setValueChangeListener(valueChangeListener: OnValueChangeListener?) {
         this.valueChangeListener = valueChangeListener!!
     }
