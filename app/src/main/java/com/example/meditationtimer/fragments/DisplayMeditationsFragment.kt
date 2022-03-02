@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.meditationtimer.MarginItemDecorator
 import com.example.meditationtimer.MeditationApplication
+import com.example.meditationtimer.R
 import com.example.meditationtimer.adapters.DisplayMeditationsAdapter
 import com.example.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.example.meditationtimer.models.Meditation
@@ -62,7 +64,7 @@ class DisplayMeditationsFragment : Fragment() {
         setupLayoutManager()
         addItemDivider()
     }
-     fun setupAdapter(meditations: List<Meditation>)
+     private fun setupAdapter(meditations: List<Meditation>)
     {
         val adapter = DisplayMeditationsAdapter(meditations)
         binding.displayMeditationsRecyclerview.adapter = adapter
@@ -77,10 +79,11 @@ class DisplayMeditationsFragment : Fragment() {
     private fun addItemDivider()
     {
         binding.displayMeditationsRecyclerview.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
+         //   DividerItemDecoration(
+           //     context,
+          //      DividerItemDecoration.VERTICAL
+        //    )
+        MarginItemDecorator(32)
         )
     }
 
