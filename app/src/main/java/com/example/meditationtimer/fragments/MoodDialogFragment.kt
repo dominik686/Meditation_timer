@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.meditationtimer.R
 import android.view.View
 import android.view.LayoutInflater
+import android.view.ViewAnimationUtils
 
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
@@ -20,11 +21,10 @@ import android.widget.Toast
 import androidx.test.core.app.ApplicationProvider
 
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import com.example.meditationtimer.AnimationHelper
 
 import com.google.android.material.chip.Chip
-
-
-
+import kotlin.math.hypot
 
 
 class MoodDialogFragment(private val listener : MoodChipOnClickListener) : DialogFragment()
@@ -54,7 +54,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         builder.setView(binding.root)
         setupMoodEmojis()
         binding.chipGroup.setOnCheckedChangeListener { _, _ ->
-            binding.textInputLayout.visibility = View.VISIBLE
+            AnimationHelper.circularReveal(binding.textInputLayout)
             binding.chipGroup.setOnCheckedChangeListener(null)
         }
 
@@ -64,7 +64,10 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         replaceEmptyOKButtonListener()
         return dialog
     }
+    private fun revealAnimation()
+    {
 
+    }
 
     private fun initializeBuilder()
     {
@@ -117,19 +120,15 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private fun setVeryBadChipClickListener(veryBadChip: View)
     {
         veryBadChip.setOnClickListener  {
-            bounceAnimation(it)
+            AnimationHelper.bounceAnimation(it)
             viewModel.setCurrentEmojiToVeryBad()
         }
     }
-    private fun bounceAnimation(view : View)
-    {
-        val animation = AnimationUtils.loadAnimation(animContext, R.anim.bounce)
-        view.startAnimation(animation)
-    }
+
     private fun setBadChipClickListener(badChip: View)
     {
         badChip.setOnClickListener  {
-            bounceAnimation(it)
+            AnimationHelper.bounceAnimation(it)
             viewModel.setCurrentEmojiToBad()
         }
     }
@@ -142,7 +141,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private fun setNeutralChipClickListener(neutralChip: View)
     {
         neutralChip.setOnClickListener  {
-            bounceAnimation(it)
+            AnimationHelper.bounceAnimation(it)
             viewModel.setCurrentEmojiToNeutral()
         }
     }
@@ -156,7 +155,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private fun setGoodChipClickListener(goodChip : View)
     {
         goodChip.setOnClickListener  {
-            bounceAnimation(it)
+            AnimationHelper.bounceAnimation(it)
             viewModel.setCurrentEmojiToGood()
         }
     }
@@ -164,7 +163,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private fun setGreatChipClickListener(greatChip : View)
     {
         greatChip.setOnClickListener  {
-            bounceAnimation(it)
+            AnimationHelper.bounceAnimation(it)
             viewModel.setCurrentEmojiToGreat()
         }
     }
@@ -176,7 +175,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
                 finishDialog()
             }
             else
-                shakeAnimation(binding.chipGroup)
+                AnimationHelper.shakeAnimation(binding.chipGroup)
         }
     }
     private fun isEmojiSelected() : Boolean
@@ -188,11 +187,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         listener.onOkButtonPressed(viewModel.currentEmoji, binding.descriptionEdittext.text.toString())
         dismiss()
     }
-    private fun shakeAnimation(view : View)
-    {
-        val animation = AnimationUtils.loadAnimation(animContext, R.anim.shake)
-        view.startAnimation(animation)
-    }
+
 
 
 }
