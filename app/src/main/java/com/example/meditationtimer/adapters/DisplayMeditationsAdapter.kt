@@ -46,12 +46,16 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
    private fun setDescription(description : String)
     {
 
+      //  addCharacterLimit(description)
+        itemView.findViewById<TextView>(R.id.description_textview).text = description
+    }
+    private fun addCharacterLimit(description: String)
+    {
         if(description.length <= 50)
             itemView.findViewById<TextView>(R.id.description_textview).text = description
         else
             itemView.findViewById<TextView>(R.id.description_textview).text =
                 description.subSequence(0, 50) .toString()+ "...   tap to see more"
-
     }
     private fun setDuration(duration : Int)
     {

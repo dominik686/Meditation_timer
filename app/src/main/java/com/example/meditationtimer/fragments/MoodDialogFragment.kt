@@ -15,6 +15,16 @@ import com.example.meditationtimer.databinding.MoodDialogFragmentBinding
 import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModel
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModelFactory
+import com.google.android.material.chip.ChipGroup
+import android.widget.Toast
+import androidx.test.core.app.ApplicationProvider
+
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+
+import com.google.android.material.chip.Chip
+
+
+
 
 
 class MoodDialogFragment(private val listener : MoodChipOnClickListener) : DialogFragment()
@@ -43,6 +53,12 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         setEmptyOKButtonListener()
         builder.setView(binding.root)
         setupMoodEmojis()
+        binding.chipGroup.setOnCheckedChangeListener { _, _ ->
+            binding.textInputLayout.visibility = View.VISIBLE
+            binding.chipGroup.setOnCheckedChangeListener(null)
+        }
+
+
         createDialog()
         showDialog()
         replaceEmptyOKButtonListener()

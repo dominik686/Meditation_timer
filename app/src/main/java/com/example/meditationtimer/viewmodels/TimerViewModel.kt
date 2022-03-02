@@ -37,7 +37,7 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
         timer = TimerCoroutine()
 
         //secondsLeft = timer.startTimer( seconds)
-        secondsLeft = timer.startTimer( seconds)
+        secondsLeft = timer.startTimer( 1)
         initialDuration = seconds/60
         timerRunning = true
         timerStarted = true
