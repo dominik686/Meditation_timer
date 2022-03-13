@@ -16,6 +16,10 @@ class DisplayMeditationsViewModel(private val repository: MeditationRepository) 
 
 
 
+    fun groupByDate(meditations : List<Meditation>): Map<String, List<Meditation>> {
+
+        return meditations.groupBy { it.convertToMeditationDate().date }
+    }
 
 
 }

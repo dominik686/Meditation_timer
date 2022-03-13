@@ -16,12 +16,17 @@ data class Meditation(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                       val description: String,
                       val duration: Int,
                       val date: String = SimpleDateFormat("d MMM yyyy 'at' HH:mm").format(Date(System.currentTimeMillis())),
-                      val emoji: MoodEmoji = MoodEmoji.NEUTRAL
+                      val emoji: MoodEmoji = MoodEmoji.NEUTRAL,
 )
 {
 // Display all those meditations in a calendar
 //    https://github.com/kizitonwose/CalendarView
 
+    fun convertToMeditationDate() : MeditationDate
+    {
+        val dateList = date.split(" at ")
+        return MeditationDate(date = dateList[0], time = dateList[1])
+    }
 }
 
 

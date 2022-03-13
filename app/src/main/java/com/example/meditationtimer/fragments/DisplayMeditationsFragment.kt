@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meditationtimer.MarginItemDecorator
 import com.example.meditationtimer.MeditationApplication
-import com.example.meditationtimer.R
 import com.example.meditationtimer.adapters.DisplayMeditationsAdapter
 import com.example.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.example.meditationtimer.models.Meditation
@@ -53,11 +51,21 @@ class DisplayMeditationsFragment : Fragment() {
     {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
+          //  setupRecyclerview(allMeditations)
+           val groupedMeditations =  groupByDate(allMeditations)
+            val d = groupedMeditations.values.toList()
             setupRecyclerview(allMeditations)
 
         }
     }
+// https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432
 
+
+    private fun groupByDate(meditations : List<Meditation>) : Map<String, List<Meditation>>
+    {
+
+        return viewModel.groupByDate(meditations)
+    }
     private fun setupRecyclerview(meditations: List<Meditation>)
     {
         setupAdapter(meditations)

@@ -13,6 +13,7 @@ import com.example.meditationtimer.models.MoodEmoji
 
 class DisplayMeditationsAdapter(val meditations : List<Meditation>) : RecyclerView.Adapter<DisplayMeditationsAdapter.MeditationViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeditationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_meditations_item, parent, false)
 
@@ -26,14 +27,15 @@ class DisplayMeditationsAdapter(val meditations : List<Meditation>) : RecyclerVi
     override fun getItemCount(): Int {
         return meditations.size
     }
-
+   // https://github.com/airbnb/epoxy/
+   // https://github.com/lisawray/groupie
 
 class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 {
     fun bind(meditation : Meditation)
     {
         setDescription(meditation.description)
-        setDate(meditation.date)
+        setDate(meditation.convertToMeditationDate().time)
         setDuration(meditation.duration)
         setMoodEmoji(meditation.emoji)
         itemView.setOnClickListener()
