@@ -1,4 +1,4 @@
-package com.example.meditationtimer
+package com.example.meditationtimer.room
 
 import androidx.annotation.WorkerThread
 import com.example.meditationtimer.models.Meditation

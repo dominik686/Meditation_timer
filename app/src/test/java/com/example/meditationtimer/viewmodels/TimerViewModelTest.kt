@@ -1,17 +1,14 @@
 package com.example.meditationtimer.viewmodels
 
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.meditationtimer.MeditationRepository
 import com.example.meditationtimer.data.source.FakeMeditationDao
 import com.example.meditationtimer.data.source.FakeMeditationRepository
 import com.example.meditationtimer.models.Meditation
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.*
 
 @RunWith(AndroidJUnit4::class)
 class TimerViewModelTest

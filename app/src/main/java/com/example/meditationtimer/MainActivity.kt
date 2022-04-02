@@ -1,24 +1,16 @@
 package com.example.meditationtimer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.meditationtimer.databinding.TimerFragmentBinding
-import com.example.meditationtimer.fragments.CalendarFragment
-import com.example.meditationtimer.fragments.DisplayMeditationsFragment
-import com.example.meditationtimer.fragments.TimerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    private var _binding : TimerFragmentBinding? = null
-    private val binding get() = _binding!!
+    private var binding: TimerFragmentBinding? = null
+    private val _binding get() = binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         val bottombar = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        /*
-        bottombar.setOnItemSelectedListener {
-            when(it.itemId)
-            {
-                R.id.history->setCurrentFragment(DisplayMeditationsFragment())
-                R.id.timer->setCurrentFragment(TimerFragment())
-                R.id.calendar->setCurrentFragment(CalendarFragment())
-            }
-            true
-        }
-
-         */
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

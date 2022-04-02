@@ -1,9 +1,8 @@
 package com.example.meditationtimer.data.source
 
-import com.example.meditationtimer.daos.MeditationDao
 import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.room.daos.MeditationDao
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeMeditationDao : MeditationDao{

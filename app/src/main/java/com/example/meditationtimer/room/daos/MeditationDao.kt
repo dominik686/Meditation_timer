@@ -1,4 +1,4 @@
-package com.example.meditationtimer.daos
+package com.example.meditationtimer.room.daos
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -5,12 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.meditationtimer.daos.MeditationDao
 import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.room.daos.MeditationDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 @Database(entities = [Meditation::class], version = 1, exportSchema = false)
 abstract class MeditationRoomDatabase : RoomDatabase() {

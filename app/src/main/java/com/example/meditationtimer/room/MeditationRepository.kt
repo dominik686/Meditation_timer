@@ -1,8 +1,8 @@
-package com.example.meditationtimer
+package com.example.meditationtimer.room
 
 import androidx.annotation.WorkerThread
-import com.example.meditationtimer.daos.MeditationDao
 import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.room.daos.MeditationDao
 import kotlinx.coroutines.flow.Flow
 
 class MeditationRepository(private val meditationDao: MeditationDao) : IMeditationRepository {

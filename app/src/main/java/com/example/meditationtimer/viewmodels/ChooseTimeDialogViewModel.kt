@@ -2,9 +2,6 @@ package com.example.meditationtimer.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.meditationtimer.MeditationRepository
-import com.example.meditationtimer.Utils
-import java.lang.IllegalArgumentException
 
 class ChooseTimeDialogViewModel : ViewModel() {
     private var minTimeInterval: Int = 1
@@ -44,13 +41,12 @@ class ChooseTimeDialogViewModel : ViewModel() {
 }
 
 
-    class ChooseTimeDialogViewModelFactory() : ViewModelProvider.Factory
-    {
-        override  fun <T : ViewModel> create(modelClass: Class<T>) : T {
-            if (modelClass.isAssignableFrom(ChooseTimeDialogViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return ChooseTimeDialogViewModel() as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
+class ChooseTimeDialogViewModelFactory : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ChooseTimeDialogViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return ChooseTimeDialogViewModel() as T
         }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
+}
