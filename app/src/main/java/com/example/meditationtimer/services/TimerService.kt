@@ -19,9 +19,9 @@ class TimerService : Service() {
     private lateinit var secondsLeft: LiveData<Int>
     private var iconNotification: Bitmap? = null
     private var notification: Notification? = null
-    var mNotificationManager: NotificationManager? = null
+    private var mNotificationManager: NotificationManager? = null
     private val mNotificationId = 122
-    val builder = NotificationCompat.Builder(this, "service_channel")
+    private val builder = NotificationCompat.Builder(this, "service_channel")
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -87,15 +87,15 @@ class TimerService : Service() {
                     NotificationManager.IMPORTANCE_MIN
                 )
                 notificationChannel.enableLights(false)
-                notificationChannel.lockscreenVisibility = Notification.VISIBILITY_SECRET
+                notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
                 mNotificationManager?.createNotificationChannel(notificationChannel)
             }
 
 
             builder.setContentTitle(
-                StringBuilder("TestService").append(" service is running").toString()
+                StringBuilder("Timer").append(" is running").toString()
             )
-                .setTicker(StringBuilder("TestService").append(" service is running").toString())
+                .setTicker(StringBuilder("Timer ").append("is running").toString())
                 .setContentText(secondsLeft.toString())
                 .setSmallIcon(R.drawable.ic_baseline_add_alarm_24)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

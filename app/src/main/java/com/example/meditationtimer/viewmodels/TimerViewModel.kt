@@ -32,13 +32,11 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
         timer = TimerCoroutine()
 
         //secondsLeft = timer.startTimer( seconds)
-        secondsLeft = timer.startTimer(6)
+        secondsLeft = timer.startTimer(15)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
         return secondsLeft
-
-
 
     }
 
@@ -51,6 +49,7 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
 
     fun resumeTimer() : LiveData<Int>
     {
+        timer.cancelTimer()
         timer = TimerCoroutine()
         secondsLeft = timer.startTimer(secondsLeft.value!!)
         timer.resumeTimer()
@@ -58,6 +57,7 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
 
         return secondsLeft
     }
+
 
     fun cancelTimer() {
         if (this::timer.isInitialized) {
