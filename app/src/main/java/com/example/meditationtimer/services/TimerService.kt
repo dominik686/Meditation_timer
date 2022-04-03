@@ -114,4 +114,10 @@ class TimerService : Service() {
         }
 
     }
+
+
+    override fun onDestroy() {
+        timerCoroutine.cancelTimer()
+        super.onDestroy()
+    }
 }
