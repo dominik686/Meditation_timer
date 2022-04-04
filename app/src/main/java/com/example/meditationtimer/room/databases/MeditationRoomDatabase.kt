@@ -1,4 +1,4 @@
-package com.example.meditationtimer.databases
+package com.example.meditationtimer.room.databases
 
 import android.content.Context
 import androidx.room.Database

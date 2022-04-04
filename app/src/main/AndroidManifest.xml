@@ -20,6 +20,14 @@
             </intent-filter>
         </activity>
         <service android:name=".services.TimerService" />
+
+        <receiver
+            android:name=".services.TimerServiceBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name=".fragments.TimerFragment.TIMER_SERVICE_SEND_SECONDS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

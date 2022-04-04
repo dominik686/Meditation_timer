@@ -1,8 +1,8 @@
 package com.example.meditationtimer
 
 import android.app.Application
-import com.example.meditationtimer.databases.MeditationRoomDatabase
 import com.example.meditationtimer.room.MeditationRepository
+import com.example.meditationtimer.room.databases.MeditationRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 

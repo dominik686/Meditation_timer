@@ -118,6 +118,11 @@ class TimerService : Service() {
 
     override fun onDestroy() {
         timerCoroutine.cancelTimer()
+        val intent = Intent(this, TimerFragment::class.java)
+        intent.addCategory(Intent.CATEGORY_DEFAULT)
+        intent.action = TimerFragment.TIMER_SERVICE_SEND_SECONDS
+        intent.putExtra("seconds", secondsLeft.value)
+        sendBroadcast(intent)
         super.onDestroy()
     }
 }

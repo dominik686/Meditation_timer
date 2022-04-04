@@ -1,10 +1,7 @@
-package com.example.meditationtimer.converters
+package com.example.meditationtimer.room.converters
 
 import androidx.room.TypeConverter
 import com.example.meditationtimer.models.MoodEmoji
-import java.time.LocalDateTime
-import java.util.*
-import kotlin.time.Duration
 
 class MeditationConverters
 {

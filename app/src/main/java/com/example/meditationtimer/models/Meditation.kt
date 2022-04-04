@@ -1,10 +1,9 @@
 package com.example.meditationtimer.models
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.meditationtimer.converters.MeditationConverters
+import com.example.meditationtimer.room.converters.MeditationConverters
 import java.text.SimpleDateFormat
 import java.util.*
 
