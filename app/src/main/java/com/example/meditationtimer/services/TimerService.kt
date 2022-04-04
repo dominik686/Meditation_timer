@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
@@ -15,16 +16,24 @@ import com.example.meditationtimer.models.TimerCoroutine
 
 class TimerService : Service() {
 
+
+    private val binder = LocalBinder()
+
     private val timerCoroutine = TimerCoroutine()
-    private lateinit var secondsLeft: LiveData<Int>
+    lateinit var secondsLeft: LiveData<Int>
+
     private var iconNotification: Bitmap? = null
     private var notification: Notification? = null
     private var mNotificationManager: NotificationManager? = null
     private val mNotificationId = 122
     private val builder = NotificationCompat.Builder(this, "service_channel")
 
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+    inner class LocalBinder : Binder() {
+        fun getService(): TimerService = this@TimerService
+    }
+
+    override fun onBind(intent: Intent?): IBinder {
+        return binder
     }
 
 
@@ -118,11 +127,22 @@ class TimerService : Service() {
 
     override fun onDestroy() {
         timerCoroutine.cancelTimer()
+
+        /*
         val intent = Intent(this, TimerFragment::class.java)
         intent.addCategory(Intent.CATEGORY_DEFAULT)
         intent.action = TimerFragment.TIMER_SERVICE_SEND_SECONDS
         intent.putExtra("seconds", secondsLeft.value)
         sendBroadcast(intent)
+
+         */
         super.onDestroy()
+    }
+
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        super.onTaskRemoved(rootIntent)
+        timerCoroutine.cancelTimer()
+        stopForeground(true)
+        stopSelf()
     }
 }
