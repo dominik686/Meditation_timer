@@ -16,7 +16,7 @@ import com.example.meditationtimer.models.TimerCoroutine
 
 class TimerService : Service() {
 
-
+  //  https://developer.android.com/guide/components/bound-services
     private val binder = LocalBinder()
 
     private val timerCoroutine = TimerCoroutine()
@@ -36,6 +36,23 @@ class TimerService : Service() {
         return binder
     }
 
+    fun startTimerService(seconds: Int): LiveData<Int> {
+        secondsLeft = timerCoroutine.startTimer(seconds)
+        generateForegroundNotification(secondsLeft.value!!)
+
+        secondsLeft.observeForever {
+            builder.setContentText(it.toString())
+            mNotificationManager?.notify(mNotificationId, builder.build())
+
+            if (it == 0) {
+                stopForeground(true)
+                stopSelf()
+            }
+
+        }
+
+        return secondsLeft
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action != null && intent.action.equals(
@@ -52,18 +69,7 @@ class TimerService : Service() {
             )
         ) {
 
-            secondsLeft = timerCoroutine.startTimer(intent.getIntExtra("seconds", 0))
-            generateForegroundNotification(secondsLeft.value!!)
-
-            secondsLeft.observeForever {
-                builder.setContentText(it.toString())
-                mNotificationManager?.notify(mNotificationId, builder.build())
-
-                if (it == 0) {
-                    stopForeground(true)
-                    stopSelf()
-                }
-            }
+            startTimerService(intent.getIntExtra("seconds", 0))
 
 
         }
@@ -128,14 +134,6 @@ class TimerService : Service() {
     override fun onDestroy() {
         timerCoroutine.cancelTimer()
 
-        /*
-        val intent = Intent(this, TimerFragment::class.java)
-        intent.addCategory(Intent.CATEGORY_DEFAULT)
-        intent.action = TimerFragment.TIMER_SERVICE_SEND_SECONDS
-        intent.putExtra("seconds", secondsLeft.value)
-        sendBroadcast(intent)
-
-         */
         super.onDestroy()
     }
 
