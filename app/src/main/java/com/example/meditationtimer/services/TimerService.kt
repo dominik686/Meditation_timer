@@ -14,10 +14,10 @@ class TimerService : Service() {
   //  https://developer.android.com/guide/components/bound-services
     private val binder = LocalBinder()
 
-    private val timerCoroutine = TimerCoroutine()
+    private lateinit var timerCoroutine: TimerCoroutine
     lateinit var secondsLeft: LiveData<Int>
     lateinit var builder: TimerRunningNotificationBuilder
-
+    var timerRunning = false
 
     inner class LocalBinder : Binder() {
         fun getService(): TimerService = this@TimerService
@@ -30,13 +30,16 @@ class TimerService : Service() {
     fun pauseTimerService() {
         Log.d("TimerService", "Pause timer")
 
-        timerCoroutine.cancelTimer()
+        timerRunning = false
+        timerCoroutine.pauseTimer()
     }
 
     fun cancelTimerService() {
         Log.d("TimerService", "cancel timer")
+        timerRunning = false
 
         timerCoroutine.cancelTimer()
+        timerCoroutine = TimerCoroutine()
         stopForeground(true)
     }
 
@@ -44,14 +47,19 @@ class TimerService : Service() {
 
         Log.d("TimerService", "Resume timer")
 
+        timerRunning = true
+
+        timerCoroutine = TimerCoroutine()
         secondsLeft = timerCoroutine.startTimer(secondsLeft.value!!)
 
         return secondsLeft
     }
 
     fun startTimerService(seconds: Int): LiveData<Int> {
+        timerCoroutine = TimerCoroutine()
         secondsLeft = timerCoroutine.startTimer(seconds)
         //     generateForegroundNotification(secondsLeft.value!!)
+        timerRunning = true
 
         generateNotification()
         Log.d("TimerService", "Starting timer")
@@ -159,7 +167,15 @@ class TimerService : Service() {
     }
 
     override fun onDestroy() {
-        timerCoroutine.cancelTimer()
+        if (this::timerCoroutine.isInitialized) {
+            timerCoroutine.cancelTimer()
+            timerCoroutine.cancelTimer()
+        }
+
+        if (!timerRunning) {
+            stopForeground(true)
+            stopSelf()
+        }
 
         super.onDestroy()
     }
