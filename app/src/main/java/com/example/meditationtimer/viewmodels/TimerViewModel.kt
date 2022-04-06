@@ -9,12 +9,14 @@ import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.models.TimerCoroutine
 import com.example.meditationtimer.room.IMeditationRepository
 import com.example.meditationtimer.room.MeditationRepository
+import com.example.meditationtimer.services.TimerService
 import kotlinx.coroutines.launch
 
 class TimerViewModel(private val repository : IMeditationRepository) : ViewModel() {
 
     private lateinit var timer: TimerCoroutine
 
+    private lateinit var service: TimerService
     private lateinit var secondsLeft: LiveData<Int>
     private var initialDuration: Int = 0
     private var timerRunning = false
@@ -28,11 +30,12 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
         }
     }
 
-    fun startTimer(seconds: Int): LiveData<Int> {
-        timer = TimerCoroutine()
+    fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
+        //timer = TimerCoroutine()
 
+        this.service = service
         //secondsLeft = timer.startTimer( seconds)
-        secondsLeft = timer.startTimer(60)
+        secondsLeft = service.startTimerService(seconds)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
@@ -40,19 +43,20 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
 
     }
 
-    fun pauseTimer()
-    {
-        timer.cancelTimer()
+    fun pauseTimer() {
+        //timer.cancelTimer()
+        service.pauseTimerService()
         timerRunning = false
     }
 
 
-    fun resumeTimer() : LiveData<Int>
-    {
-        timer.cancelTimer()
-        timer = TimerCoroutine()
-        secondsLeft = timer.startTimer(secondsLeft.value!!)
-        timer.resumeTimer()
+    fun resumeTimer() : LiveData<Int> {
+        //    timer.cancelTimer()
+        // timer = TimerCoroutine()
+        //      secondsLeft = timer.startTimer(secondsLeft.value!!)
+        //   timer.resumeTimer()
+
+        secondsLeft = service.resumeTimerService()
         timerRunning = true
 
         return secondsLeft
@@ -60,8 +64,10 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
 
 
     fun cancelTimer() {
-        if (this::timer.isInitialized) {
-            timer.cancelTimer()
+        if (this::service.isInitialized) {
+            //     timer.cancelTimer()
+            service.cancelTimerService()
+
             timerRunning = false
             timerStarted = false
         }

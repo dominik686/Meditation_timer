@@ -1,16 +1,11 @@
 package com.example.meditationtimer.services
 
-import android.app.*
-import android.content.Context
+import android.app.Service
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Binder
-import android.os.Build
 import android.os.IBinder
-import androidx.core.app.NotificationCompat
+import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.meditationtimer.R
 import com.example.meditationtimer.fragments.TimerFragment
 import com.example.meditationtimer.models.TimerCoroutine
 
@@ -21,12 +16,8 @@ class TimerService : Service() {
 
     private val timerCoroutine = TimerCoroutine()
     lateinit var secondsLeft: LiveData<Int>
+    lateinit var builder: TimerRunningNotificationBuilder
 
-    private var iconNotification: Bitmap? = null
-    private var notification: Notification? = null
-    private var mNotificationManager: NotificationManager? = null
-    private val mNotificationId = 122
-    private val builder = NotificationCompat.Builder(this, "service_channel")
 
     inner class LocalBinder : Binder() {
         fun getService(): TimerService = this@TimerService
@@ -36,14 +27,38 @@ class TimerService : Service() {
         return binder
     }
 
+    fun pauseTimerService() {
+        Log.d("TimerService", "Pause timer")
+
+        timerCoroutine.cancelTimer()
+    }
+
+    fun cancelTimerService() {
+        Log.d("TimerService", "cancel timer")
+
+        timerCoroutine.cancelTimer()
+        stopForeground(true)
+    }
+
+    fun resumeTimerService(): LiveData<Int> {
+
+        Log.d("TimerService", "Resume timer")
+
+        secondsLeft = timerCoroutine.startTimer(secondsLeft.value!!)
+
+        return secondsLeft
+    }
+
     fun startTimerService(seconds: Int): LiveData<Int> {
         secondsLeft = timerCoroutine.startTimer(seconds)
-        generateForegroundNotification(secondsLeft.value!!)
+        //     generateForegroundNotification(secondsLeft.value!!)
+
+        generateNotification()
+        Log.d("TimerService", "Starting timer")
 
         secondsLeft.observeForever {
-            builder.setContentText(it.toString())
-            mNotificationManager?.notify(mNotificationId, builder.build())
 
+            builder.updateText(it)
             if (it == 0) {
                 stopForeground(true)
                 stopSelf()
@@ -77,6 +92,7 @@ class TimerService : Service() {
     }
 
 
+    /*
     private fun generateForegroundNotification(secondsLeft: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val intentMainLanding = Intent(this, TimerFragment::class.java)
@@ -106,12 +122,14 @@ class TimerService : Service() {
                 mNotificationManager?.createNotificationChannel(notificationChannel)
             }
 
+            Log.d("TimerService", "Build notification")
 
+            val timeLeft = TimeLeft(secondsLeft)
             builder.setContentTitle(
                 StringBuilder("Timer").append(" is running").toString()
             )
                 .setTicker(StringBuilder("Timer ").append("is running").toString())
-                .setContentText(secondsLeft.toString())
+                .setContentText(timeLeft.toString())
                 .setSmallIcon(R.drawable.ic_baseline_add_alarm_24)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setWhen(0)
@@ -128,8 +146,17 @@ class TimerService : Service() {
             startForeground(mNotificationId, notification)
         }
 
+        startForeground(mNotificationId, notification)
     }
 
+
+     */
+
+    private fun generateNotification() {
+        builder = TimerRunningNotificationBuilder(context = this, seconds = secondsLeft.value!!)
+        val notification = builder.generateTimerRunningNotification()
+        startForeground(builder.mNotificationId, notification)
+    }
 
     override fun onDestroy() {
         timerCoroutine.cancelTimer()
