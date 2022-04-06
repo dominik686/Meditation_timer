@@ -10,9 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meditationtimer.MarginItemDecorator
 import com.example.meditationtimer.MeditationApplication
-import com.example.meditationtimer.adapters.DisplayMeditationsAdapter
+import com.example.meditationtimer.adapters.DisplayMeditationListAdapter
 import com.example.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.models.MeditationList
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModel
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModelFactory
 
@@ -25,7 +26,7 @@ class DisplayMeditationsFragment : Fragment() {
     }
 
     private val viewModel: DisplayMeditationsViewModel by viewModels{
-        DisplayMeditationsViewModelFactory((activity!!.application as MeditationApplication).repository)
+        DisplayMeditationsViewModelFactory((requireActivity().application as MeditationApplication).repository)
     }
 
     private var _binding : DisplayMeditationsFragmentBinding? = null
@@ -51,30 +52,37 @@ class DisplayMeditationsFragment : Fragment() {
     {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
-          //  setupRecyclerview(allMeditations)
-           val groupedMeditations =  groupByDate(allMeditations)
-            val d = groupedMeditations.values.toList()
-            setupRecyclerview(allMeditations)
+            //  setupRecyclerview(allMeditations)
+            val groupedMeditationsMap = groupByDate(allMeditations)
+            // val d = groupedMeditations.values.toList()
+
+            val groupedMeditationsList = mutableListOf<MeditationList>()
+
+            for (entry in groupedMeditationsMap.entries.iterator()) {
+                val meditationsListTemp = MeditationList(entry.key, entry.value)
+                groupedMeditationsList.add(meditationsListTemp)
+            }
+
+            setupRecyclerview(groupedMeditationsList.toList())
 
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432
 
 
-    private fun groupByDate(meditations : List<Meditation>) : Map<String, List<Meditation>>
-    {
+    private fun groupByDate(meditations: List<Meditation>): Map<String, List<Meditation>> {
 
         return viewModel.groupByDate(meditations)
     }
-    private fun setupRecyclerview(meditations: List<Meditation>)
-    {
+
+    private fun setupRecyclerview(meditations: List<MeditationList>) {
         setupAdapter(meditations)
         setupLayoutManager()
         addItemDivider()
     }
-     private fun setupAdapter(meditations: List<Meditation>)
-    {
-        val adapter = DisplayMeditationsAdapter(meditations)
+
+    private fun setupAdapter(meditations: List<MeditationList>) {
+        val adapter = DisplayMeditationListAdapter(requireContext(), meditations)
         binding.displayMeditationsRecyclerview.adapter = adapter
     }
 
@@ -97,7 +105,7 @@ class DisplayMeditationsFragment : Fragment() {
 
     private fun observeAllMeditations()
     {
-        viewModel.allMeditations.observe(this, allMeditationsObserver)
+        viewModel.allMeditations.observe(viewLifecycleOwner, allMeditationsObserver)
     }
 
 
