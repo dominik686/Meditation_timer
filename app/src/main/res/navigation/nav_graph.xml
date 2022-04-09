@@ -40,4 +40,18 @@
             android:id="@+id/action_calendarFragment_to_displayMeditationsFragment"
             app:destination="@id/displayMeditationsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.meditationtimer.fragments.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_displayMeditationsFragment"
+            app:destination="@id/displayMeditationsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_timer"
+            app:destination="@id/timer" />
+    </fragment>
 </navigation>
