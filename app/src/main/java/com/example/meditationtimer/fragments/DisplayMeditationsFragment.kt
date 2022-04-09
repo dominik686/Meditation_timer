@@ -52,19 +52,20 @@ class DisplayMeditationsFragment : Fragment() {
     {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
-            //  setupRecyclerview(allMeditations)
-            val groupedMeditationsMap = groupByDate(allMeditations)
-            // val d = groupedMeditations.values.toList()
 
+            if (allMeditations.isNotEmpty()) {
+                binding.noMeditationsRecorded.visibility = View.GONE
+            }
+            val groupedMeditationsMap = groupByDate(allMeditations)
             val groupedMeditationsList = mutableListOf<MeditationList>()
 
             for (entry in groupedMeditationsMap.entries.iterator()) {
-                val meditationsListTemp = MeditationList(entry.key, entry.value)
+                val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
                 groupedMeditationsList.add(meditationsListTemp)
             }
 
-            setupRecyclerview(groupedMeditationsList.toList())
 
+            setupRecyclerview(groupedMeditationsList.reversed())
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432

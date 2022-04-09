@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.models.MoodEmoji
-import com.example.meditationtimer.models.TimerCoroutine
 import com.example.meditationtimer.room.IMeditationRepository
 import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.services.TimerService
@@ -14,7 +13,6 @@ import kotlinx.coroutines.launch
 
 class TimerViewModel(private val repository : IMeditationRepository) : ViewModel() {
 
-    private lateinit var timer: TimerCoroutine
 
     private lateinit var service: TimerService
     private lateinit var secondsLeft: LiveData<Int>
@@ -31,10 +29,8 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
     }
 
     fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
-        //timer = TimerCoroutine()
 
         this.service = service
-        //secondsLeft = timer.startTimer( seconds)
         secondsLeft = service.startTimerService(seconds)
         initialDuration = seconds / 60
         timerRunning = true
@@ -44,17 +40,12 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
     }
 
     fun pauseTimer() {
-        //timer.cancelTimer()
         service.pauseTimerService()
         timerRunning = false
     }
 
 
     fun resumeTimer() : LiveData<Int> {
-        //    timer.cancelTimer()
-        // timer = TimerCoroutine()
-        //      secondsLeft = timer.startTimer(secondsLeft.value!!)
-        //   timer.resumeTimer()
 
         secondsLeft = service.resumeTimerService()
         timerRunning = true

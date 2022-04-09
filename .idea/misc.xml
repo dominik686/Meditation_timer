@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Meditation_timer/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
+        <entry key="..\:/AndroidStudioProjects/Meditation_timer/app/src/main/res/layout/calendar_fragment.xml" value="0.20425724637681159" />
         <entry key="..\:/AndroidStudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_fragment.xml" value="0.26875" />
         <entry key="..\:/AndroidStudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_item.xml" value="0.21510416666666668" />
         <entry key="..\:/AndroidStudioProjects/Meditation_timer/app/src/main/res/layout/display_meditations_list_item.xml" value="0.25" />
