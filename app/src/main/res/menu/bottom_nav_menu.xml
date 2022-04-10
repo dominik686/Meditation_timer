@@ -14,6 +14,6 @@
         android:icon="@drawable/baseline_calendar_month_24"/>
     <item
         android:id="@id/settingsFragment"
-        android:title="Calendar"
+        android:title="Settings"
         android:icon="@drawable/outline_settings_24"/>
 </menu>
