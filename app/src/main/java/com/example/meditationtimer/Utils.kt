@@ -12,5 +12,25 @@ class Utils
 
             return result
         }
+
+        fun playSound(preference : String)
+        {
+            if(preference == Constants.CARTOON_TELEPHONE_BELL_PREF)
+            {
+
+            }
+            else if(preference == Constants.FRONT_DESK_BELL_PREF)
+            {
+
+            }
+            else if(preference == Constants.ANALOG_WATCH_BELL_PREF)
+            {
+
+            }
+            else if(preference == Constants.TIBETAN_BELL_PREF)
+            {
+
+            }
+        }
     }
 }
