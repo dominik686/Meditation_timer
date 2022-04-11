@@ -41,23 +41,24 @@ class TimerService : Service() {
         timerCoroutine.cancelTimer()
         timerCoroutine = TimerCoroutine()
         stopForeground(true)
+        stopSelf()
     }
 
     fun resumeTimerService(): LiveData<Int> {
 
         Log.d("TimerService", "Resume timer")
+        stopForeground(true)
+        stopSelf()
 
-        timerRunning = true
+        startTimerService(secondsLeft.value!!)
 
-        timerCoroutine = TimerCoroutine()
-        secondsLeft = timerCoroutine.startTimer(secondsLeft.value!!)
 
         return secondsLeft
     }
 
     fun startTimerService(seconds: Int): LiveData<Int> {
         timerCoroutine = TimerCoroutine()
-        secondsLeft = timerCoroutine.startTimer(3)
+        secondsLeft = timerCoroutine.startTimer(seconds)
         //     generateForegroundNotification(secondsLeft.value!!)
         timerRunning = true
 
