@@ -1,9 +1,11 @@
 package com.example.meditationtimer.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.meditationtimer.SharedPrefRepository
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.room.IMeditationRepository
@@ -11,7 +13,8 @@ import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.services.TimerService
 import kotlinx.coroutines.launch
 
-class TimerViewModel(private val repository : IMeditationRepository) : ViewModel() {
+class TimerViewModel(private val repository : IMeditationRepository,
+                     private val sharedPref : SharedPrefRepository) : ViewModel() {
 
 
     private lateinit var service: TimerService
@@ -84,13 +87,18 @@ class TimerViewModel(private val repository : IMeditationRepository) : ViewModel
     {
         return  !timerStarted && !timerRunning
     }
+
+    fun getBellPreference() : String
+    {
+        return sharedPref.getBellPreference()
+    }
 }
-class TimerViewModelFactory(private val repository: MeditationRepository) : ViewModelProvider.Factory
+class TimerViewModelFactory(private val repository: MeditationRepository, private val context: Context) : ViewModelProvider.Factory
 {
     override  fun <T : ViewModel> create(modelClass: Class<T>) : T {
         if (modelClass.isAssignableFrom(TimerViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return TimerViewModel(repository) as T
+            return TimerViewModel(repository, SharedPrefRepository(context)) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
