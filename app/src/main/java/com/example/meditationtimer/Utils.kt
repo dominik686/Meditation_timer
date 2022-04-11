@@ -1,5 +1,10 @@
 package com.example.meditationtimer
 
+import android.content.Context
+import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
+
 class Utils
 {
     companion object {
@@ -13,24 +18,27 @@ class Utils
             return result
         }
 
-        fun playSound(preference : String)
-        {
-            if(preference == Constants.CARTOON_TELEPHONE_BELL_PREF)
-            {
+        fun playBell(context: Context, bellResourceID : Int){
 
-            }
-            else if(preference == Constants.FRONT_DESK_BELL_PREF)
-            {
+            var mp = MediaPlayer.create(context, bellResourceID)
 
+            mp.setOnCompletionListener {
+                it.reset()
+                it.release()
+                mp = null
             }
-            else if(preference == Constants.ANALOG_WATCH_BELL_PREF)
-            {
 
-            }
-            else if(preference == Constants.TIBETAN_BELL_PREF)
-            {
-
-            }
+            mp.start()
+            // Pause the sound after two seconds
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    if(mp.isPlaying)
+                    {
+                        mp.reset()
+                        mp.release()
+                        mp = null
+                    }
+                }, 2000)
         }
     }
 }

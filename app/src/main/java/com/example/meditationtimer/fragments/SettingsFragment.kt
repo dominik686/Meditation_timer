@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 import com.example.meditationtimer.Constants
+import com.example.meditationtimer.Utils
 import com.example.meditationtimer.databinding.SettingsFragmentBinding
 import com.example.meditationtimer.viewmodels.SettingsViewModel
 import com.example.meditationtimer.viewmodels.SettingsViewModelFactory
@@ -36,14 +40,24 @@ class SettingsFragment : Fragment() {
 
 
         setUpBellSoundsOnClicks()
+        checkCurrentlyChosenBell()
 
-        binding.bellsGroup.check(binding.analogWatchSound.id)
+
+
+
+
         return binding.root
     }
 
 
     private fun checkCurrentlyChosenBell()
     {
+        when (viewModel.getBellPreference()) {
+            Constants.TIBETAN_BELL_PREF -> binding.bellsGroup.check(binding.tibetanBellsSound.id)
+            Constants.ANALOG_WATCH_BELL_PREF -> binding.bellsGroup.check(binding.analogWatchSound.id)
+            Constants.FRONT_DESK_BELL_PREF -> binding.bellsGroup.check(binding.frontDeskBells.id)
+            Constants.CARTOON_TELEPHONE_BELL_PREF -> binding.bellsGroup.check(binding.cartoonTelephone.id)
+        }
 
     }
     private fun setUpBellSoundsOnClicks()
@@ -59,17 +73,16 @@ class SettingsFragment : Fragment() {
         binding.tibetanBellsSound.id = id
         binding.tibetanBellsSound.setOnClickListener {
             if (binding.tibetanBellsSound.isChecked) {
+
+
                 viewModel.putBellPreference(Constants.TIBETAN_BELL_PREF)
-                test()
+                Utils.playBell(requireContext(),
+                    Constants.BELL_RESOURCES[Constants.TIBETAN_BELL_PREF]!!
+                )
             }
         }
     }
 
-    private fun test()
-    {
-        binding.textView.text = viewModel.getBellPreference()
-
-    }
     private fun setUpAnalogWatchBellOnClick()
     {
         val id = View.generateViewId()
@@ -77,8 +90,9 @@ class SettingsFragment : Fragment() {
         binding.analogWatchSound.setOnClickListener {
             if (binding.analogWatchSound.isChecked) {
                 viewModel.putBellPreference(Constants.ANALOG_WATCH_BELL_PREF)
-                test()
-
+                Utils.playBell(requireContext(),
+                    Constants.BELL_RESOURCES[Constants.ANALOG_WATCH_BELL_PREF]!!
+                )
             }
         }
     }
@@ -89,9 +103,10 @@ class SettingsFragment : Fragment() {
         binding.cartoonTelephone.id = id
         binding.cartoonTelephone.setOnClickListener {
             if (binding.cartoonTelephone.isChecked) {
-                viewModel.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
-                test()
 
+                viewModel.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
+                 Utils.playBell(requireContext(),
+                    Constants.BELL_RESOURCES[Constants.CARTOON_TELEPHONE_BELL_PREF]!!)
             }
         }
     }
@@ -101,16 +116,20 @@ class SettingsFragment : Fragment() {
         binding.frontDeskBells.id = id
         binding.frontDeskBells.setOnClickListener {
             if (binding.frontDeskBells.isChecked) {
+
                 // Set as current sound in Shared Preferences
                 viewModel.putBellPreference(Constants.FRONT_DESK_BELL_PREF)
-                test()
-
+                Utils.playBell(requireContext(),
+                    Constants.BELL_RESOURCES[Constants.FRONT_DESK_BELL_PREF]!!)
             }
         }
     }
 
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 
 }
