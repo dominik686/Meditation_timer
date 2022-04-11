@@ -22,8 +22,8 @@
 ![mood_dialog](https://user-images.githubusercontent.com/75265195/162692328-533dbdaf-1f46-4b3b-b0ec-e28409daf4ff.png)
 
 **MEDITATION HISTORY**
-[Display_meditations_no_meditations](https://user-images.githubusercontent.com/75265195/162692193-1b851787-6647-4b9b-9abd-90fd2e404ffa.png)
+![Display_meditations_no_meditations](https://user-images.githubusercontent.com/75265195/162692193-1b851787-6647-4b9b-9abd-90fd2e404ffa.png)
 ![meditation_history](https://user-images.githubusercontent.com/75265195/162692237-c615c9e8-8083-40fd-8e79-231062ad72e5.png)
 
-**SETTINGS*
+**SETTINGS**
 ![settings](https://user-images.githubusercontent.com/75265195/162692371-80bae4b3-a0a2-480b-a0b4-a0ba8eb281b1.png)
