@@ -26,7 +26,9 @@ class DisplayMeditationsFragment : Fragment() {
     }
 
     private val viewModel: DisplayMeditationsViewModel by viewModels{
-        DisplayMeditationsViewModelFactory((requireActivity().application as MeditationApplication).repository)
+        DisplayMeditationsViewModelFactory(
+            (requireActivity().application as MeditationApplication).meditationRepository,
+            (requireActivity().application as MeditationApplication).sharedPrefRepository)
     }
 
     private var _binding : DisplayMeditationsFragmentBinding? = null
@@ -46,7 +48,11 @@ class DisplayMeditationsFragment : Fragment() {
 
        createAllMeditationsObserver()
        observeAllMeditations()
+       updateStatistics()
+
+
     }
+
 
     private fun createAllMeditationsObserver()
     {
@@ -110,4 +116,12 @@ class DisplayMeditationsFragment : Fragment() {
     }
 
 
+    private fun updateStatistics()
+    {
+        updateTotalMeditations()
+    }
+    private fun updateTotalMeditations()
+    {
+       binding.completedMeditations.text = viewModel.getTotalMeditations().toString()
+    }
 }

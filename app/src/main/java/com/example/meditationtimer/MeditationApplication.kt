@@ -13,5 +13,6 @@ class MeditationApplication : Application() {
     // Using by lazy so the database and the repository are only created when they're needed
     // rather tha when the application starts
     private val database by lazy { MeditationRoomDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { MeditationRepository(database.meditatonDao()) }
+    val meditationRepository by lazy { MeditationRepository(database.meditatonDao()) }
+    val sharedPrefRepository by lazy {SharedPrefRepository(this )}
 }

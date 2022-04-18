@@ -10,14 +10,16 @@
         android:id="@+id/days_in_a_row"
         android:layout_width="89dp"
         android:layout_height="18dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="17dp"
         android:text="0"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintEnd_toStartOf="@+id/longest_streak"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.163" />
+        app:layout_constraintVertical_bias="0.162" />
 
     <TextView
         android:id="@+id/no_meditations_recorded"
@@ -49,10 +51,12 @@
         android:id="@+id/days_in_a_row_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="20dp"
         android:text="Days in  a row"
         app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintEnd_toStartOf="@+id/longest_streak_label"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.081" />
@@ -61,10 +65,11 @@
         android:id="@+id/longest_streak_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:text="Longest Streak"
         app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.672"
+        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.081" />
@@ -73,13 +78,43 @@
         android:id="@+id/longest_streak"
         android:layout_width="99dp"
         android:layout_height="19dp"
+        android:layout_marginEnd="20dp"
         android:text="0"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.676"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.16" />
+
+    <TextView
+        android:id="@+id/completed_meditations_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="12dp"
+        android:text="Completed meditations"
+        app:layout_constraintBottom_toTopOf="@+id/display_meditations_recyclerview"
+        app:layout_constraintEnd_toStartOf="@+id/days_in_a_row_label"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <TextView
+        android:id="@+id/completed_meditations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="82dp"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/display_meditations_recyclerview"
+        app:layout_constraintEnd_toStartOf="@+id/days_in_a_row"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/completed_meditations_label"
+        app:layout_constraintVertical_bias="0.007" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.services.TimerService
 import kotlinx.coroutines.launch
 
-class TimerViewModel(private val repository : IMeditationRepository,
+class TimerViewModel(private val meditationRepository : IMeditationRepository,
                      private val sharedPref : SharedPrefRepository) : ViewModel() {
 
 
@@ -27,14 +27,14 @@ class TimerViewModel(private val repository : IMeditationRepository,
         val meditation =
             Meditation(description = description, duration = initialDuration, emoji = emoji)
         viewModelScope.launch {
-            repository.insertMeditation(meditation)
+            meditationRepository.insertMeditation(meditation)
         }
     }
 
     fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
 
         this.service = service
-        secondsLeft = service.startTimerService(seconds)
+        secondsLeft = service.startTimerService(2)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
@@ -92,13 +92,19 @@ class TimerViewModel(private val repository : IMeditationRepository,
     {
         return sharedPref.getBellPreference()
     }
+
+    fun incrementTotalMeditations()
+    {
+        sharedPref.incrementTotalMeditations()
+    }
 }
-class TimerViewModelFactory(private val repository: MeditationRepository, private val context: Context) : ViewModelProvider.Factory
+class TimerViewModelFactory(private val meditationRepository: MeditationRepository,
+                            private val sharedPrefRepository: SharedPrefRepository) : ViewModelProvider.Factory
 {
     override  fun <T : ViewModel> create(modelClass: Class<T>) : T {
         if (modelClass.isAssignableFrom(TimerViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return TimerViewModel(repository, SharedPrefRepository(context)) as T
+            return TimerViewModel(meditationRepository, sharedPrefRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

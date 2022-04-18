@@ -7,7 +7,7 @@ class SharedPrefRepository(val context : Context) {
 
     val  sharedPref : SharedPreferences =  context?.getSharedPreferences(Constants.USER_PREFERENCES,
         Context.MODE_PRIVATE)!!
-    val editor = sharedPref.edit()
+    private val editor: SharedPreferences.Editor = sharedPref.edit()
 
     public fun putBellPreference(string: String)
     {
@@ -21,4 +21,26 @@ class SharedPrefRepository(val context : Context) {
     {
         return sharedPref.getString(Constants.BELL_PREF, Constants.ANALOG_WATCH_BELL_PREF)!!
     }
+
+
+    public fun incrementDaysInARow()
+    {
+
+    }
+
+    public fun getDaysInARow() : Int
+    {
+        return 1
+    }
+
+    public fun incrementTotalMeditations()
+    {
+        val newTotal = getTotalMeditations() + 1
+        editor.putInt(Constants.TOTAL_MEDITATIONS_PREF, newTotal).apply()
+    }
+    public fun getTotalMeditations() : Int
+    {
+        return sharedPref.getInt(Constants.TOTAL_MEDITATIONS_PREF, 0)
+    }
+
 }

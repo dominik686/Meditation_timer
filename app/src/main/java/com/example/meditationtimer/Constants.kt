@@ -14,4 +14,10 @@ object Constants {
                 Pair(CARTOON_TELEPHONE_BELL_PREF, R.raw.cartoon_telephone_daniel_simion),
                 Pair(FRONT_DESK_BELL_PREF, R.raw.front_desk_bells_daniel_simon))
 
+
+
+        const val DAYS_IN_A_ROW_PREF = "DAYS_IN_A_ROW_PREFERENCE"
+
+        const val TOTAL_MEDITATIONS_PREF = "TOTAL_MEDITATIONS_PREFERENCE"
+
 }
