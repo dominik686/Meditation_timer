@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
+import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.example.meditationtimer.fragments.TimerFragment
 import com.example.meditationtimer.models.TimerCoroutine
 
@@ -15,8 +17,8 @@ class TimerService : Service() {
     private val binder = LocalBinder()
 
     private lateinit var timerCoroutine: TimerCoroutine
-    lateinit var secondsLeft: LiveData<Int>
-    lateinit var builder: TimerRunningNotificationBuilder
+    private lateinit var secondsLeft: LiveData<Int>
+    private lateinit var builder: TimerRunningNotificationBuilder
     var timerRunning = false
 
     inner class LocalBinder : Binder() {
@@ -56,24 +58,28 @@ class TimerService : Service() {
         return secondsLeft
     }
 
+    private val observer = Observer<Int> {
+        builder.updateText(it)
+        if (it == 0) {
+            stopForeground(true)
+            stopSelf()
+        }
+
+    }
+
     fun startTimerService(seconds: Int): LiveData<Int> {
         timerCoroutine = TimerCoroutine()
-        secondsLeft = timerCoroutine.startTimer(1)
+        secondsLeft = timerCoroutine.startTimer(seconds)
         //     generateForegroundNotification(secondsLeft.value!!)
         timerRunning = true
 
         generateNotification()
         Log.d("TimerService", "Starting timer")
 
-        secondsLeft.observeForever {
+        secondsLeft.observeForever(observer)
 
-            builder.updateText(it)
-            if (it == 0) {
-                stopForeground(true)
-                stopSelf()
-            }
 
-        }
+
 
         return secondsLeft
     }
@@ -161,6 +167,11 @@ class TimerService : Service() {
 
      */
 
+    override fun onRebind(intent: Intent?) {
+        super.onRebind(intent)
+        secondsLeft.removeObserver(observer)
+
+    }
     private fun generateNotification() {
         builder = TimerRunningNotificationBuilder(context = this, seconds = secondsLeft.value!!)
         val notification = builder.generateTimerRunningNotification()
@@ -169,7 +180,6 @@ class TimerService : Service() {
 
     override fun onDestroy() {
         if (this::timerCoroutine.isInitialized) {
-            timerCoroutine.cancelTimer()
             timerCoroutine.cancelTimer()
         }
 

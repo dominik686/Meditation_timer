@@ -23,6 +23,8 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     private var timerRunning = false
     private var timerStarted = false
 
+
+
     fun insertMeditation(description: String, emoji: MoodEmoji) {
         val meditation =
             Meditation(description = description, duration = initialDuration, emoji = emoji)
@@ -34,7 +36,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
 
         this.service = service
-        secondsLeft = service.startTimerService(2)
+        secondsLeft = this.service.startTimerService(seconds)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
