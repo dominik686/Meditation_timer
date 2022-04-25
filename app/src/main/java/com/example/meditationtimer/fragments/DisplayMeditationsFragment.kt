@@ -119,9 +119,20 @@ class DisplayMeditationsFragment : Fragment() {
     private fun updateStatistics()
     {
         updateTotalMeditations()
+        updateCurrentDaysInARow()
+        updateLongestDaysInARow()
     }
     private fun updateTotalMeditations()
     {
        binding.completedMeditations.text = viewModel.getTotalMeditations().toString()
+    }
+    private fun updateCurrentDaysInARow()
+    {
+        binding.daysInARow.text = viewModel.getCurrentDaysInARow().toString()
+    }
+
+    private fun updateLongestDaysInARow()
+    {
+        binding.longestStreak.text = viewModel.getLongestDaysInARow().toString()
     }
 }

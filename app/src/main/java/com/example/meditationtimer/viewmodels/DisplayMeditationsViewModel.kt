@@ -26,6 +26,14 @@ private val sharedPrefRepository: SharedPrefRepository) : ViewModel() {
         return sharedPrefRepository.getTotalMeditations()
     }
 
+    fun getLongestDaysInARow(): Int {
+        return sharedPrefRepository.getLongestDaysInARow()
+    }
+
+    fun getCurrentDaysInARow(): Int {
+        return sharedPrefRepository.getDaysInARow()
+    }
+
 }
     class DisplayMeditationsViewModelFactory(private val meditationRepository: MeditationRepository,
     private val sharedPrefRepository: SharedPrefRepository) : ViewModelProvider.Factory

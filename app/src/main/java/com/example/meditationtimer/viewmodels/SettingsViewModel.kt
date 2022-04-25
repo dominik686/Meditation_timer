@@ -45,10 +45,16 @@ class SettingsViewModel(
     {
         meditationRepository.clearMeditations()
     }
+
+    fun addDefaultMeditations()
+    {
+
+    }
 }
 
-public class SettingsViewModelFactory(val sharedPrefRepository: SharedPrefRepository,
-                                     val meditationRepository: MeditationRepository) : ViewModelProvider.Factory {
+public class SettingsViewModelFactory(
+    private val sharedPrefRepository: SharedPrefRepository,
+    private val meditationRepository: MeditationRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(SettingsViewModel::class.java))
             {
