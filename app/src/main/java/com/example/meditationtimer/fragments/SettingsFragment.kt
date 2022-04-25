@@ -11,11 +11,18 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import androidx.lifecycle.lifecycleScope
 import com.example.meditationtimer.Constants
+import com.example.meditationtimer.MeditationApplication
+import com.example.meditationtimer.SharedPrefRepository
 import com.example.meditationtimer.Utils
 import com.example.meditationtimer.databinding.SettingsFragmentBinding
+import com.example.meditationtimer.models.Meditation
+import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.viewmodels.SettingsViewModel
 import com.example.meditationtimer.viewmodels.SettingsViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 // Bell sound choice
@@ -24,7 +31,8 @@ class SettingsFragment : Fragment() {
 
 
     private val viewModel : SettingsViewModel by viewModels {
-        SettingsViewModelFactory(requireContext())
+        SettingsViewModelFactory(SharedPrefRepository( requireContext()),
+            (requireActivity().application as MeditationApplication).meditationRepository)
     }
 
 
@@ -41,8 +49,8 @@ class SettingsFragment : Fragment() {
 
         setUpBellSoundsOnClicks()
         checkCurrentlyChosenBell()
-
-
+        setUpResetStatsButtonOnClick()
+       setUpResetMeditationHistoryButtonOnClick()
 
 
 
@@ -125,7 +133,22 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    private fun setUpResetStatsButtonOnClick()
+    {
+        binding.resetStatisticsButton.setOnClickListener{
+            viewModel.resetStatistics()
+        }
+    }
 
+    private fun setUpResetMeditationHistoryButtonOnClick()
+    {
+           binding.resetMeditationHistoryButton.setOnClickListener{
+               lifecycleScope.launch(Dispatchers.IO) {
+                   viewModel.resetMeditationHistory()
+               }
+        }
+
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -17,6 +17,12 @@ class MeditationRepository(private val meditationDao: MeditationDao) : IMeditati
 {
     meditationDao.insertMeditation(meditation)
 }
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun clearMeditations()
+    {
+        meditationDao.clearMeditations()
+    }
 
 
 }

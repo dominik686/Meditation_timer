@@ -99,6 +99,10 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     {
         sharedPref.incrementTotalMeditations()
     }
+    fun updateMeditationStreak()
+    {
+        sharedPref.updateStreak()
+    }
 }
 class TimerViewModelFactory(private val meditationRepository: MeditationRepository,
                             private val sharedPrefRepository: SharedPrefRepository) : ViewModelProvider.Factory

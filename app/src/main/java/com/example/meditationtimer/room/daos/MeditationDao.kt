@@ -15,4 +15,7 @@ interface MeditationDao
 
     @Query("SELECT * FROM meditations")
     fun getMeditations() : Flow<List<Meditation>>
+
+    @Query("DELETE FROM meditations")
+    fun clearMeditations()
 }
