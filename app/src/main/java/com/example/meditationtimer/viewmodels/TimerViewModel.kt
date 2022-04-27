@@ -36,7 +36,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
 
         this.service = service
-        secondsLeft = this.service.startTimerService(3)
+        secondsLeft = this.service.startTimerService(seconds)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
