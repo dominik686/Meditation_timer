@@ -6,15 +6,15 @@
 - Kotlin
 - Android Studio
 ## Libraries Used
--Lifecycle
--JUnit
--Room
--Navigation
--Material Components
--ConstraintLayout
--Espresso
--Robolectric
--Mockito
+- Lifecycle
+- JUnit
+- Room
+- Navigation
+- Material Components
+- ConstraintLayout
+- Espresso
+- Robolectric
+- Mockito
 ## Features
 - Ability to set a timer for a time interval ranging from 5 to 120 minutes
 - Timer will keep running even when the application is not in the foreground
