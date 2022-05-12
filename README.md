@@ -38,7 +38,6 @@ Room for improvement:
 - Better UI
 - More functionality
 - More custom bell sounds
-- 
 
 To do:
 - Add calendar feature
