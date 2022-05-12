@@ -23,6 +23,7 @@
 - Custom bell sounds (four different bells to choose from)
 - Statistics such as days of meditation in a row, longest streak and the number of completed meditations are stored on the device as SharedPreferences and can be viewed
 ## Screenshots
+![meditation-timer](https://user-images.githubusercontent.com/75265195/168018331-fe8d580a-fdc7-49ca-879f-9ef1d50b655f.gif)
 
 <!-- If you have screenshots you'd like to share, include them here. -->
 
@@ -33,14 +34,14 @@ I am currently working on improving my older projects and developing new project
 
 ## Room for Improvement
 Room for improvement:
-- User Interface (Meditation history fragment)
+- Better UI
 - More functionality
 - More custom bell sounds
 - 
 
 To do:
 - Add calendar feature
-- Improve streaks
+- Improve streaks UI
 
 
  ## Credits
