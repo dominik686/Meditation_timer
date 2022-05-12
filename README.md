@@ -1,29 +1,58 @@
 # Meditation_timer
 
+## Introduction 
 
-**STARTING SCREEN**
-![Screenshot_20220411_095527](https://user-images.githubusercontent.com/75265195/162691961-58be28bb-6606-41a0-ac31-f9fb12086651.png)
+## Technologies Used
+- Kotlin
+- Android Studio
+## Libraries Used
+- Lifecycle
+- JUnit
+- Room
+- Navigation
+- Material Components
+- ConstraintLayout
+- Espresso
+- Robolectric
+- Mockito
+## Features
+- Ability to set a timer for a time interval ranging from 5 to 120 minutes
+- Push notification while the timer is running
+- Timer will keep running even when the application is not in the foreground
+- Upon completing a meditation the user will be prompted to describe their current mood by using one of 5 emojis and a short text description
+- All completed meditations and mood descriptions are stored on the device in a Room database and can be viewed
+- Custom bell sounds (four different bells to choose from)
+- Statistics such as days of meditation in a row, longest streak and the number of completed meditations are stored on the device as SharedPreferences and can be viewed
+## Screenshots
+<img src="https://user-images.githubusercontent.com/75265195/168018331-fe8d580a-fdc7-49ca-879f-9ef1d50b655f.gif" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
+
+<!-- If you have screenshots you'd like to share, include them here. -->
 
 
+## Project Status
+Project is: _no longer being worked on_. 
+I am currently working on improving my older projects and developing new projects in Flutter. 
 
-**CHOOSE TIME SCREEN**
-![choose_time_dialog](https://user-images.githubusercontent.com/75265195/162692022-ae567d4c-4407-4d11-807d-aa610c841d1a.png)
+## Room for Improvement
+Room for improvement:
+- Better UI
+- More functionality
+- More custom bell sounds
+- 
+
+To do:
+- Add calendar feature
+- Improve streaks UI
 
 
-**TIMER RUNNING SCREEN**
-![timer_running_fragment](https://user-images.githubusercontent.com/75265195/162692058-cfa865db-cb8c-43b7-b280-1b49069cadcf.png)
+ ## Credits
+ -Bell sounds were downloaded from [Mixkit](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwirg57Yutf3AhUSzYsKHfPHAn8QFnoECBQQAQ&url=https%3A%2F%2Fmixkit.co%2F&usg=AOvVaw1ihxd7F3Sv3h5r9dlutoLu)
+## Contact
+Created by [@Dominik Wieczynski](https://www.linkedin.com/in/dominik-wieczy%C5%84ski-19ba77209/) - feel free to contact me!
 
 
-**TIMER RUNNING NOTIFICATION**
-![timer running notification](https://user-images.githubusercontent.com/75265195/162692147-f4648d59-64af-46e3-a92b-b925d3cd23c4.png)
-![timer_running_in_background](https://user-images.githubusercontent.com/75265195/162692165-961cebb0-0466-4a2b-9b20-6c7162b5c328.png)
+<!-- Optional -->
+<!-- ## License -->
+<!-- This project is open source and available under the [... License](). -->
 
-**MOOD DIALOG WHEN FINISHING A MEDITATION**
-![mood_dialog](https://user-images.githubusercontent.com/75265195/162692328-533dbdaf-1f46-4b3b-b0ec-e28409daf4ff.png)
-
-**MEDITATION HISTORY**
-![Display_meditations_no_meditations](https://user-images.githubusercontent.com/75265195/162692193-1b851787-6647-4b9b-9abd-90fd2e404ffa.png)
-![meditation_history](https://user-images.githubusercontent.com/75265195/162692237-c615c9e8-8083-40fd-8e79-231062ad72e5.png)
-
-**SETTINGS**
-![settings](https://user-images.githubusercontent.com/75265195/162692371-80bae4b3-a0a2-480b-a0b4-a0ba8eb281b1.png)
+<!-- You don't have to include all sections - just the one's relevant to your project -->
