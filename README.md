@@ -17,6 +17,7 @@
 - Mockito
 ## Features
 - Ability to set a timer for a time interval ranging from 5 to 120 minutes
+- Push notification while the timer is running
 - Timer will keep running even when the application is not in the foreground
 - Upon completing a meditation the user will be prompted to describe their current mood by using one of 5 emojis and a short text description
 - All completed meditations and mood descriptions are stored on the device in a Room database and can be viewed
