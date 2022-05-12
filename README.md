@@ -24,7 +24,7 @@
 - Custom bell sounds (four different bells to choose from)
 - Statistics such as days of meditation in a row, longest streak and the number of completed meditations are stored on the device as SharedPreferences and can be viewed
 ## Screenshots
-![meditation-timer](https://user-images.githubusercontent.com/75265195/168018331-fe8d580a-fdc7-49ca-879f-9ef1d50b655f.gif)
+<img src="https://user-images.githubusercontent.com/75265195/168018331-fe8d580a-fdc7-49ca-879f-9ef1d50b655f.gif" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="600" />
 
 <!-- If you have screenshots you'd like to share, include them here. -->
 
