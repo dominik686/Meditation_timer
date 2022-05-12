@@ -1,7 +1,7 @@
 # Meditation_timer
 
 ## Introduction 
-
+The goal of this project is to create a good-quality meditation timer, with no paid features or ads. 
 ## Technologies Used
 - Kotlin
 - Android Studio
@@ -15,6 +15,7 @@
 - Espresso
 - Robolectric
 - Mockito
+- Coroutines
 ## Features
 - Ability to set a timer for a time interval ranging from 5 to 120 minutes
 - Push notification while the timer is running
@@ -41,7 +42,7 @@ Room for improvement:
 
 To do:
 - Add calendar feature
-- Improve streaks UI
+- Improve statistics UI
 
 
  ## Credits
