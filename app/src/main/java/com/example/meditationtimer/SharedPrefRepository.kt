@@ -29,12 +29,12 @@ class SharedPrefRepository(val context : Context) {
 
     public fun getDaysInARow() : Int
     {
-        return sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1)
+        return sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
     }
 
     public fun getLongestDaysInARow() : Int
     {
-        return sharedPref.getInt(Constants.LONGEST_STREAK_PREF, 1)
+        return sharedPref.getInt(Constants.LONGEST_STREAK_PREF, 0)
     }
     public fun incrementTotalMeditations()
     {
@@ -121,7 +121,7 @@ class SharedPrefRepository(val context : Context) {
     {
         val currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1)
         val currentBestStreak = sharedPref.getInt(Constants.LONGEST_STREAK_PREF, 1)
-        if(currentStreak > currentBestStreak)
+        if(currentStreak >= currentBestStreak)
         {
             editor.putInt(Constants.LONGEST_STREAK_PREF, currentStreak).apply()
         }
