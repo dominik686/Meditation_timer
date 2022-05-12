@@ -45,7 +45,7 @@ To do:
 
 
  ## Credits
- -Bell sounds were downloaded from [Mixkit](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwirg57Yutf3AhUSzYsKHfPHAn8QFnoECBQQAQ&url=https%3A%2F%2Fmixkit.co%2F&usg=AOvVaw1ihxd7F3Sv3h5r9dlutoLu)
+ - Bell sounds were downloaded from [Mixkit](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwirg57Yutf3AhUSzYsKHfPHAn8QFnoECBQQAQ&url=https%3A%2F%2Fmixkit.co%2F&usg=AOvVaw1ihxd7F3Sv3h5r9dlutoLu)
 ## Contact
 Created by [@Dominik Wieczynski](https://www.linkedin.com/in/dominik-wieczy%C5%84ski-19ba77209/) - feel free to contact me!
 
