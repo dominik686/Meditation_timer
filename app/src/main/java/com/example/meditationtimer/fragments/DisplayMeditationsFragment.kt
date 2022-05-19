@@ -72,6 +72,7 @@ class DisplayMeditationsFragment : Fragment() {
 
 
             setupRecyclerview(groupedMeditationsList.reversed())
+
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432
@@ -124,15 +125,45 @@ class DisplayMeditationsFragment : Fragment() {
     }
     private fun updateTotalMeditations()
     {
-       binding.completedMeditations.text = viewModel.getTotalMeditations().toString()
+        var totalMeditations = viewModel.getTotalMeditations().toString();
+
+        if(totalMeditations== "1")
+        {
+            binding.completedMeditations.text = totalMeditations + " session";
+        }
+        else
+        {
+            binding.completedMeditations.text = totalMeditations+ " total sessions"
+
+        }
     }
     private fun updateCurrentDaysInARow()
     {
-        binding.daysInARow.text = viewModel.getCurrentDaysInARow().toString()
+        var daysInARow = viewModel.getCurrentDaysInARow().toString();
+        if(daysInARow == "1")
+        {
+            binding.daysInARow.text = daysInARow+ " day"
+
+        }
+        else
+        {
+            binding.daysInARow.text = daysInARow + " days"
+
+        }
     }
 
     private fun updateLongestDaysInARow()
     {
-        binding.longestStreak.text = viewModel.getLongestDaysInARow().toString()
+        var longestStreak = viewModel.getLongestDaysInARow().toString();
+        if(longestStreak == "1")
+        {
+            binding.longestStreak.text = longestStreak + " day"
+
+        }
+        else
+        {
+            binding.longestStreak.text = longestStreak + " days"
+
+        }
     }
 }

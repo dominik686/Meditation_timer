@@ -9,10 +9,6 @@
         android:title="Timer"
         android:icon="@drawable/outline_timer_24"/>
     <item
-        android:id="@id/calendarFragment"
-        android:title="Calendar"
-        android:icon="@drawable/baseline_calendar_month_24"/>
-    <item
         android:id="@id/settingsFragment"
         android:title="Settings"
         android:icon="@drawable/outline_settings_24"/>

@@ -69,10 +69,9 @@ class TimerService : Service() {
 
     fun startTimerService(seconds: Int): LiveData<Int> {
         timerCoroutine = TimerCoroutine()
-        secondsLeft = timerCoroutine.startTimer(seconds)
+        secondsLeft = timerCoroutine.startTimer(2)
 
         timerRunning = true
-
         generateNotification()
         Log.d("TimerService", "Starting timer")
 

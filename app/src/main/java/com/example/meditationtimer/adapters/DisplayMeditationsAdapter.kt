@@ -14,6 +14,7 @@ import com.example.meditationtimer.models.MoodEmoji
 class DisplayMeditationsAdapter(val meditations : List<Meditation>) : RecyclerView.Adapter<DisplayMeditationsAdapter.MeditationViewHolder>() {
 
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeditationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_meditations_item, parent, false)
 
@@ -32,6 +33,7 @@ class DisplayMeditationsAdapter(val meditations : List<Meditation>) : RecyclerVi
 
 class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 {
+
     fun bind(meditation : Meditation)
     {
         setDescription(meditation.description)
@@ -42,13 +44,21 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.shake)
             it.startAnimation(animation)
+            expandTheView()
         }
     }
 
+    fun expandTheView()
+    {
+        if(itemView.findViewById<TextView>(R.id.description_textview).text.length > 50)
+        {
+
+        }
+    }
    private fun setDescription(description : String)
     {
 
-      //  addCharacterLimit(description)
+        //xaddCharacterLimit(description)
         itemView.findViewById<TextView>(R.id.description_textview).text = description
     }
     private fun addCharacterLimit(description: String)

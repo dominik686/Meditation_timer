@@ -42,13 +42,7 @@ class DisplayMeditationListAdapter(val context: Context, val meditations: List<M
             textview.text = meditation.date
             list.adapter = DisplayMeditationsAdapter(meditation.meditationList)
             list.layoutManager = LinearLayoutManager(context)
-            list.addItemDecoration(
-                //   DividerItemDecoration(
-                //     context,
-                //      DividerItemDecoration.VERTICAL
-                //    )
-                MarginItemDecorator(16)
-            )
+            list.addItemDecoration(MarginItemDecorator(16))
         }
 
     }

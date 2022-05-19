@@ -6,20 +6,109 @@
     android:layout_height="match_parent"
     tools:context=".fragments.DisplayMeditationsFragment">
 
-    <TextView
-        android:id="@+id/days_in_a_row"
-        android:layout_width="89dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="17dp"
-        android:text="0"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
-        app:layout_constraintEnd_toStartOf="@+id/longest_streak"
-        app:layout_constraintHorizontal_bias="0.981"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/display_meditations_recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/days_in_a_row_label"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/days_in_a_row_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Days in a row:"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:id="@+id/days_in_a_row"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/longest_streak_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Longest Streak:"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:id="@+id/longest_streak"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/completed_meditations_label"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="Sessions completed:"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:id="@+id/completed_meditations"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/no_meditations_recorded"
@@ -39,77 +128,25 @@
         android:id="@+id/display_meditations_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/days_in_a_row" />
+         />
 
-    <TextView
-        android:id="@+id/days_in_a_row_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:text="Days in  a row"
-        app:layout_constraintEnd_toStartOf="@+id/longest_streak_label"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/longest_streak_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="5dp"
-        android:text="Longest Streak"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/longest_streak"
-        android:layout_width="99dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="20dp"
-        android:text="0"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/no_meditations_recorded"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/longest_streak_label"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/completed_meditations_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:text="Completed meditations"
-        app:layout_constraintEnd_toStartOf="@+id/days_in_a_row_label"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/completed_meditations"
-        android:layout_width="142dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="5dp"
-        android:text="0"
-        android:textAlignment="center"
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="5dp"
+        android:layout_marginBottom="1dp"
+        android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/display_meditations_recyclerview"
-        app:layout_constraintEnd_toStartOf="@+id/days_in_a_row"
-        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/completed_meditations_label"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
