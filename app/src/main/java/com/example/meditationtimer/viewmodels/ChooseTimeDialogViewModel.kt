@@ -4,6 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 class ChooseTimeDialogViewModel : ViewModel() {
+    //TODO
+    // add two options
+    // 5 minute increments
+    // and one minute increments
+    // make it an option in settings
     private var minTimeInterval: Int = 1
     private var maxTimeInterval: Int = 120
     var listOfIntervals: ArrayList<String> =

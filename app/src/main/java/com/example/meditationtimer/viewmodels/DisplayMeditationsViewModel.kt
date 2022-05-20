@@ -38,13 +38,14 @@ private val sharedPrefRepository: SharedPrefRepository) : ViewModel() {
     class DisplayMeditationsViewModelFactory(private val meditationRepository: MeditationRepository,
     private val sharedPrefRepository: SharedPrefRepository) : ViewModelProvider.Factory
     {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(DisplayMeditationsViewModel::class.java)){
                 @Suppress("UNCHECKED_CAST")
                 return DisplayMeditationsViewModel(meditationRepository, sharedPrefRepository ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
+
     }
 
 

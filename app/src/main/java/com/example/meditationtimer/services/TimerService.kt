@@ -19,7 +19,7 @@ class TimerService : Service() {
     private lateinit var timerCoroutine: TimerCoroutine
     private lateinit var secondsLeft: LiveData<Int>
     private lateinit var builder: TimerRunningNotificationBuilder
-    var timerRunning = false
+    private var timerRunning = false
 
     inner class LocalBinder : Binder() {
         fun getService(): TimerService = this@TimerService

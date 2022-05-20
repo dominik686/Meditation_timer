@@ -55,7 +55,7 @@ class SettingsViewModel(
 public class SettingsViewModelFactory(
     private val sharedPrefRepository: SharedPrefRepository,
     private val meditationRepository: MeditationRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(SettingsViewModel::class.java))
             {
             @Suppress("UNCHECKED_CAST")
