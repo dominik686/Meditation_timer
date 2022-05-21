@@ -8,7 +8,6 @@ object Constants {
         const val ANALOG_WATCH_BELL_PREF = "ANALOG_WATCH_BELL_PREFERENCE"
         const val CARTOON_TELEPHONE_BELL_PREF = "CARTOON_TELEPHONE_BELL_PREFERENCE"
         const val FRONT_DESK_BELL_PREF = "FRONT_DESK_BELL_PREFERENCE"
-
         val BELL_RESOURCES = mapOf(Pair(TIBETAN_BELL_PREF, R.raw.bells_tibetan_daniel_simon),
         Pair(ANALOG_WATCH_BELL_PREF, R.raw.analog_watch_alarm_daniel_simion),
                 Pair(CARTOON_TELEPHONE_BELL_PREF, R.raw.cartoon_telephone_daniel_simion),
@@ -21,4 +20,10 @@ object Constants {
         const val TOTAL_MEDITATIONS_PREF = "TOTAL_MEDITATIONS_PREFERENCE"
         const val LAST_DAY_MEDITATED_PREF = "LAST_DAY_MEDITATED_PREFERENCE"
 
+
+        const val VERY_BAD_MOOD_COUNT_PREF = "VERY_BAD_MOOD_COUNT_PREF"
+        const val BAD_MOOD_COUNT_PREF = "BAD_MOOD_COUNT_PREF"
+        const val NEUTRAL_MOOD_COUNT_PREF = "NEUTRAL_MOOD_COUNT_PREF"
+        const val GOOD_MOOD_COUNT_PREF = "GOOD_MOOD_COUNT_PREF"
+        const val GREAT_MOOD_COUNT_PREF = "GREAT_MOOD_COUNT_PREF"
 }

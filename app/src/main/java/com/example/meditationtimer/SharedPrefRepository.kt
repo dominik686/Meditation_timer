@@ -2,11 +2,15 @@ package com.example.meditationtimer
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.meditationtimer.models.MoodCount
+import com.example.meditationtimer.models.MoodEmoji
+import com.example.meditationtimer.models.Statistics
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+// Could be worthwile to create to Repositories, Settings and Statistics?
 class SharedPrefRepository(val context : Context) {
 
     private val  sharedPref : SharedPreferences =  context.getSharedPreferences(Constants.USER_PREFERENCES,
@@ -15,7 +19,6 @@ class SharedPrefRepository(val context : Context) {
 
     public fun putBellPreference(string: String)
     {
-
 
         editor.putString(Constants.BELL_PREF, string).apply()
 
@@ -27,6 +30,69 @@ class SharedPrefRepository(val context : Context) {
     }
 
 
+    fun updateMoodCount(mood : MoodEmoji)
+    {
+        when(mood){
+            MoodEmoji.VERY_BAD -> incrementVeryBadCount()
+            MoodEmoji.BAD ->incrementBadCount()
+            MoodEmoji.NEUTRAL -> incrementNeutralCount()
+            MoodEmoji.GOOD -> incrementGoodCount()
+            MoodEmoji.GREAT -> incrementGreatCount()
+        }
+    }
+
+    private fun incrementVeryBadCount()
+    {
+        val count = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0) + 1;
+        editor.putInt(Constants.VERY_BAD_MOOD_COUNT_PREF, count).apply()
+
+    }
+
+    private fun incrementBadCount()
+    {
+        val count = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0) + 1;
+        editor.putInt(Constants.BAD_MOOD_COUNT_PREF, count).apply()
+    }
+
+    private fun incrementNeutralCount()
+    {
+        val count = sharedPref.getInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0) + 1;
+        editor.putInt(Constants.NEUTRAL_MOOD_COUNT_PREF, count).apply()
+    }
+
+    private fun incrementGoodCount()
+    {
+        val count = sharedPref.getInt(Constants.GOOD_MOOD_COUNT_PREF, 0) + 1;
+        editor.putInt(Constants.GOOD_MOOD_COUNT_PREF, count).apply()
+    }
+
+    private fun incrementGreatCount()
+    {
+        val count = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0) + 1;
+        editor.putInt(Constants.GREAT_MOOD_COUNT_PREF, count).apply()
+    }
+    //TODO
+    // THATS A LOT OF ARGUMENTS, DEPENDENCY INJECTION?
+    public fun getMoodCount() : MoodCount
+    {
+        val veryBadCount = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0)
+        val badCount = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0)
+        val neutralCount = sharedPref.getInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0)
+        val goodCount = sharedPref.getInt(Constants.GOOD_MOOD_COUNT_PREF, 0)
+        val greatCount = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0)
+
+        return MoodCount(greatCount, goodCount, neutralCount, badCount, veryBadCount)
+
+    }
+
+    //TODO
+    // THATS A LOT OF ARGUMENTS, DEPENDENCY INJECTION?
+    // make the getter privates, create the statistics here and return it to the vm
+    fun getStatistics() : Statistics
+    {
+
+        return Statistics(getDaysInARow(), getLongestDaysInARow(), getTotalMeditations(), getMoodCount())
+    }
     public fun getDaysInARow() : Int
     {
         return sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
@@ -60,10 +126,6 @@ class SharedPrefRepository(val context : Context) {
 
     fun updateStreak() {
 
-        // if current streak is bigger than biggest streak
-        // current streak becomes biggest streak
-        // TODO
-        // also if the streak was on the same day then the streak doesnt increase
 
         val daysDiff = getDayDifference()
         if(daysDiff >= 2)
@@ -77,20 +139,13 @@ class SharedPrefRepository(val context : Context) {
         }
         else if(daysDiff == 0)
         {
-            // Dont do anything to the streak
         }
 
         compareToBestStreak()
 
-        // If the last day meditated was more than one day ago
-        //    reset currentStreak
-        //    start a new streak
-        // else
-        //     increment current streak by one
 
     }
 
-// The streak cant be started because by default lastDayMeditated = currentDay
     private fun getDayDifference() : Int
     {
         val dateFormat = SimpleDateFormat("dd MM yyyy")

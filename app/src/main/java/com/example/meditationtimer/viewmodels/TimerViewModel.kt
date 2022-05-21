@@ -21,14 +21,14 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     private var initialDuration: Int = 0
     private var timerRunning = false
     private var timerStarted = false
-
-
+    private lateinit var latestMeditation: Meditation
 
     fun insertMeditation(description: String, emoji: MoodEmoji) {
-        val meditation =
+         latestMeditation =
             Meditation(description = description, duration = initialDuration, emoji = emoji)
+
         viewModelScope.launch {
-            meditationRepository.insertMeditation(meditation)
+            meditationRepository.insertMeditation(latestMeditation)
         }
     }
 
@@ -95,9 +95,18 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     {
         sharedPref.incrementTotalMeditations()
     }
+
     fun updateMeditationStreak()
     {
         sharedPref.updateStreak()
+    }
+
+    fun updateMoodCount()
+    {
+         if(this::latestMeditation.isInitialized)
+         {
+            sharedPref.updateMoodCount(latestMeditation.emoji)
+         }
     }
 }
 class TimerViewModelFactory(private val meditationRepository: MeditationRepository,

@@ -19,6 +19,7 @@ import androidx.fragment.app.viewModels
 import com.example.meditationtimer.MeditationApplication
 import com.example.meditationtimer.compose.*
 import com.example.meditationtimer.databinding.StatisticsFragmentBinding
+import com.example.meditationtimer.models.MoodCount
 import com.example.meditationtimer.models.Statistics
 import com.example.meditationtimer.viewmodels.StatsViewModel
 import com.example.meditationtimer.viewmodels.StatsViewModelFactory
@@ -35,13 +36,13 @@ class StatisticsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = StatisticsFragmentBinding.inflate(inflater, container, false)
 
         binding.composeView.apply { setViewCompositionStrategy(ViewCompositionStrategy.
         DisposeOnLifecycleDestroyed(viewLifecycleOwner))
 
-            setContent { Stats(viewModel.getStats()) }
+            setContent { Stats(viewModel.getStatistics()) }
         }
 
         return binding.root
@@ -59,6 +60,7 @@ fun Stats(statsParam : Statistics)
             TotalMeditations(totalMeditations = stats.totalMeditations)
             DaysInARow(daysInARow = stats.daysInARow)
             LongestStreak(longestStreak = stats.longestStreak)
+            MoodCount(stats.moodCount)
         }
     }
 }
@@ -110,6 +112,32 @@ fun LongestStreak(longestStreak : Int)
         Column(Modifier.padding(8.dp)) {
             Text("Longest streak:", color = Gray300)
             Text(text = longestStreak.toString(), color = Gray300)
+        }
+    }
+}
+
+@Composable
+fun MoodCount(count : MoodCount)
+{
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentHeight()
+        .padding(8.dp) // margin
+        .clip(RoundedCornerShape(12.dp))
+        .background(Gray700))
+    {
+        Column(Modifier.padding(8.dp)) {
+            Text("Great mood count:", color = Gray300)
+            Text(text = count.great.toString(), color = Gray300)
+            Text("Good mood count:", color = Gray300)
+            Text(text = count.good.toString(), color = Gray300)
+            Text("Neutral mood count:", color = Gray300)
+            Text(text = count.neutral.toString(), color = Gray300)
+            Text("Bad mood count:", color = Gray300)
+            Text(text = count.bad.toString(), color = Gray300)
+            Text("Very bad mood count:", color = Gray300)
+            Text(text = count.veryBad.toString(), color = Gray300)
+
         }
     }
 }
