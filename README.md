@@ -31,8 +31,8 @@ The goal of this project is to create a good-quality meditation timer, with no p
 
 
 ## Project Status
-Project is: _no longer being worked on_. 
-I am currently working on improving my older projects and developing new projects in Flutter. 
+Project is: _in progress_. 
+
 
 ## Room for Improvement
 Room for improvement:
