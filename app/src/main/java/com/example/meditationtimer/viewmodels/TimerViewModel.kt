@@ -17,7 +17,6 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
                      private val sharedPref : SharedPrefRepository) : ViewModel() {
 
 
-    private lateinit var service: TimerService
     private lateinit var secondsLeft: LiveData<Int>
     private var initialDuration: Int = 0
     private var timerRunning = false
@@ -35,8 +34,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
 
     fun startTimer(seconds: Int, service: TimerService): LiveData<Int> {
 
-        this.service = service
-        secondsLeft = this.service.startTimerService(seconds)
+        secondsLeft = service.startTimerService(seconds)
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
@@ -44,13 +42,13 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
 
     }
 
-    fun pauseTimer() {
+    fun pauseTimer(service : TimerService) {
         service.pauseTimerService()
         timerRunning = false
     }
 
 
-    fun resumeTimer() : LiveData<Int> {
+    fun resumeTimer(service: TimerService) : LiveData<Int> {
 
         secondsLeft = service.resumeTimerService()
         timerRunning = true
@@ -59,16 +57,14 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     }
 
 
-    fun cancelTimer() {
-        if (this::service.isInitialized) {
-            //     timer.cancelTimer()
-            service.cancelTimerService()
+    fun cancelTimer(service: TimerService) {
 
+        if(timerRunning || timerStarted)
+        {
+            service.cancelTimerService()
             timerRunning = false
             timerStarted = false
         }
-
-
     }
 
     fun isTimerFinished() : Boolean

@@ -48,7 +48,6 @@ class DisplayMeditationsFragment : Fragment() {
 
        createAllMeditationsObserver()
        observeAllMeditations()
-       updateStatistics()
 
 
     }
@@ -117,53 +116,5 @@ class DisplayMeditationsFragment : Fragment() {
     }
 
 
-    private fun updateStatistics()
-    {
-        updateTotalMeditations()
-        updateCurrentDaysInARow()
-        updateLongestDaysInARow()
-    }
-    private fun updateTotalMeditations()
-    {
-        var totalMeditations = viewModel.getTotalMeditations().toString();
 
-        if(totalMeditations== "1")
-        {
-            binding.completedMeditations.text = totalMeditations + " session";
-        }
-        else
-        {
-            binding.completedMeditations.text = totalMeditations+ " total sessions"
-
-        }
-    }
-    private fun updateCurrentDaysInARow()
-    {
-        var daysInARow = viewModel.getCurrentDaysInARow().toString();
-        if(daysInARow == "1")
-        {
-            binding.daysInARow.text = daysInARow+ " day"
-
-        }
-        else
-        {
-            binding.daysInARow.text = daysInARow + " days"
-
-        }
-    }
-
-    private fun updateLongestDaysInARow()
-    {
-        var longestStreak = viewModel.getLongestDaysInARow().toString();
-        if(longestStreak == "1")
-        {
-            binding.longestStreak.text = longestStreak + " day"
-
-        }
-        else
-        {
-            binding.longestStreak.text = longestStreak + " days"
-
-        }
-    }
 }

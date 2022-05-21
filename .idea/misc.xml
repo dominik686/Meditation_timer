@@ -50,10 +50,13 @@
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2601851851851852" />
         <entry key="..\:/Users/allor_3l/StudioProjects/Meditation_timer/app/src/main/res/mipmap-anydpi-v26/sad.xml" value="0.2601851851851852" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.3415" />
+        <entry key="app/src/main/res/layout/calendar_fragment.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/display_meditations_fragment.xml" value="0.35309060118543606" />
         <entry key="app/src/main/res/layout/display_meditations_item.xml" value="0.307518115942029" />
         <entry key="app/src/main/res/layout/display_meditations_list_item.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/stats_fragment.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/timer_fragment.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3575" />

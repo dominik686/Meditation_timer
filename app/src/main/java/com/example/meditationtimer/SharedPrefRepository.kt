@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class SharedPrefRepository(val context : Context) {
 
-    val  sharedPref : SharedPreferences =  context.getSharedPreferences(Constants.USER_PREFERENCES,
+    private val  sharedPref : SharedPreferences =  context.getSharedPreferences(Constants.USER_PREFERENCES,
         Context.MODE_PRIVATE)!!
     private val editor: SharedPreferences.Editor = sharedPref.edit()
 
