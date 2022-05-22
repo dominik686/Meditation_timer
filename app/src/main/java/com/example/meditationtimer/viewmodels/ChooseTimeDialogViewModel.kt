@@ -11,7 +11,7 @@ class ChooseTimeDialogViewModel : ViewModel() {
     // make it an option in settings
     private var minTimeInterval: Int = 1
     private var maxTimeInterval: Int = 120
-    var listOfIntervals: ArrayList<String> =
+    private var listOfIntervals: ArrayList<String> =
         createListDivisibleByFive(minTimeInterval, maxTimeInterval)
 
     private fun createListDivisibleByFive(min: Int, max: Int): ArrayList<String> {

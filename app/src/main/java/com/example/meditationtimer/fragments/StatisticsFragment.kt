@@ -44,6 +44,12 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 
+
+//Add a
+ //Days of the this week meditated chart
+
+//add options to sort meditations from best to worst? idk
+
 class StatisticsFragment : Fragment() {
 
     private var _binding: StatisticsFragmentBinding? = null
@@ -75,19 +81,22 @@ class StatisticsFragment : Fragment() {
 @Composable
 fun Stats(statsParam : Statistics)
 {
-    var scrollState  = rememberScrollState()
+    val scrollState  = rememberScrollState()
+    val stats by remember { mutableStateOf(statsParam)}
 
-    MaterialTheme() {
+    MaterialTheme {
         Column(
             Modifier
                 .padding(10.dp)
                 .verticalScroll(state = scrollState, enabled = true)) {
-            val stats by remember { mutableStateOf(statsParam)}
 
-            TotalMeditations(totalMeditations = stats.totalMeditations)
-            DaysInARow(daysInARow = stats.daysInARow)
-            LongestStreak(longestStreak = stats.longestStreak)
-            MoodCount(stats.moodCount)
+
+
+                TotalMeditations(totalMeditations = stats.totalMeditations)
+                DaysInARow(daysInARow = stats.daysInARow)
+                LongestStreak(longestStreak = stats.longestStreak)
+                MoodCount(stats.moodCount)
+
         }
     }
 }

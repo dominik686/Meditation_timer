@@ -44,31 +44,17 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         {
             val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.shake)
             it.startAnimation(animation)
-            expandTheView()
-        }
-    }
-
-    fun expandTheView()
-    {
-        if(itemView.findViewById<TextView>(R.id.description_textview).text.length > 50)
-        {
 
         }
     }
+
    private fun setDescription(description : String)
     {
 
         //xaddCharacterLimit(description)
         itemView.findViewById<TextView>(R.id.description_textview).text = description
     }
-    private fun addCharacterLimit(description: String)
-    {
-        if(description.length <= 50)
-            itemView.findViewById<TextView>(R.id.description_textview).text = description
-        else
-            itemView.findViewById<TextView>(R.id.description_textview).text =
-                description.subSequence(0, 50) .toString()+ "...   tap to see more"
-    }
+
     private fun setDuration(duration : Int)
     {
         itemView.findViewById<TextView>(R.id.duration_textview).text = duration.toString() + " minutes"
