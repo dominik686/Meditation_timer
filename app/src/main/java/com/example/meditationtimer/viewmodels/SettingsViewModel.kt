@@ -27,6 +27,7 @@ class SettingsViewModel(
         resetTotalMeditations()
         resetCurrentStreak()
         resetLongestStreak()
+        resetMoodCount()
     }
     private fun resetTotalMeditations()
     {
@@ -41,16 +42,17 @@ class SettingsViewModel(
     {
         sharedPrefRepository.resetLongestStreak()
     }
+    private fun resetMoodCount()
+    {
+        sharedPrefRepository.resetMoodCount()
+    }
     suspend fun resetMeditationHistory()
     {
         meditationRepository.clearMeditations()
     }
 
-    fun addDefaultMeditations()
-    {
 
     }
-}
 
 public class SettingsViewModelFactory(
     private val sharedPrefRepository: SharedPrefRepository,

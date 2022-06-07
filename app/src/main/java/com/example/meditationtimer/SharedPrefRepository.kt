@@ -30,7 +30,7 @@ class SharedPrefRepository(val context : Context) {
     }
 
 
-    fun updateMoodCount(mood : MoodEmoji)
+    fun incrementMoodCount(mood : MoodEmoji)
     {
         when(mood){
             MoodEmoji.VERY_BAD -> incrementVeryBadCount()
@@ -82,12 +82,18 @@ class SharedPrefRepository(val context : Context) {
         val greatCount = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0)
 
         return MoodCount(greatCount, goodCount, neutralCount, badCount, veryBadCount)
-
     }
 
-    //TODO
-    // THATS A LOT OF ARGUMENTS, DEPENDENCY INJECTION?
-    // make the getter privates, create the statistics here and return it to the vm
+    fun resetMoodCount()
+    {
+
+        editor.putInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0).apply()
+        editor.putInt(Constants.BAD_MOOD_COUNT_PREF, 0).apply()
+        editor.putInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0).apply()
+        editor.putInt(Constants.GOOD_MOOD_COUNT_PREF, 0).apply()
+        editor.putInt(Constants.GREAT_MOOD_COUNT_PREF, 0).apply()
+
+    }
     fun getStatistics() : Statistics
     {
 

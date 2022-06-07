@@ -1,6 +1,5 @@
 package com.example.meditationtimer.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -105,7 +104,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     {
          if(this::latestMeditation.isInitialized)
          {
-            sharedPref.updateMoodCount(latestMeditation.emoji)
+            sharedPref.incrementMoodCount(latestMeditation.emoji)
          }
     }
 }

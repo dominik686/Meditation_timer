@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -45,10 +46,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 
 
-//Add a
- //Days of the this week meditated chart
 
-//add options to sort meditations from best to worst? idk
 
 class StatisticsFragment : Fragment() {
 
@@ -89,9 +87,6 @@ fun Stats(statsParam : Statistics)
             Modifier
                 .padding(10.dp)
                 .verticalScroll(state = scrollState, enabled = true)) {
-
-
-
                 TotalMeditations(totalMeditations = stats.totalMeditations)
                 DaysInARow(daysInARow = stats.daysInARow)
                 LongestStreak(longestStreak = stats.longestStreak)
@@ -106,7 +101,8 @@ fun TotalMeditations(totalMeditations : Int)
 {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(100.dp)
+        //.height(100.dp)
+        .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
         .background(Gray700))
@@ -114,6 +110,7 @@ fun TotalMeditations(totalMeditations : Int)
         Column(Modifier.padding(8.dp)) {
             Text("Total meditations sessions:", color = Gray300)
             Text(text = totalMeditations.toString(), color = Gray300)
+
         }
 
     }
@@ -123,7 +120,7 @@ fun DaysInARow(daysInARow : Int)
 {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(100.dp)
+        .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
         .background(Gray700))
@@ -131,6 +128,7 @@ fun DaysInARow(daysInARow : Int)
         Column(Modifier.padding(8.dp))  {
             Text("Days meditated in a row:", color = Gray300)
             Text(text = daysInARow.toString(), color = Gray300)
+
         }
     }
 }
@@ -140,7 +138,7 @@ fun LongestStreak(longestStreak : Int)
 {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .height(100.dp)
+        .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
         .background(Gray700))
@@ -148,6 +146,7 @@ fun LongestStreak(longestStreak : Int)
         Column(Modifier.padding(8.dp)) {
             Text("Longest streak:", color = Gray300)
             Text(text = longestStreak.toString(), color = Gray300)
+
         }
     }
 }
@@ -165,14 +164,24 @@ fun MoodCount(count : MoodCount)
         Column(Modifier.padding(8.dp)) {
             Text("Great mood count:", color = Gray300)
             Text(text = count.great.toString(), color = Gray300)
+            Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
+
+
             Text("Good mood count:", color = Gray300)
             Text(text = count.good.toString(), color = Gray300)
+            Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
+
             Text("Neutral mood count:", color = Gray300)
             Text(text = count.neutral.toString(), color = Gray300)
+            Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
+
             Text("Bad mood count:", color = Gray300)
             Text(text = count.bad.toString(), color = Gray300)
+            Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
+
             Text("Very bad mood count:", color = Gray300)
             Text(text = count.veryBad.toString(), color = Gray300)
+            Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
 
             MoodCountPieChart(moodCount = count)

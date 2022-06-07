@@ -56,7 +56,7 @@
         <entry key="app/src/main/res/layout/display_meditations_item.xml" value="0.307518115942029" />
         <entry key="app/src/main/res/layout/display_meditations_list_item.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_stats.xml" value="0.18177083333333333" />
-        <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/statistics_fragment.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/stats_fragment.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/timer_fragment.xml" value="0.18177083333333333" />
