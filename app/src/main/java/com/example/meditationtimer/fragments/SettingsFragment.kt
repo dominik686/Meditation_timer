@@ -150,13 +150,6 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun setUpAddDefaultMeditationsButtonOnClickDEBUG()
-    {
-        binding.addDefaultMeditationsButton.setOnClickListener{
-
-            view
-        }
-    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -90,7 +90,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
 
     private fun initializeBinding()
     {
-        _binding = MoodDialogFragmentBinding.inflate(LayoutInflater.from(context))
+        _binding = MoodDialogFragmentBinding.inflate(layoutInflater)
 
     }
 
