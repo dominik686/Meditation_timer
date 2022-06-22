@@ -23,4 +23,8 @@ class FakeMeditationDao : MeditationDao{
     override fun getMeditations(): Flow<List<Meditation>> {
         return meditationsFlow
     }
+
+    override fun clearMeditations() {
+        TODO("Not yet implemented")
+    }
 }

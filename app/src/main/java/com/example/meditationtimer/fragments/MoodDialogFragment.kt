@@ -9,6 +9,7 @@ import com.example.meditationtimer.R
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
@@ -37,7 +38,15 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private val viewModel : MoodDialogFragmentViewModel by viewModels{
         MoodDialogFragmentViewModelFactory()
     }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        this.dialog.setCanceledOnTouchOutside(false)
 
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     private var _binding : MoodDialogFragmentBinding? = null
     private val binding get() = _binding!!

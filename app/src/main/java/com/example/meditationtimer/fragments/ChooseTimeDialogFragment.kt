@@ -3,7 +3,9 @@ package com.example.meditationtimer.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import androidx.fragment.app.DialogFragment
@@ -24,6 +26,7 @@ open class ChooseTimeDialogFragment : DialogFragment() {
     private val viewModel: ChooseTimeDialogViewModel by viewModels{
         ChooseTimeDialogViewModelFactory()
     }
+
 
     private lateinit var builder : AlertDialog.Builder
     private lateinit var numberPicker : NumberPicker
