@@ -51,8 +51,3 @@ To do:
 Created by [@Dominik Wieczynski](https://www.linkedin.com/in/dominik-wieczy%C5%84ski-19ba77209/) - feel free to contact me!
 
 
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
