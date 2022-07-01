@@ -2,13 +2,12 @@ package com.example.meditationtimer
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.meditationtimer.models.MoodCount
 import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.models.Statistics
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import java.util.*
-import java.util.concurrent.TimeUnit
+import java.time.Duration
+import java.time.Instant
 
 // Could be worthwile to create to Repositories, Settings and Statistics?
 class SharedPrefRepository(val context : Context) {
@@ -133,18 +132,15 @@ class SharedPrefRepository(val context : Context) {
     fun updateStreak() {
 
 
-        val daysDiff = getDayDifference()
-        if(daysDiff >= 2)
+        val hoursDiff = getHoursPassedSinceMeditation()
+        if(hoursDiff < 24)
         {
             editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1).apply()
         }
-        else if(daysDiff == 1){
+        else if(hoursDiff in 24..48){
             var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1)
 
             editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
-        }
-        else if(daysDiff == 0)
-        {
         }
 
         compareToBestStreak()
@@ -152,30 +148,52 @@ class SharedPrefRepository(val context : Context) {
 
     }
 
-    private fun getDayDifference() : Int
+    private fun getHoursPassedSinceMeditation() : Long
     {
-        val dateFormat = SimpleDateFormat("dd MM yyyy")
-        //Format doesnt work for soem reaosn
+        /*
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm")
         val currentDate = dateFormat.parse(dateFormat.format(System.currentTimeMillis()))
 
         var lastDayMeditated = Date()
+        /*
         if(sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF,
                 "") == "")
         {
             return 2
         }
-        else{
+
+         */
+       // else{
             lastDayMeditated = dateFormat.parse(
                 sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF,
                     "01 12 1999"
                 ))
-        }
+    //    }
 
 
         val timeDiff = currentDate?.time?.minus(lastDayMeditated?.time!!)
         val daysDiff = TimeUnit.MILLISECONDS.toDays(timeDiff!!).toInt()
 
+
+
         return daysDiff
+
+         */
+
+        val currentTimestamp  = sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF, "No timestamp")
+        if(currentTimestamp == "No timestamp")
+        {
+            return 0;
+        }
+        else
+        {
+            val lastMeditationDate = Instant.parse(currentTimestamp)
+            val nowDate = Instant.now()
+            val hoursSinceLastMeditation = Duration.between(lastMeditationDate, nowDate).toHours()
+
+            Log.d("SharedPrefRepository", hoursSinceLastMeditation.toString())
+            return hoursSinceLastMeditation
+        }
     }
 
     private fun compareToBestStreak()

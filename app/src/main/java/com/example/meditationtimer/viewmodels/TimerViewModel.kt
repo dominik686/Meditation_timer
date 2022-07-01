@@ -21,6 +21,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
     private var timerRunning = false
     private var timerStarted = false
     private lateinit var latestMeditation: Meditation
+    var serviceBound: Boolean = false
 
     fun insertMeditation(description: String, emoji: MoodEmoji) {
          latestMeditation =

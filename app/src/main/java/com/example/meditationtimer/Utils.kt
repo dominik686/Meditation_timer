@@ -8,6 +8,7 @@ import android.os.Looper
 class Utils
 {
     companion object {
+
         fun createListDivisibleByFive(min: Int, max: Int): MutableList<Int> {
             var result = mutableListOf<Int>()
             for (i in min..max) {

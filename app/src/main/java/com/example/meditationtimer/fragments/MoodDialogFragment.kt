@@ -38,6 +38,9 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private val viewModel : MoodDialogFragmentViewModel by viewModels{
         MoodDialogFragmentViewModelFactory()
     }
+    private var _binding : MoodDialogFragmentBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,8 +51,8 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    private var _binding : MoodDialogFragmentBinding? = null
-    private val binding get() = _binding!!
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         animContext = context
@@ -63,7 +66,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         builder.setView(binding.root)
         setupMoodEmojis()
         binding.chipGroup.setOnCheckedChangeListener { _, _ ->
-            AnimationHelper.circularReveal(binding.textInputLayout)
+            revealAnimation()
             binding.chipGroup.setOnCheckedChangeListener(null)
         }
 
@@ -75,6 +78,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     }
     private fun revealAnimation()
     {
+        AnimationHelper.circularReveal(binding.textInputLayout)
 
     }
 
