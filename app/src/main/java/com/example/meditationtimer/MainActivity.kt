@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(bottombar, navController)
        // setUp
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setCurrentFragment(fragment : Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment, fragment)
+            replace(R.id.navHostFragment, fragment)
             commit()
         }
 

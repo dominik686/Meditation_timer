@@ -1,24 +1,17 @@
 package com.example.meditationtimer.fragments
 
-import androidx.fragment.app.testing.launchFragment
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.*
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.meditationtimer.R
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.hamcrest.Matchers.allOf
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -61,7 +54,7 @@ class TimerFragmentTest
     @Test
     fun test_Is_MeditationHistoryButtonVisible()
     {
-        onView(withId(R.id.history_button)).check(matches(isDisplayed()))
+       // onView(withId(R.id.history_button)).check(matches(isDisplayed()))
 
     }
 
@@ -70,21 +63,15 @@ class TimerFragmentTest
 
 
 
-    // After choosing a time interval
-    // Check if the fab icon changed
-    // Check if timeLeft textview changed and is changing
-    // check if after pressing the fab button again the icon changes back
+    @Test
+    fun test_isFabClickable()
+    {
+        //onView(withId(R.id.floatingActionButton)).perform(click())
+        onView(withId(R.id.floatingActionButton)).check(matches(isClickable()))
 
+    }
     @Test
     fun test_PressStartFAB()
-    {
-        onView(withId(R.id.floatingActionButton)).perform(click())
-     //   onView(withText("How many minutes would you like to meditate for:")).check(matches(
-    //        isDisplayed()))
-
-    }
-    @Test
-    fun test_IsNumberPickerVisible()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
         onView(withId(R.id.dialog_number_picker)).check(matches(isDisplayed()))

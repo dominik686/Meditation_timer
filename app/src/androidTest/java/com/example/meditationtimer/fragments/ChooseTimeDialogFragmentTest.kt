@@ -29,15 +29,6 @@ import org.junit.runner.RunWith
 class ChooseTimeDialogFragmentTest : NumberPicker.OnValueChangeListener
 {
 
-    /* Both clickTopCenter and clickBottomCentre methods were derived from this tutorial
-    https://blog.stylingandroid.com/numberpicker-espresso-testing/
-     */
-
-    /*
-    When ran together some tests fail, but when you run them separately they pass.
-    I think it might have to do something with the minutes variable
-
-     */
     //Variable for clicking on top of number picker(increments the number)
     private val clickTopCentre =
         actionWithAssertions(

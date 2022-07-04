@@ -133,14 +133,18 @@ class SharedPrefRepository(val context : Context) {
 
 
         val hoursDiff = getHoursPassedSinceMeditation()
-        if(hoursDiff < 24)
+        if(hoursDiff < 24L)
         {
-            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1).apply()
+            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
         }
-        else if(hoursDiff in 24..48){
-            var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 1)
+        else if(hoursDiff in 24L..48L){
+            var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
 
             editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
+        }
+        else if(hoursDiff > 48L)
+        {
+            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
         }
 
         compareToBestStreak()

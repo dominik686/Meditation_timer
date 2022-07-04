@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@id/displayMeditationsFragment"
-        android:title="History"
-        android:icon="@drawable/outline_history_24"/>
+        android:id="@id/history_fragment"
+        android:icon="@drawable/outline_history_24"
+        android:title="@string/history_bottomNavBar" />
     <item
-        android:id="@id/statisticsFragment"
-        android:title="Statistics"
+        android:id="@id/statistics_fragment"
+        android:title="@string/statistics_bottomNavBar"
         android:icon="@drawable/ic_outline_leaderboard_24"/>
     <item
-        android:id="@id/timer"
-        android:title="Timer"
+        android:id="@id/timer_fragment"
+        android:title="@string/timer_bottomNavBar"
         android:icon="@drawable/outline_timer_24"/>
     <item
-        android:id="@id/settingsFragment"
-        android:title="Settings"
-        android:icon="@drawable/outline_settings_24"/>
+        android:id="@id/settings_fragment"
+        android:icon="@drawable/outline_settings_24"
+        android:title="@string/settings_bottomNavBar" />
 </menu>

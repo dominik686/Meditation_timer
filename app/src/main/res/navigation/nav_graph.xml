@@ -3,59 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/timer">
+    app:startDestination="@id/timer_fragment">
 
     <fragment
-        android:id="@+id/timer"
+        android:id="@+id/timer_fragment"
         android:name="com.example.meditationtimer.fragments.TimerFragment"
         android:label="timer_fragment"
         tools:layout="@layout/timer_fragment" >
         <action
             android:id="@+id/action_timer_to_displayMeditationsFragment"
-            app:destination="@id/displayMeditationsFragment" />
+            app:destination="@id/history_fragment" />
         <action
             android:id="@+id/action_timer_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settings_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/displayMeditationsFragment"
+        android:id="@+id/history_fragment"
         android:name="com.example.meditationtimer.fragments.DisplayMeditationsFragment"
         android:label="display_meditations_fragment"
         tools:layout="@layout/display_meditations_fragment" >
         <action
             android:id="@+id/action_displayMeditationsFragment_to_timer"
-            app:destination="@id/timer" />
+            app:destination="@id/timer_fragment" />
         <action
             android:id="@+id/action_displayMeditationsFragment_to_statsFragment"
-            app:destination="@id/statisticsFragment" />
+            app:destination="@id/statistics_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/settings_fragment"
         android:name="com.example.meditationtimer.fragments.SettingsFragment"
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_displayMeditationsFragment"
-            app:destination="@id/displayMeditationsFragment" />
+            app:destination="@id/history_fragment" />
         <action
             android:id="@+id/action_settingsFragment_to_timer"
-            app:destination="@id/timer" />
+            app:destination="@id/timer_fragment" />
         <action
             android:id="@+id/action_settingsFragment_to_statsFragment"
-            app:destination="@id/statisticsFragment" />
+            app:destination="@id/statistics_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/statisticsFragment"
+        android:id="@+id/statistics_fragment"
         android:name="com.example.meditationtimer.fragments.StatisticsFragment"
         android:label="StatistsFragment"
         tools:layout="@layout/statistics_fragment" >
         <action
             android:id="@+id/action_statsFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settings_fragment" />
         <action
             android:id="@+id/action_statsFragment_to_timer"
-            app:destination="@id/timer" />
+            app:destination="@id/timer_fragment" />
         <action
             android:id="@+id/action_statsFragment_to_displayMeditationsFragment"
-            app:destination="@id/displayMeditationsFragment" />
+            app:destination="@id/history_fragment" />
     </fragment>
 </navigation>

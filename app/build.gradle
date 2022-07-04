@@ -8,14 +8,21 @@ plugins {
 
 
 android {
+
     compileSdk 31
 
     apply plugin: 'com.android.application'
     apply plugin: 'kotlin-android'
     buildFeatures {
+
         viewBinding true
         compose true
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.2.0-beta02"
     }
@@ -36,10 +43,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    
     kotlinOptions {
         jvmTarget = '11'
         useIR = true
