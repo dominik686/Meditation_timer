@@ -9,6 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 
@@ -40,6 +41,18 @@ class MainActivityTest {
         onView(withId(R.id.history_fragment)).check(matches(isClickable()))
     }
 
+    // When i try to navigate to this fragment I get a main thread room error
+
+    /*
+    @Test
+    fun bottomNavBar_doesHistoryButton_navigateToNewFragment()
+    {
+        onView(withId(R.id.history_fragment)).perform(click())
+        onView(withId(R.id.display_meditations_recyclerview)).check(matches(isDisplayed()))
+
+    }
+
+     */
     @Test
     fun bottomNavBar_isStatisticsButton_Clickable()
     {
