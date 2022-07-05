@@ -17,7 +17,7 @@ class TimerService : Service() {
     private val binder = LocalBinder()
 
     private lateinit var timerCoroutine: TimerCoroutine
-    private lateinit var secondsLeft: LiveData<Int>
+    lateinit var secondsLeft: LiveData<Int>
     private lateinit var builder: TimerRunningNotificationBuilder
     private var timerRunning = false
 
@@ -69,7 +69,7 @@ class TimerService : Service() {
 
     fun startTimerService(seconds: Int): LiveData<Int> {
         timerCoroutine = TimerCoroutine()
-        secondsLeft = timerCoroutine.startTimer(2)
+        secondsLeft = timerCoroutine.startTimer(seconds)
 
         timerRunning = true
         generateNotification()

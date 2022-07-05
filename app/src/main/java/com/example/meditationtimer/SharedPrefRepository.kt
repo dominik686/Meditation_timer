@@ -9,14 +9,13 @@ import com.example.meditationtimer.models.Statistics
 import java.time.Duration
 import java.time.Instant
 
-// Could be worthwile to create to Repositories, Settings and Statistics?
 class SharedPrefRepository(val context : Context) {
 
     private val  sharedPref : SharedPreferences =  context.getSharedPreferences(Constants.USER_PREFERENCES,
         Context.MODE_PRIVATE)!!
     private val editor: SharedPreferences.Editor = sharedPref.edit()
 
-    public fun putBellPreference(string: String)
+    fun putBellPreference(string: String)
     {
 
         editor.putString(Constants.BELL_PREF, string).apply()
@@ -70,9 +69,8 @@ class SharedPrefRepository(val context : Context) {
         val count = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0) + 1;
         editor.putInt(Constants.GREAT_MOOD_COUNT_PREF, count).apply()
     }
-    //TODO
-    // THATS A LOT OF ARGUMENTS, DEPENDENCY INJECTION?
-    public fun getMoodCount() : MoodCount
+
+    fun getMoodCount() : MoodCount
     {
         val veryBadCount = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0)
         val badCount = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0)
@@ -98,25 +96,25 @@ class SharedPrefRepository(val context : Context) {
 
         return Statistics(getDaysInARow(), getLongestDaysInARow(), getTotalMeditations(), getMoodCount())
     }
-    public fun getDaysInARow() : Int
+    fun getDaysInARow() : Int
     {
         return sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
     }
 
-    public fun getLongestDaysInARow() : Int
+    fun getLongestDaysInARow() : Int
     {
         return sharedPref.getInt(Constants.LONGEST_STREAK_PREF, 0)
     }
-    public fun incrementTotalMeditations()
+    fun incrementTotalMeditations()
     {
         val newTotal = getTotalMeditations() + 1
         editor.putInt(Constants.TOTAL_MEDITATIONS_PREF, newTotal).apply()
     }
-    public fun getTotalMeditations() : Int
+    fun getTotalMeditations() : Int
     {
         return sharedPref.getInt(Constants.TOTAL_MEDITATIONS_PREF, 0)
     }
-    public fun resetTotalMeditations()
+    fun resetTotalMeditations()
     {
         editor.putInt(Constants.TOTAL_MEDITATIONS_PREF, 0).apply()
     }
@@ -142,25 +140,29 @@ class SharedPrefRepository(val context : Context) {
         if(currentStreak == 0)
         {
             incrementCurrentStreak()
+            updateLastDayStreakUpdated()
         }
         else if(currentStreak > 0)
         {
             val hoursDiff = getHoursPassedSinceMeditation()
             if(hoursDiff < 24L)
             {
-                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+
             }
 
             else if(hoursDiff in 24L..48L){
 
                 editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
+                updateLastDayStreakUpdated()
+
             }
             else if(hoursDiff > 48L)
             {
                 editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+                updateLastDayStreakUpdated()
+
             }
         }
-
 
         compareToBestStreak()
 
@@ -170,44 +172,20 @@ class SharedPrefRepository(val context : Context) {
     private fun incrementCurrentStreak()
 
     {
-        var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+        val currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
         editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
-
     }
 
+    private fun updateLastDayStreakUpdated()
+    {
+        val todayTimeStamp = Instant.now()
+        editor.putString(Constants.LAST_DAY_STREAK_UPDATED_PREF, todayTimeStamp.toString())
+    }
     private fun getHoursPassedSinceMeditation() : Long
     {
-        /*
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm")
-        val currentDate = dateFormat.parse(dateFormat.format(System.currentTimeMillis()))
-
-        var lastDayMeditated = Date()
-        /*
-        if(sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF,
-                "") == "")
-        {
-            return 2
-        }
-
-         */
-       // else{
-            lastDayMeditated = dateFormat.parse(
-                sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF,
-                    "01 12 1999"
-                ))
-    //    }
 
 
-        val timeDiff = currentDate?.time?.minus(lastDayMeditated?.time!!)
-        val daysDiff = TimeUnit.MILLISECONDS.toDays(timeDiff!!).toInt()
-
-
-
-        return daysDiff
-
-         */
-
-        val currentTimestamp  = sharedPref.getString(Constants.LAST_DAY_MEDITATED_PREF, "No timestamp")
+        val currentTimestamp  = sharedPref.getString(Constants.LAST_DAY_STREAK_UPDATED_PREF, "No timestamp")
         if(currentTimestamp == "No timestamp")
         {
             return 0;
@@ -222,6 +200,7 @@ class SharedPrefRepository(val context : Context) {
             return hoursSinceLastMeditation
         }
     }
+    //private fun getHours
 
     private fun compareToBestStreak()
     {

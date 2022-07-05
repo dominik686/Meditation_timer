@@ -16,7 +16,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
                      private val sharedPref : SharedPrefRepository) : ViewModel() {
 
 
-    private lateinit var secondsLeft: LiveData<Int>
+    lateinit var secondsLeft: LiveData<Int>
     private var initialDuration: Int = 0
     private var timerRunning = false
     private var timerStarted = false
@@ -67,6 +67,14 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
         }
     }
 
+    fun isSecondsLeftNotNull() : Boolean
+    {
+        if(this::secondsLeft.isInitialized)
+        {
+                return secondsLeft.value != null
+        }
+        return false
+    }
     fun isTimerFinished() : Boolean
     {
        return secondsLeft.value == 0
