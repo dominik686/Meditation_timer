@@ -16,7 +16,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
                      private val sharedPref : SharedPrefRepository) : ViewModel() {
 
 
-    lateinit var secondsLeft: LiveData<Int>
+    var secondsLeft: LiveData<Int>? = null
     private var initialDuration: Int = 0
     private var timerRunning = false
     private var timerStarted = false
@@ -38,7 +38,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
         initialDuration = seconds / 60
         timerRunning = true
         timerStarted = true
-        return secondsLeft
+        return secondsLeft as LiveData<Int>
 
     }
 
@@ -53,7 +53,7 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
         secondsLeft = service.resumeTimerService()
         timerRunning = true
 
-        return secondsLeft
+        return secondsLeft as LiveData<Int>
     }
 
 
@@ -69,15 +69,15 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
 
     fun isSecondsLeftNotNull() : Boolean
     {
-        if(this::secondsLeft.isInitialized)
+        if(secondsLeft != null)
         {
-                return secondsLeft.value != null
+                return secondsLeft!!.value != null
         }
         return false
     }
     fun isTimerFinished() : Boolean
     {
-       return secondsLeft.value == 0
+       return secondsLeft?.value == 0
     }
     fun isTimerStartedAndRunning() : Boolean
     {
@@ -115,6 +115,10 @@ class TimerViewModel(private val meditationRepository : IMeditationRepository,
          {
             sharedPref.incrementMoodCount(latestMeditation.emoji)
          }
+    }
+
+    fun resetSecondsLeft() {
+        secondsLeft = null
     }
 }
 class TimerViewModelFactory(private val meditationRepository: MeditationRepository,
