@@ -132,23 +132,46 @@ class SharedPrefRepository(val context : Context) {
     fun updateStreak() {
 
 
-        val hoursDiff = getHoursPassedSinceMeditation()
-        if(hoursDiff < 24L)
-        {
-            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
-        }
-        else if(hoursDiff in 24L..48L){
-            var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+        // Streak is 0
+        // streak is not zero
 
-            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
-        }
-        else if(hoursDiff > 48L)
+
+
+        var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+
+        if(currentStreak == 0)
         {
-            editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+            incrementCurrentStreak()
         }
+        else if(currentStreak > 0)
+        {
+            val hoursDiff = getHoursPassedSinceMeditation()
+            if(hoursDiff < 24L)
+            {
+                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+            }
+
+            else if(hoursDiff in 24L..48L){
+
+                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
+            }
+            else if(hoursDiff > 48L)
+            {
+                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+            }
+        }
+
 
         compareToBestStreak()
 
+
+    }
+
+    private fun incrementCurrentStreak()
+
+    {
+        var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+        editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
 
     }
 

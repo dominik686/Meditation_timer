@@ -58,24 +58,39 @@ class DisplayMeditationsFragment : Fragment() {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
 
-            if (allMeditations.isNotEmpty()) {
+            pauseLoadingAnimation()
+            hideLoadingAnimation()
+            if (allMeditations.isEmpty()) {
+                binding.noMeditationsRecorded.visibility = View.VISIBLE
+            }
+            else
+            {
                 binding.noMeditationsRecorded.visibility = View.GONE
+                val groupedMeditationsMap = groupByDate(allMeditations)
+                val groupedMeditationsList = mutableListOf<MeditationList>()
+
+                for (entry in groupedMeditationsMap.entries.iterator()) {
+                    val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
+                    groupedMeditationsList.add(meditationsListTemp)
+                }
+
+
+                setupRecyclerview(groupedMeditationsList.reversed())
             }
-            val groupedMeditationsMap = groupByDate(allMeditations)
-            val groupedMeditationsList = mutableListOf<MeditationList>()
 
-            for (entry in groupedMeditationsMap.entries.iterator()) {
-                val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
-                groupedMeditationsList.add(meditationsListTemp)
-            }
-
-
-            setupRecyclerview(groupedMeditationsList.reversed())
 
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432
 
+    private fun pauseLoadingAnimation()
+    {
+        binding.loadingAnimation.pauseAnimation()
+    }
+    private fun hideLoadingAnimation()
+    {
+        binding.loadingAnimation.visibility = View.GONE
+    }
 
     private fun groupByDate(meditations: List<Meditation>): Map<String, List<Meditation>> {
 
