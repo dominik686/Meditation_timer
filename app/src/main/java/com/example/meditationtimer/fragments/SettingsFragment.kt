@@ -6,18 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import android.content.Context
-import android.content.SharedPreferences
-import android.media.MediaPlayer
-import android.os.Handler
-import android.os.Looper
 import android.widget.ArrayAdapter
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.example.meditationtimer.*
-import com.example.meditationtimer.adapters.BellSoundArrayAdapter
 import com.example.meditationtimer.databinding.SettingsFragmentBinding
-import com.example.meditationtimer.models.Meditation
-import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.viewmodels.SettingsViewModel
 import com.example.meditationtimer.viewmodels.SettingsViewModelFactory
 import kotlinx.coroutines.Dispatchers
@@ -46,11 +39,9 @@ class SettingsFragment : Fragment() {
         _binding = SettingsFragmentBinding.inflate(inflater, container, false)
 
 
-        setUpCurrentBellSpinner()
-        setUpBellSoundsOnClicks()
-        checkCurrentlyChosenBell()
-        setUpResetStatsButtonOnClick()
-       setUpResetMeditationHistoryButtonOnClick()
+        setupCurrentBellSpinner()
+        setupResetStatsButtonOnClick()
+        setupResetMeditationHistoryButtonOnClick()
 
 
 
@@ -59,109 +50,68 @@ class SettingsFragment : Fragment() {
 
 
 
-    private fun setUpCurrentBellSpinner()
+    private fun setupCurrentBellSpinner()
     {
-        setUpSpinnerAdapter()
+        changeDefaultSpinnerValueToCurrentBell()
+        setupSpinnerAdapter()
+        setupPlayIconClickListener()
+        setupCurrentBellChangeListener()
     }
-    private fun setUpSpinnerAdapter()
+    private fun setupSpinnerAdapter()
     {
-       val adapterr =  BellSoundArrayAdapter(requireContext(), resources.getStringArray(R.array.bell_sounds).asList(), R.layout.current_bell_spinner_dropdown_item)
-        binding.currentBellTextview.setText(viewModel.getBellPreference())
-        binding.currentBellTextview.setAdapter(adapterr)
-
-        /*
-        ArrayAdapter.createFromResource(requireContext(), R.array.bell_sounds, R.layout.current_bell_spinner_dropdown_item)
-            .also { adapter ->
-                binding.currentBellTextview.setText(viewModel.getBellPreference())
-                binding.currentBellTextview.setAdapter(adapter)
-               // binding.currentBellTextview.setText(viewModel.getBellPreference())
-            }
-
-         */
+       ArrayAdapter.createFromResource(requireContext(), R.array.bell_sounds,
+           android.R.layout.simple_spinner_dropdown_item).also { adapter ->
+           binding.currentBellTextview.setAdapter(adapter)
+       }
     }
-    private fun checkCurrentlyChosenBell()
+
+    private fun changeDefaultSpinnerValueToCurrentBell()
     {
         when (viewModel.getBellPreference()) {
-            Constants.TIBETAN_BELL_PREF -> binding.bellsGroup.check(binding.tibetanBellsSound.id)
-            Constants.ANALOG_WATCH_BELL_PREF -> binding.bellsGroup.check(binding.analogWatchSound.id)
-            Constants.FRONT_DESK_BELL_PREF -> binding.bellsGroup.check(binding.frontDeskBells.id)
-            Constants.CARTOON_TELEPHONE_BELL_PREF -> binding.bellsGroup.check(binding.cartoonTelephone.id)
+            Constants.TIBETAN_BELL_PREF -> binding.currentBellTextview.setText(resources.getString(R.string.tibetan_bell))
+            Constants.ANALOG_WATCH_BELL_PREF -> binding.currentBellTextview.setText(resources.getString(R.string.analog_watch))
+            Constants.FRONT_DESK_BELL_PREF -> binding.currentBellTextview.setText(resources.getString(R.string.front_desk_bell))
+            Constants.CARTOON_TELEPHONE_BELL_PREF -> binding.currentBellTextview.setText(resources.getString(R.string.cartoon_telephone))
         }
 
     }
-    private fun setUpBellSoundsOnClicks()
-    {
-        setUpTibetanBellOnClick()
-        setUpAnalogWatchBellOnClick()
-        setUpCartoonTelephoneBellOnClick()
-        setUpFrontDeskBellOnClick()
-    }
-    private fun setUpTibetanBellOnClick()
-    {
-        val id = View.generateViewId()
-        binding.tibetanBellsSound.id = id
-        binding.tibetanBellsSound.setOnClickListener {
-            if (binding.tibetanBellsSound.isChecked) {
 
-
-                viewModel.putBellPreference(Constants.TIBETAN_BELL_PREF)
-                Utils.playBell(requireContext(),
-                    Constants.BELL_RESOURCES[Constants.TIBETAN_BELL_PREF]!!
-                )
-            }
+    private fun setupPlayIconClickListener()
+    {
+        binding.currentBellSoundDropdownMenu.setEndIconOnClickListener{
+            Utils.playBell(requireContext(),
+                Constants.BELL_RESOURCES[viewModel.getBellPreference()]!!
+            )
         }
     }
 
-    private fun setUpAnalogWatchBellOnClick()
+    private fun setupCurrentBellChangeListener()
     {
-        val id = View.generateViewId()
-        binding.analogWatchSound.id = id
-        binding.analogWatchSound.setOnClickListener {
-            if (binding.analogWatchSound.isChecked) {
-                viewModel.putBellPreference(Constants.ANALOG_WATCH_BELL_PREF)
-                Utils.playBell(requireContext(),
-                    Constants.BELL_RESOURCES[Constants.ANALOG_WATCH_BELL_PREF]!!
-                )
-            }
+        binding.currentBellTextview.addTextChangedListener{ text ->
+            putBellPreference(text.toString())
         }
     }
 
-    private fun setUpCartoonTelephoneBellOnClick()
+    private fun putBellPreference(preference : String)
     {
-        val id = View.generateViewId()
-        binding.cartoonTelephone.id = id
-        binding.cartoonTelephone.setOnClickListener {
-            if (binding.cartoonTelephone.isChecked) {
+        when(preference)
+        {
+            resources.getString( R.string.analog_watch) -> viewModel.putBellPreference(Constants.ANALOG_WATCH_BELL_PREF)
+            resources.getString( R.string.tibetan_bell) -> viewModel.putBellPreference(Constants.TIBETAN_BELL_PREF)
+            resources.getString( R.string.cartoon_telephone) -> viewModel.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
+            resources.getString( R.string.front_desk_bell) -> viewModel.putBellPreference(Constants.FRONT_DESK_BELL_PREF)
 
-                viewModel.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
-                 Utils.playBell(requireContext(),
-                    Constants.BELL_RESOURCES[Constants.CARTOON_TELEPHONE_BELL_PREF]!!)
-            }
-        }
-    }
-    private fun setUpFrontDeskBellOnClick()
-    {
-        val id = View.generateViewId()
-        binding.frontDeskBells.id = id
-        binding.frontDeskBells.setOnClickListener {
-            if (binding.frontDeskBells.isChecked) {
-
-                // Set as current sound in Shared Preferences
-                viewModel.putBellPreference(Constants.FRONT_DESK_BELL_PREF)
-                Utils.playBell(requireContext(),
-                    Constants.BELL_RESOURCES[Constants.FRONT_DESK_BELL_PREF]!!)
-            }
         }
     }
 
-    private fun setUpResetStatsButtonOnClick()
+    private fun setupResetStatsButtonOnClick()
     {
         binding.resetStatisticsButton.setOnClickListener{
             viewModel.resetStatistics()
         }
     }
 
-    private fun setUpResetMeditationHistoryButtonOnClick()
+    private fun setupResetMeditationHistoryButtonOnClick()
     {
            binding.resetMeditationHistoryButton.setOnClickListener{
                lifecycleScope.launch(Dispatchers.IO) {

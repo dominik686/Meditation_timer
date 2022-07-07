@@ -3,6 +3,7 @@ package com.example.meditationtimer.viewmodels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.meditationtimer.Constants
 import com.example.meditationtimer.SharedPrefRepository
 import com.example.meditationtimer.room.MeditationRepository
 import com.example.meditationtimer.room.databases.MeditationRoomDatabase
@@ -15,6 +16,14 @@ class SettingsViewModel(
     fun putBellPreference(preference : String)
     {
         sharedPrefRepository.putBellPreference(preference)
+        when(preference)
+        {
+            "Analog Watch" -> sharedPrefRepository.putBellPreference(Constants.ANALOG_WATCH_BELL_PREF)
+            "Tibetan Bell" -> sharedPrefRepository.putBellPreference(Constants.TIBETAN_BELL_PREF)
+            "Cartoon Telephone" -> sharedPrefRepository.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
+            "Front Desk Bell" -> sharedPrefRepository.putBellPreference(Constants.FRONT_DESK_BELL_PREF)
+
+        }
     }
 
     fun getBellPreference() : String
