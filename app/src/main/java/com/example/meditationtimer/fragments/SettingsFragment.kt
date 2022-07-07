@@ -11,11 +11,10 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
-import com.example.meditationtimer.Constants
-import com.example.meditationtimer.MeditationApplication
-import com.example.meditationtimer.SharedPrefRepository
-import com.example.meditationtimer.Utils
+import com.example.meditationtimer.*
+import com.example.meditationtimer.adapters.BellSoundArrayAdapter
 import com.example.meditationtimer.databinding.SettingsFragmentBinding
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.room.MeditationRepository
@@ -47,6 +46,7 @@ class SettingsFragment : Fragment() {
         _binding = SettingsFragmentBinding.inflate(inflater, container, false)
 
 
+        setUpCurrentBellSpinner()
         setUpBellSoundsOnClicks()
         checkCurrentlyChosenBell()
         setUpResetStatsButtonOnClick()
@@ -58,6 +58,27 @@ class SettingsFragment : Fragment() {
     }
 
 
+
+    private fun setUpCurrentBellSpinner()
+    {
+        setUpSpinnerAdapter()
+    }
+    private fun setUpSpinnerAdapter()
+    {
+       val adapterr =  BellSoundArrayAdapter(requireContext(), resources.getStringArray(R.array.bell_sounds).asList(), R.layout.current_bell_spinner_dropdown_item)
+        binding.currentBellTextview.setText(viewModel.getBellPreference())
+        binding.currentBellTextview.setAdapter(adapterr)
+
+        /*
+        ArrayAdapter.createFromResource(requireContext(), R.array.bell_sounds, R.layout.current_bell_spinner_dropdown_item)
+            .also { adapter ->
+                binding.currentBellTextview.setText(viewModel.getBellPreference())
+                binding.currentBellTextview.setAdapter(adapter)
+               // binding.currentBellTextview.setText(viewModel.getBellPreference())
+            }
+
+         */
+    }
     private fun checkCurrentlyChosenBell()
     {
         when (viewModel.getBellPreference()) {

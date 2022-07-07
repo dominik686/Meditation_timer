@@ -63,6 +63,27 @@
             android:text="Front Desk Bells" />
     </com.google.android.material.chip.ChipGroup>
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:id="@+id/current_bell_sound_dropdown_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="Current bell sound:"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.233" >
+        <AutoCompleteTextView
+            android:id="@+id/current_bell_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Happy"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/reset_statistics_button"
         android:layout_width="wrap_content"

@@ -18,4 +18,12 @@
     <string name="timer_bottomNavBar">Timer</string>
     <string name="settings_bottomNavBar">Settings</string>
 
+
+    <!-- Settings -->
+    <string-array name="bell_sounds">
+        <item>Analog Watch</item>
+        <item>Tibetan Bell</item>
+        <item>Cartoon Telephone</item>
+        <item>Front Desk Bell</item>
+    </string-array>
 </resources>
