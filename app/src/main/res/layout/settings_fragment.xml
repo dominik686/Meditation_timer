@@ -8,22 +8,25 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:id="@+id/current_bell_sound_dropdown_menu"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Current bell sound:"
+        app:endIconDrawable="@drawable/play_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Current bell sound:"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:endIconDrawable="@drawable/play_icon">
+        app:layout_constraintVertical_bias="0.023">
+
         <AutoCompleteTextView
             android:id="@+id/current_bell_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Happy"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:text="Happy" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -31,10 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="42dp"
         android:text="Reset statistics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_bell_sound_dropdown_menu"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/reset_meditation_history_button"
@@ -45,7 +52,9 @@
         android:text="Reset meditation history"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset_statistics_button" />
+        app:layout_constraintTop_toBottomOf="@+id/reset_statistics_button"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

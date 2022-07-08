@@ -15,6 +15,14 @@ data class MoodCount(var great: Int, var good : Int, var neutral : Int, var bad 
         return list.filter { pieEntry -> pieEntry.value > 0  }
 
     }
+    fun isEmpty() : Boolean
+    {
+        return great == 0 && good == 0 && neutral == 0 && bad == 0 && veryBad == 0
+    }
+    fun isNotEmpty() : Boolean
+    {
+        return !isEmpty()
+    }
 }
 
 

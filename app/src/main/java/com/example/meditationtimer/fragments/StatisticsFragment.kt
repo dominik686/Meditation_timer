@@ -26,7 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.meditationtimer.MeditationApplication
+import com.example.meditationtimer.R
 import com.example.meditationtimer.compose.Gray300
 import com.example.meditationtimer.compose.Gray700
 import com.example.meditationtimer.compose.Pink100
@@ -44,8 +46,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
-
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class StatisticsFragment : Fragment() {
@@ -62,7 +63,7 @@ class StatisticsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = StatisticsFragmentBinding.inflate(inflater, container, false)
-
+        initializeBottomBarNavigation()
         binding.composeView.apply { setViewCompositionStrategy(ViewCompositionStrategy.
         DisposeOnLifecycleDestroyed(viewLifecycleOwner))
 
@@ -72,6 +73,32 @@ class StatisticsFragment : Fragment() {
         
         
         return binding.root
+    }
+
+    private fun initializeBottomBarNavigation()
+    {
+        var bottombar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        var navController = findNavController()
+
+        bottombar.setOnItemSelectedListener { item ->
+            findNavController()
+            when(item.itemId) {
+                R.id.timer_fragment ->{
+                    var action = StatisticsFragmentDirections.actionStatisticsFragmentToTimer()
+                    navController.navigate(action)
+                }
+
+                R.id.history_fragment ->{
+                    var action = StatisticsFragmentDirections.actionStatisticsFragmentToDisplayMeditationsFragment()
+                    navController.navigate(action)
+                }
+                R.id.settings_fragment ->{
+                    var action = StatisticsFragmentDirections.actionStatisticsFragmentToSettingsFragment()
+                    navController.navigate(action)
+                }
+            }
+            true
+        }
     }
 }
 
@@ -183,7 +210,7 @@ fun MoodCount(count : MoodCount)
             Text(text = count.veryBad.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
-
+            if(count.isNotEmpty())
             MoodCountPieChart(moodCount = count)
 
         }

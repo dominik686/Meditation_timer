@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meditationtimer.MarginItemDecorator
 import com.example.meditationtimer.MeditationApplication
+import com.example.meditationtimer.R
 import com.example.meditationtimer.adapters.DisplayMeditationListAdapter
 import com.example.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.example.meditationtimer.models.Meditation
 import com.example.meditationtimer.models.MeditationList
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModel
 import com.example.meditationtimer.viewmodels.DisplayMeditationsViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class DisplayMeditationsFragment : Fragment() {
@@ -46,12 +50,39 @@ class DisplayMeditationsFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       initializeBottomBarNavigation()
        createAllMeditationsObserver()
        observeAllMeditations()
 
 
     }
 
+
+    private fun initializeBottomBarNavigation()
+    {
+        var bottombar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        var navController = findNavController()
+
+        bottombar.setOnItemSelectedListener { item ->
+            findNavController()
+            when(item.itemId) {
+                R.id.timer_fragment ->{
+                    var action = DisplayMeditationsFragmentDirections.actionDisplayMeditationsFragmentToTimer()
+                    navController.navigate(action)
+                }
+
+                R.id.settings_fragment ->{
+                    var action = DisplayMeditationsFragmentDirections.actionDisplayMeditationsFragmentToSettingsFragment()
+                    navController.navigate(action)
+                }
+                R.id.statistics_fragment ->{
+                    var action = DisplayMeditationsFragmentDirections.actionDisplayMeditationsFragmentToStatisticsFragment()
+                    navController.navigate(action)
+                }
+            }
+            true
+        }
+    }
 
     private fun createAllMeditationsObserver()
     {

@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 
-
 }
 
 
@@ -13,11 +12,13 @@ android {
 
     apply plugin: 'com.android.application'
     apply plugin: 'kotlin-android'
-    buildFeatures {
+    apply plugin: "androidx.navigation.safeargs"
 
+    buildFeatures {
         viewBinding true
         compose true
     }
+
 
     packagingOptions {
         resources.excludes.add("META-INF/*")
@@ -87,7 +88,7 @@ dependencies {
 
 
 
-    def nav_version = "2.3.5"
+    def nav_version = "2.5.0"
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -95,7 +96,7 @@ dependencies {
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    implementation 'com.google.android.material:material:1.6.0-alpha01'
+    implementation 'com.google.android.material:material:1.7.0-alpha02'
 
     implementation "androidx.fragment:fragment-ktx:1.4.0"
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -114,6 +115,7 @@ dependencies {
 
 
     // Compose dependencies
+
     implementation "com.google.android.material:compose-theme-adapter:1.1.1"
     implementation 'androidx.activity:activity-compose:1.4.0'
     // Compose Material Design

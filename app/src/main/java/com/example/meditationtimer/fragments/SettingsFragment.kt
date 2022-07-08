@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.meditationtimer.*
 import com.example.meditationtimer.databinding.SettingsFragmentBinding
 import com.example.meditationtimer.viewmodels.SettingsViewModel
 import com.example.meditationtimer.viewmodels.SettingsViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -39,6 +41,7 @@ class SettingsFragment : Fragment() {
         _binding = SettingsFragmentBinding.inflate(inflater, container, false)
 
 
+        initializeBottomBarNavigation()
         setupCurrentBellSpinner()
         setupResetStatsButtonOnClick()
         setupResetMeditationHistoryButtonOnClick()
@@ -49,7 +52,31 @@ class SettingsFragment : Fragment() {
     }
 
 
+    private fun initializeBottomBarNavigation()
+    {
+        var bottombar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        var navController = findNavController()
 
+        bottombar.setOnItemSelectedListener { item ->
+            findNavController()
+            when(item.itemId) {
+                R.id.timer_fragment ->{
+                    var action = SettingsFragmentDirections.actionSettingsFragmentToTimer()
+                    navController.navigate(action)
+                }
+
+                R.id.history_fragment ->{
+                    var action = SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment()
+                    navController.navigate(action)
+                }
+                R.id.statistics_fragment ->{
+                    var action = SettingsFragmentDirections.actionSettingsFragmentToDisplayMeditationsFragment()
+                    navController.navigate(action)
+                }
+            }
+            true
+        }
+    }
     private fun setupCurrentBellSpinner()
     {
         changeDefaultSpinnerValueToCurrentBell()
