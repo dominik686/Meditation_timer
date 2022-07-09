@@ -228,7 +228,7 @@ fun MoodCount(count : MoodCount)
             setExtraOffsets(5f, 10f, 5f, 5f)
 
             setCenterTextColor(Color.LTGRAY)
-            dragDecelerationFrictionCoef = 0.99f;
+            dragDecelerationFrictionCoef = 0.99f
             isDrawHoleEnabled =true
             setHoleColor(Color.GRAY)
             setTransparentCircleColor(Color.GRAY)

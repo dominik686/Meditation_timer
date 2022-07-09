@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottombar = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
+        bottombar.selectedItemId = R.id.timer_fragment
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
@@ -28,37 +29,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val options = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-          .setEnterAnim(R.anim.from_bottom)
-            .setExitAnim(R.anim.to_top)
-            .setPopEnterAnim(R.anim.from_bottom)
-            .setPopExitAnim(R.anim.to_top)
-            .setPopUpTo(navController.graph.startDestinationId, false)
-            .build()
 
-        bottombar.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.timer_fragment ->{
-                    navController.navigate(R.id.timer_fragment, null, options)
-                }
-                R.id.settings_fragment ->{
-                    navController.navigate(R.id.settings_fragment, null, options)
 
-                }
-                R.id.history_fragment ->{
-                    navController.navigate(R.id.history_fragment, null, options)
-                }
-                R.id.statistics_fragment ->{
-                    navController.navigate(R.id.statistics_fragment, null, options)
-                }
-            }
-            true
 
-        }
-        bottombar.setOnItemReselectedListener { item ->
-            return@setOnItemReselectedListener
-        }
 
 
             //  NavigationUI.setupWithNavController(bottombar, navController)

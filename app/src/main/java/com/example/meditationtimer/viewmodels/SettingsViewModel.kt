@@ -63,7 +63,7 @@ class SettingsViewModel(
 
     }
 
-public class SettingsViewModelFactory(
+class SettingsViewModelFactory(
     private val sharedPrefRepository: SharedPrefRepository,
     private val meditationRepository: MeditationRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

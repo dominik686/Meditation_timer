@@ -41,32 +41,32 @@ class SharedPrefRepository(val context : Context) {
 
     private fun incrementVeryBadCount()
     {
-        val count = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0) + 1;
+        val count = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.VERY_BAD_MOOD_COUNT_PREF, count).apply()
 
     }
 
     private fun incrementBadCount()
     {
-        val count = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0) + 1;
+        val count = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.BAD_MOOD_COUNT_PREF, count).apply()
     }
 
     private fun incrementNeutralCount()
     {
-        val count = sharedPref.getInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0) + 1;
+        val count = sharedPref.getInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.NEUTRAL_MOOD_COUNT_PREF, count).apply()
     }
 
     private fun incrementGoodCount()
     {
-        val count = sharedPref.getInt(Constants.GOOD_MOOD_COUNT_PREF, 0) + 1;
+        val count = sharedPref.getInt(Constants.GOOD_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.GOOD_MOOD_COUNT_PREF, count).apply()
     }
 
     private fun incrementGreatCount()
     {
-        val count = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0) + 1;
+        val count = sharedPref.getInt(Constants.GREAT_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.GREAT_MOOD_COUNT_PREF, count).apply()
     }
 
@@ -188,7 +188,7 @@ class SharedPrefRepository(val context : Context) {
         val currentTimestamp  = sharedPref.getString(Constants.LAST_DAY_STREAK_UPDATED_PREF, "No timestamp")
         if(currentTimestamp == "No timestamp")
         {
-            return 0;
+            return 0
         }
         else
         {

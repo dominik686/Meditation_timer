@@ -78,12 +78,12 @@ open class ChooseTimeDialogFragment : DialogFragment() {
 
     private fun buildDialogTitle()
     {
-        builder.setTitle("How many minutes would you like to meditate for:")
+        builder.setTitle(getString(R.string.how_many_minutes_would_you_like_to_meditate_for))
     }
 
     private fun buildBuilderMessage()
     {
-        builder.setMessage("Choose a number")
+        builder.setMessage(getString(R.string.choose_a_number))
     }
 
     private fun buildPositiveButton()

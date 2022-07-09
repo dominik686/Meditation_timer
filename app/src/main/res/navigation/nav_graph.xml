@@ -9,7 +9,7 @@
         android:id="@+id/timer_fragment"
         android:name="com.example.meditationtimer.fragments.TimerFragment"
         android:label="timer_fragment"
-        tools:layout="@layout/timer_fragment" >
+        tools:layout="@layout/timer_fragment">
         <action
             android:id="@+id/action_timer_to_displayMeditationsFragment"
             app:enterAnim="@anim/from_right"
@@ -28,7 +28,8 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
             app:popExitAnim="@anim/to_right"
-            app:destination="@id/statistics_fragment" />
+            app:destination="@id/statistics_fragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/history_fragment"
@@ -46,13 +47,13 @@
             app:destination="@id/statistics_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left"/>
+            app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_displayMeditationsFragment_to_settingsFragment"
             app:destination="@id/settings_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left"/>
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/settings_fragment"
@@ -69,13 +70,13 @@
             app:destination="@id/timer_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_settingsFragment_to_statisticsFragment"
             app:destination="@id/statistics_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/statistics_fragment"
@@ -87,18 +88,18 @@
             app:destination="@id/settings_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_statisticsFragment_to_timer"
             app:destination="@id/timer_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left"/>
+            app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_statisticsFragment_to_displayMeditationsFragment"
             app:destination="@id/history_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/from_left"/>
+            app:popExitAnim="@anim/from_left" />
     </fragment>
 </navigation>

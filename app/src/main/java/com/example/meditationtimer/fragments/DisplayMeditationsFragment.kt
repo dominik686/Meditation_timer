@@ -41,11 +41,10 @@ class DisplayMeditationsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DisplayMeditationsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,7 +55,6 @@ class DisplayMeditationsFragment : Fragment() {
 
 
     }
-
 
     private fun initializeBottomBarNavigation()
     {
@@ -104,12 +102,8 @@ class DisplayMeditationsFragment : Fragment() {
                     val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
                     groupedMeditationsList.add(meditationsListTemp)
                 }
-
-
                 setupRecyclerview(groupedMeditationsList.reversed())
             }
-
-
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432

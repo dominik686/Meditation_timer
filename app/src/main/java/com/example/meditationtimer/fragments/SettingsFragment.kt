@@ -19,7 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-// Bell sound choice
 
 class SettingsFragment : Fragment() {
 
@@ -64,13 +63,12 @@ class SettingsFragment : Fragment() {
                     var action = SettingsFragmentDirections.actionSettingsFragmentToTimer()
                     navController.navigate(action)
                 }
-
                 R.id.history_fragment ->{
-                    var action = SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment()
+                    var action = SettingsFragmentDirections.actionSettingsFragmentToDisplayMeditationsFragment()
                     navController.navigate(action)
                 }
                 R.id.statistics_fragment ->{
-                    var action = SettingsFragmentDirections.actionSettingsFragmentToDisplayMeditationsFragment()
+                    var action = SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment()
                     navController.navigate(action)
                 }
             }

@@ -18,7 +18,7 @@ object AnimationHelper {
         view.startAnimation(animation)
     }
 
-    fun circularReveal(view : View, startRadius : Float = 0f)
+    fun circularReveal(view: View)
     {
         view.visibility = View.VISIBLE
         val cx = view.width / 2

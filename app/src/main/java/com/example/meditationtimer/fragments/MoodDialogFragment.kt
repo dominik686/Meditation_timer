@@ -8,17 +8,13 @@ import androidx.fragment.app.DialogFragment
 import com.example.meditationtimer.R
 import android.view.View
 import android.view.LayoutInflater
-import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
 import com.example.meditationtimer.databinding.MoodDialogFragmentBinding
 import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModel
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModelFactory
-import com.google.android.material.chip.ChipGroup
-import android.widget.Toast
 import androidx.test.core.app.ApplicationProvider
 
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
