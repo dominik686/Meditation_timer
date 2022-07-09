@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
@@ -135,7 +136,7 @@ fun TotalMeditations(totalMeditations : Int)
         .background(Gray700))
     {
         Column(Modifier.padding(8.dp)) {
-            Text("Total meditations sessions:", color = Gray300)
+            Text(stringResource(R.string.total_meditations_sessions), color = Gray300)
             Text(text = totalMeditations.toString(), color = Gray300)
 
         }
@@ -153,7 +154,7 @@ fun DaysInARow(daysInARow : Int)
         .background(Gray700))
     {
         Column(Modifier.padding(8.dp))  {
-            Text("Days meditated in a row:", color = Gray300)
+            Text(stringResource(R.string.days_meditated_in_a_row), color = Gray300)
             Text(text = daysInARow.toString(), color = Gray300)
 
         }
@@ -171,7 +172,7 @@ fun LongestStreak(longestStreak : Int)
         .background(Gray700))
     {
         Column(Modifier.padding(8.dp)) {
-            Text("Longest streak:", color = Gray300)
+            Text(stringResource(R.string.longest_streak), color = Gray300)
             Text(text = longestStreak.toString(), color = Gray300)
 
         }
@@ -189,24 +190,24 @@ fun MoodCount(count : MoodCount)
         .background(Gray700))
     {
         Column(Modifier.padding(8.dp)) {
-            Text("Great mood count:", color = Gray300)
+            Text(stringResource(R.string.great_mood_count), color = Gray300)
             Text(text = count.great.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
 
-            Text("Good mood count:", color = Gray300)
+            Text(stringResource(R.string.good_mood_count), color = Gray300)
             Text(text = count.good.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
-            Text("Neutral mood count:", color = Gray300)
+            Text(stringResource(R.string.neutral_mood_count), color = Gray300)
             Text(text = count.neutral.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
-            Text("Bad mood count:", color = Gray300)
+            Text(stringResource(R.string.bad_mood_count), color = Gray300)
             Text(text = count.bad.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
-            Text("Very bad mood count:", color = Gray300)
+            Text(stringResource(R.string.very_bad_mood_count), color = Gray300)
             Text(text = count.veryBad.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
@@ -219,6 +220,7 @@ fun MoodCount(count : MoodCount)
     @Composable
     fun MoodCountPieChart(moodCount: MoodCount)
     {
+        val moodsString = stringResource(R.string.moods)
         AndroidView(modifier = Modifier
             .fillMaxWidth()
             .height(400.dp),factory = { context -> PieChart(context).apply{
@@ -258,7 +260,8 @@ fun MoodCount(count : MoodCount)
             setEntryLabelTextSize(12f)
 
             var entries : List<PieEntry> = moodCount.toPieEntryList()
-            var dataset =  PieDataSet(entries, "Moods")
+
+            var dataset =  PieDataSet(entries, moodsString)
             dataset.setDrawIcons(false)
             dataset.sliceSpace = 3f
             dataset.iconsOffset = (MPPointF(0F,40f))

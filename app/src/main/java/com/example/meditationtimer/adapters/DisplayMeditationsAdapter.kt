@@ -1,5 +1,6 @@
 package com.example.meditationtimer.adapters
 
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +58,9 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private fun setDuration(duration : Int)
     {
-        itemView.findViewById<TextView>(R.id.duration_textview).text = duration.toString() + " minutes"
+        itemView.context
+        itemView.findViewById<TextView>(R.id.duration_textview).text = duration.toString() +  itemView.context.getString(
+            R.string.minutes)
     }
     private fun setDate(date : String)
     {

@@ -61,9 +61,9 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
         setEmptyOKButtonListener()
         builder.setView(binding.root)
         setupMoodEmojis()
-        binding.chipGroup.setOnCheckedChangeListener { _, _ ->
+        binding.chipGroup.setOnCheckedStateChangeListener { _, _ ->
             revealAnimation()
-            binding.chipGroup.setOnCheckedChangeListener(null)
+            binding.chipGroup.setOnCheckedStateChangeListener(null)
         }
 
 
@@ -85,7 +85,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
 
     private fun setDialogTitle()
     {
-        builder.setTitle("Describe your mood")
+        builder.setTitle(getString(R.string.describe_your_mood))
     }
 
 

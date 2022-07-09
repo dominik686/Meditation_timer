@@ -2,4 +2,5 @@
 <resources>
     <string name="no_meditations_recorded_yet">No meditations recorded yet :(</string>
     <string name="settings">Settings</string>
+    <string name="reset_statistics">Reset statistics</string>
 </resources>

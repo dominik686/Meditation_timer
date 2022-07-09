@@ -19,4 +19,20 @@
     <string name="settings">Ustawienia</string>
     <string name="how_many_minutes_would_you_like_to_meditate_for">" Ile minut chciałbyś medytować?"</string>
     <string name="choose_a_number">Wybierz liczbę</string>
+    <string name="describe_your_mood">Opisz swój nastrój</string>
+    <string name="days_meditated_in_a_row">Days meditated in a row:</string>
+    <string name="minutes">" minut"</string>
+    <string name="longest_streak">Najdłuższy streak:</string>
+    <string name="great_mood_count">Świetny nastrój:</string>
+    <string name="good_mood_count">Dobry nastrój:</string>
+    <string name="neutral_mood_count">Neutralny nastrój:</string>
+    <string name="bad_mood_count">Zły nastrój:</string>
+    <string name="very_bad_mood_count">Bardzo zły nastrój:</string>
+
+    <string name="reset_statistics">Zresetuj statystyki</string>
+    <string name="reset_meditation_history">Zresetuj historie medytacji</string>
+    <string name="current_bell_sound_hint">Dzwonek:</string>
+    <string name="total_meditations_sessions">Liczba medytacji:</string>
+    <string name="moods">Nastroje</string>
+
 </resources>

@@ -24,17 +24,33 @@
     <string name ="front_desk_bell">Front Desk Bell</string>
     <!-- Settings -->
     <string-array name="bell_sounds">
-        <item >Analog Watch</item>
-        <item >Tibetan Bell</item>
-        <item >Cartoon Telephone</item>
-        <item >Front Desk Bell</item>
+        <item >@string/analog_watch</item>
+        <item >@string/tibetan_bell</item>
+        <item >@string/cartoon_telephone</item>
+        <item >@string/front_desk_bell</item>
     </string-array>
+    <string name="current_bell_sound_hint">bell sound:</string>
 
     <!-- Choose Time Dialog -->
     <string name ="how_many_minutes_would_you_like_to_meditate_for">
-        How many minutes would you like to meditate for:
-    </string>
-    <string name="choose_a_number">
-        Choose a number"Choose a number"
-    </string>
+        How many minutes would you like to meditate for:</string>
+    <string name="choose_a_number">Choose a number</string>
+
+    <!-- Mood Dialog -->
+    <string name="describe_your_mood">"Describe your mood"</string>
+
+    <!-- Statistics -->
+
+    <string name="longest_streak">Longest streak:</string>
+    <string name="days_meditated_in_a_row">Days meditated in a row:</string>
+    <string name="great_mood_count">Great mood count:</string>
+    <string name="good_mood_count">Good mood count:</string>
+    <string name="neutral_mood_count">Neutral mood count:</string>
+    <string name="bad_mood_count">Bad mood count:</string>
+    <string name="very_bad_mood_count">Very bad mood count:</string>
+    <string name="minutes">" minutes"</string>
+    <string name="reset_statistics">Reset statistics</string>
+    <string name="reset_meditation_history">Reset meditation history</string>
+    <string name="total_meditations_sessions">Total meditations sessions:</string>
+    <string name="moods">Moods</string>
 </resources>
