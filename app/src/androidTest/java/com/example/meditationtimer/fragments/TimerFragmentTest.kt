@@ -5,13 +5,11 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.meditationtimer.R
 import kotlinx.coroutines.DelicateCoroutinesApi
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -94,7 +92,7 @@ class TimerFragmentTest
     fun test_Is_NumberPickerOkButtonVisible()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText((R.string.ok))).check(matches(isDisplayed()))
+        onView(withText((R.string.okay))).check(matches(isDisplayed()))
     }
     @Test
     fun test_Is_NumberPickerCancelButtonVisible()
@@ -108,7 +106,7 @@ class TimerFragmentTest
     fun test_StartTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.okay)).perform(click())
 
     }
 
@@ -117,7 +115,7 @@ class TimerFragmentTest
     {
 
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.okay)).perform(click())
         onView(withId(R.id.cancelTimerButton)).check(matches(isDisplayed()))
     }
 
@@ -125,7 +123,7 @@ class TimerFragmentTest
     fun test_StartAndStopTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.okay)).perform(click())
         onView(withId(R.id.cancelTimerButton)).perform(click())
     }
 
@@ -133,10 +131,10 @@ class TimerFragmentTest
     fun test_StartStop_StartAndStopTimer()
     {
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.okay)).perform(click())
         onView(withId(R.id.cancelTimerButton)).perform(click())
         onView(withId(R.id.floatingActionButton)).perform(click())
-        onView(withText(R.string.ok)).perform(click())
+        onView(withText(R.string.okay)).perform(click())
         onView(withId(R.id.cancelTimerButton)).perform(click())
     }
 

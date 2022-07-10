@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Minutnik do medytacji</string>
     <string name="timer_not_set">Minutnik nie ustawiony</string>
-    <string name="ok">OK</string>
+    <string name="okay">OK</string>
     <string name="meditation_history">Historia medytacji</string>
     <string name="description_label">Opis:</string>
     <string name="duration_label">Długość</string>
@@ -20,7 +20,7 @@
     <string name="how_many_minutes_would_you_like_to_meditate_for">" Ile minut chciałbyś medytować?"</string>
     <string name="choose_a_number">Wybierz liczbę</string>
     <string name="describe_your_mood">Opisz swój nastrój</string>
-    <string name="days_meditated_in_a_row">Days meditated in a row:</string>
+    <string name="days_meditated_in_a_row">Dni medytacji pod rząd:</string>
     <string name="minutes">" minut"</string>
     <string name="longest_streak">Najdłuższy streak:</string>
     <string name="great_mood_count">Świetny nastrój:</string>
@@ -34,5 +34,11 @@
     <string name="current_bell_sound_hint">Dzwonek:</string>
     <string name="total_meditations_sessions">Liczba medytacji:</string>
     <string name="moods">Nastroje</string>
+    <string name="very_bad">Bardzo zły</string>
+    <string name="bad">Zły</string>
+    <string name="neutral">Neutralny</string>
+    <string name="good">Dobry</string>
+    <string name="great">Świetny</string>
+    <string name="whats_on_your_mind">Co słychać?</string>
 
 </resources>

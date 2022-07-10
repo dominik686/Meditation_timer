@@ -236,7 +236,7 @@ fun MoodCount(count : MoodCount)
             setTransparentCircleColor(Color.GRAY)
             setTransparentCircleAlpha(110)
             transparentCircleRadius = 40f
-           setDrawCenterText(false)
+            setDrawCenterText(false)
             rotationAngle = 0F
             isRotationEnabled = true
             isHighlightPerTapEnabled = true
@@ -259,9 +259,15 @@ fun MoodCount(count : MoodCount)
             setEntryLabelColor(Color.GRAY)
             setEntryLabelTextSize(12f)
 
-            var entries : List<PieEntry> = moodCount.toPieEntryList()
+            var list = listOf(PieEntry(moodCount.great.toFloat(), resources.getString(R.string.great)),
+                PieEntry(moodCount.good.toFloat(), resources.getString(R.string.good)),
+                PieEntry(moodCount.neutral.toFloat(), resources.getString(R.string.neutral)),
+                PieEntry(moodCount.bad.toFloat(), resources.getString(R.string.bad)),
+                PieEntry(moodCount.veryBad.toFloat(), resources.getString(R.string.very_bad))
+            )
+            list = list.filter { pieEntry -> pieEntry.value > 0  }
 
-            var dataset =  PieDataSet(entries, moodsString)
+            var dataset =  PieDataSet(list, moodsString)
             dataset.setDrawIcons(false)
             dataset.sliceSpace = 3f
             dataset.iconsOffset = (MPPointF(0F,40f))

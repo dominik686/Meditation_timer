@@ -3,22 +3,13 @@ package com.example.meditationtimer.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.meditationtimer.MeditationApplication
 import com.example.meditationtimer.R
-import com.example.meditationtimer.Utils
 import com.example.meditationtimer.viewmodels.ChooseTimeDialogViewModel
 import com.example.meditationtimer.viewmodels.ChooseTimeDialogViewModelFactory
-import com.example.meditationtimer.viewmodels.TimerViewModel
-import com.example.meditationtimer.viewmodels.TimerViewModelFactory
 
 open class ChooseTimeDialogFragment : DialogFragment() {
     private lateinit var valueChangeListener: OnValueChangeListener
@@ -89,7 +80,7 @@ open class ChooseTimeDialogFragment : DialogFragment() {
     private fun buildPositiveButton()
     {
         builder.setPositiveButton(
-            resources.getString(R.string.ok)
+            resources.getString(R.string.okay)
         ) { _, _ ->
             valueChangeListener.onValueChange(
                 numberPicker,

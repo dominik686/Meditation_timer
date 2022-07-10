@@ -15,13 +15,8 @@ import com.example.meditationtimer.databinding.MoodDialogFragmentBinding
 import com.example.meditationtimer.models.MoodEmoji
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModel
 import com.example.meditationtimer.viewmodels.MoodDialogFragmentViewModelFactory
-import androidx.test.core.app.ApplicationProvider
 
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.meditationtimer.AnimationHelper
-
-import com.google.android.material.chip.Chip
-import kotlin.math.hypot
 
 
 class MoodDialogFragment(private val listener : MoodChipOnClickListener) : DialogFragment()
@@ -92,7 +87,7 @@ class MoodDialogFragment(private val listener : MoodChipOnClickListener) : Dialo
     private fun setEmptyOKButtonListener()
     {
         builder.setPositiveButton(
-            resources.getString(R.string.ok)
+            resources.getString(R.string.okay)
         ) { _, _ ->
         }
     }

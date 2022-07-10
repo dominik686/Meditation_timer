@@ -28,7 +28,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Very bad"
+                    android:text="@string/very_bad"
                     app:chipIcon="@drawable/sad"
                     app:chipIconVisible="true" />
 
@@ -37,7 +37,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bad"
+                    android:text="@string/bad"
                     app:chipIcon="@drawable/confused"
                     app:chipIconVisible="true" />
 
@@ -46,7 +46,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Neutral"
+                    android:text="@string/neutral"
                     app:chipIcon="@drawable/neutral"
                     app:chipIconVisible="true" />
 
@@ -55,7 +55,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Good"
+                    android:text="@string/good"
                     app:chipIcon="@drawable/smile"
                     app:chipIconVisible="true" />
 
@@ -64,7 +64,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Great"
+                    android:text="@string/great"
                     app:chipIcon="@drawable/smiling"
                     app:chipIconVisible="true" />
         </com.google.android.material.chip.ChipGroup>
@@ -77,7 +77,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:hint="What's on your mind?"
+            android:hint="@string/whats_on_your_mind"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:visibility="gone"

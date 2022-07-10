@@ -132,6 +132,7 @@ class SettingsFragment : Fragment() {
     private fun setupResetStatsButtonOnClick()
     {
         binding.resetStatisticsButton.setOnClickListener{
+            AnimationHelper.shakeAnimation(it)
             viewModel.resetStatistics()
         }
     }
@@ -140,6 +141,7 @@ class SettingsFragment : Fragment() {
     {
            binding.resetMeditationHistoryButton.setOnClickListener{
                lifecycleScope.launch(Dispatchers.IO) {
+                   AnimationHelper.shakeAnimation(it)
                    viewModel.resetMeditationHistory()
                }
         }
