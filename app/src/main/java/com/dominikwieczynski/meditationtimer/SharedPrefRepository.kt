@@ -70,7 +70,7 @@ class SharedPrefRepository(val context : Context) {
         editor.putInt(Constants.GREAT_MOOD_COUNT_PREF, count).apply()
     }
 
-    fun getMoodCount() : MoodCount
+    private fun getMoodCount() : MoodCount
     {
         val veryBadCount = sharedPref.getInt(Constants.VERY_BAD_MOOD_COUNT_PREF, 0)
         val badCount = sharedPref.getInt(Constants.BAD_MOOD_COUNT_PREF, 0)
@@ -127,13 +127,36 @@ class SharedPrefRepository(val context : Context) {
         editor.putInt(Constants.LONGEST_STREAK_PREF, 0).apply()
     }
 
+    fun updateStreakIfNotZero()
+    {
+        var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+
+
+        if(currentStreak > 0)
+        {
+            val hoursDiff = getHoursPassedSinceMeditation()
+            if(hoursDiff < 24L)
+            {
+
+            }
+
+            else if(hoursDiff in 24L..48L){
+
+                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
+                updateLastDayStreakUpdated()
+
+            }
+            else if(hoursDiff > 48L)
+            {
+                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+                updateLastDayStreakUpdated()
+
+            }
+        }
+
+        compareToBestStreak()
+    }
     fun updateStreak() {
-
-
-        // Streak is 0
-        // streak is not zero
-
-
 
         var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
 
@@ -165,8 +188,6 @@ class SharedPrefRepository(val context : Context) {
         }
 
         compareToBestStreak()
-
-
     }
 
     private fun incrementCurrentStreak()

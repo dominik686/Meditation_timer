@@ -9,7 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
 
-    val sharedPrefRepository = SharedPrefRepository(this)
+    lateinit var sharedPrefRepository : SharedPrefRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,30 +18,27 @@ class MainActivity : AppCompatActivity() {
 
         bottombar.selectedItemId = R.id.timer_fragment
 
+        initializeSharedPrefRepository()
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-
-
-
-
-
-
-
             //  NavigationUI.setupWithNavController(bottombar, navController)
 
-
     }
 
+    private fun initializeSharedPrefRepository()
+    {
+        sharedPrefRepository = SharedPrefRepository(this)
+    }
     override fun onResume() {
         super.onResume()
-        updateStreak()
+        updateStreakIfNotZero()
     }
 
-    private fun updateStreak()
+    private fun updateStreakIfNotZero()
     {
-        sharedPrefRepository.updateStreak()
+        sharedPrefRepository.updateStreakIfNotZero()
     }
 
     private fun setCurrentFragment(fragment : Fragment) =
