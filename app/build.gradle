@@ -8,6 +8,10 @@ plugins {
 
 android {
 
+    signingConfigs {
+
+        release
+    }
     compileSdk 31
 
     apply plugin: 'com.android.application'
@@ -29,17 +33,18 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.meditationtimer"
+        applicationId "com.dominikwieczynski.meditationtimer"
         minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -51,12 +56,31 @@ android {
     }
     
     kotlinOptions {
+        freeCompilerArgs = ['-Xjvm-default=compatibility']
         jvmTarget = '11'
         useIR = true
     }
 
 }
+Properties props = new Properties()
+def propFile = new File('keystore.properties')
+if (propFile.canRead()){
+    props.load(new FileInputStream(propFile))
 
+    if (props!=null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+    } else {
+        println 'signing.properties found but some entries are missing'
+        android.buildTypes.release.signingConfig = null
+    }
+}else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
+}
 
 dependencies {
     def lottieVersion = '5.2.0'

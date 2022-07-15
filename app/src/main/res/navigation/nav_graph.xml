@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/timer_fragment"
-        android:name="com.example.meditationtimer.fragments.TimerFragment"
+        android:name="com.dominikwieczynski.meditationtimer.fragments.TimerFragment"
         android:label="timer_fragment"
         tools:layout="@layout/timer_fragment">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/history_fragment"
-        android:name="com.example.meditationtimer.fragments.DisplayMeditationsFragment"
+        android:name="com.dominikwieczynski.meditationtimer.fragments.DisplayMeditationsFragment"
         android:label="display_meditations_fragment"
         tools:layout="@layout/display_meditations_fragment" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/settings_fragment"
-        android:name="com.example.meditationtimer.fragments.SettingsFragment"
+        android:name="com.dominikwieczynski.meditationtimer.fragments.SettingsFragment"
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_displayMeditationsFragment"
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/statistics_fragment"
-        android:name="com.example.meditationtimer.fragments.StatisticsFragment"
+        android:name="com.dominikwieczynski.meditationtimer.fragments.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/statistics_fragment" >
         <action

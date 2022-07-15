@@ -37,7 +37,7 @@
         <item >@string/cartoon_telephone</item>
         <item >@string/front_desk_bell</item>
     </string-array>
-    <string name="current_bell_sound_hint">bell sound:</string>
+    <string name="current_bell_sound_hint">Bell sound:</string>
 
     <!-- Choose Time Dialog -->
     <string name ="how_many_minutes_would_you_like_to_meditate_for">
