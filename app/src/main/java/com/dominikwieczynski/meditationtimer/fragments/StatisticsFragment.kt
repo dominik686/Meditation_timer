@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -29,7 +30,9 @@ import androidx.navigation.fragment.findNavController
 import com.dominikwieczynski.meditationtimer.MeditationApplication
 import com.dominikwieczynski.meditationtimer.R
 import com.dominikwieczynski.meditationtimer.compose.Gray300
+import com.dominikwieczynski.meditationtimer.compose.Gray500
 import com.dominikwieczynski.meditationtimer.compose.Gray700
+import com.dominikwieczynski.meditationtimer.compose.Gray800
 import com.dominikwieczynski.meditationtimer.databinding.StatisticsFragmentBinding
 import com.dominikwieczynski.meditationtimer.models.MoodCount
 import com.dominikwieczynski.meditationtimer.models.Statistics
@@ -129,7 +132,7 @@ fun TotalMeditations(totalMeditations : Int)
         .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
-        .background(Gray700))
+        .background(colorResource(id = R.color.m3_sys_color_dark_surface_variant)))
     {
         Column(Modifier.padding(8.dp)) {
             Text(stringResource(R.string.total_meditations_sessions), color = Gray300)
@@ -147,7 +150,7 @@ fun DaysInARow(daysInARow : Int)
         .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
-        .background(Gray700))
+        .background(colorResource(id = R.color.m3_sys_color_dark_surface_variant)))
     {
         Column(Modifier.padding(8.dp))  {
             Text(stringResource(R.string.days_meditated_in_a_row), color = Gray300)
@@ -165,7 +168,7 @@ fun LongestStreak(longestStreak : Int)
         .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
-        .background(Gray700))
+        .background(colorResource(id = R.color.m3_sys_color_dark_surface_variant)))
     {
         Column(Modifier.padding(8.dp)) {
             Text(stringResource(R.string.longest_streak), color = Gray300)
@@ -183,7 +186,7 @@ fun MoodCount(count : MoodCount)
         .wrapContentHeight()
         .padding(8.dp) // margin
         .clip(RoundedCornerShape(12.dp))
-        .background(Gray700))
+        .background(colorResource(id = R.color.m3_sys_color_dark_surface_variant)))
     {
         Column(Modifier.padding(8.dp)) {
             Text(stringResource(R.string.great_mood_count), color = Gray300)
