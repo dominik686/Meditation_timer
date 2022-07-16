@@ -29,10 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dominikwieczynski.meditationtimer.MeditationApplication
 import com.dominikwieczynski.meditationtimer.R
-import com.dominikwieczynski.meditationtimer.compose.Gray300
-import com.dominikwieczynski.meditationtimer.compose.Gray500
-import com.dominikwieczynski.meditationtimer.compose.Gray700
-import com.dominikwieczynski.meditationtimer.compose.Gray800
+import com.dominikwieczynski.meditationtimer.compose.*
 import com.dominikwieczynski.meditationtimer.databinding.StatisticsFragmentBinding
 import com.dominikwieczynski.meditationtimer.models.MoodCount
 import com.dominikwieczynski.meditationtimer.models.Statistics
@@ -222,13 +219,14 @@ fun MoodCount(count : MoodCount)
         val moodsString = stringResource(R.string.moods)
         AndroidView(modifier = Modifier
             .fillMaxWidth()
-            .height(400.dp),factory = { context -> PieChart(context).apply{
+            .height(400.dp)
+            ,factory = { context -> PieChart(context).apply{
 
             setUsePercentValues(false)
             description.isEnabled = false
             setExtraOffsets(5f, 10f, 5f, 5f)
 
-            setCenterTextColor(Color.LTGRAY)
+          //  setCenterTextColor(Color.LTGRAY)
             dragDecelerationFrictionCoef = 0.99f
             isDrawHoleEnabled =true
             setHoleColor(Color.GRAY)
@@ -244,18 +242,20 @@ fun MoodCount(count : MoodCount)
             animateY(1400, Easing.EaseInOutQuad)
 
 
+
             var l = legend
             l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
             l.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
             l.orientation = Legend.LegendOrientation.HORIZONTAL
-            l.setDrawInside(false)
+            l.setDrawInside(true)
             l.xEntrySpace = 7f
             l.yEntrySpace = 0f
             l.yOffset = 0f
+                l.isWordWrapEnabled = true
+                l.isEnabled = false
 
 
-
-            setEntryLabelColor(Color.GRAY)
+            setEntryLabelColor(Color.BLACK)
             setEntryLabelTextSize(12f)
 
             var list = listOf(PieEntry(moodCount.great.toFloat(), resources.getString(R.string.great)),
@@ -276,23 +276,23 @@ fun MoodCount(count : MoodCount)
             // add a lot of colors
             val colors = ArrayList<Int>()
 
-            for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
+           // for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
 
-            for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
+          //  for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
 
-            for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
+          // for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
 
-            for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
+           for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
 
-            for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
-            colors.add(ColorTemplate.getHoloBlue())
+           // for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
+                // colors.add(ColorTemplate.get())
 
             dataset.colors = colors
-            var data = PieData(dataset)
+            val data = PieData(dataset)
 
            // data.setValueFormatter(PercentFormatter())
             data.setValueTextSize(11f)
-            data.setValueTextColor(Color.GRAY)
+            data.setValueTextColor(Color.BLACK)
             this.data = data
 
             // undo all highlights

@@ -2,7 +2,6 @@ package com.dominikwieczynski.meditationtimer
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import com.dominikwieczynski.meditationtimer.models.MoodCount
 import com.dominikwieczynski.meditationtimer.models.MoodEmoji
 import com.dominikwieczynski.meditationtimer.models.Statistics
@@ -127,69 +126,87 @@ class SharedPrefRepository(val context : Context) {
         editor.putInt(Constants.LONGEST_STREAK_PREF, 0).apply()
     }
 
-    fun updateStreakIfNotZero()
+    fun tryToResetStreak()
     {
-        var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
+        val currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
 
 
-        if(currentStreak > 0)
+        if(isCurrentStreakBiggerThanZero(currentStreak = currentStreak))
         {
-            val hoursDiff = getHoursPassedSinceMeditation()
-            if(hoursDiff < 24L)
-            {
-
-            }
-
-            else if(hoursDiff in 24L..48L){
-
-                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
-                updateLastDayStreakUpdated()
-
-            }
-            else if(hoursDiff > 48L)
-            {
-                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
-                updateLastDayStreakUpdated()
-
-            }
+            resetStreakIfMoreThan48HoursPassed(getHoursPassedSinceMeditation())
         }
 
         compareToBestStreak()
     }
+
+    private fun isCurrentStreakBiggerThanZero(currentStreak : Int) : Boolean
+    {
+        return currentStreak > 0
+    }
+    private fun resetStreakIfMoreThan48HoursPassed(hoursPassed: Long)
+    {
+        if(hasFortyEightHoursPassedSinceMeditation(hoursPassed))
+        {
+            setCurrentStreakToZero()
+            updateLastDayStreakWasChangedTimestamp()
+        }
+
+    }
+    private fun hasFortyEightHoursPassedSinceMeditation(hoursDiff: Long) : Boolean
+    {
+        return hoursDiff >= 48L
+    }
+    private fun setCurrentStreakToZero()
+    {
+        editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
+
+    }
+
     fun updateStreak() {
 
         var currentStreak = sharedPref.getInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0)
 
-        if(currentStreak == 0)
+        if(isCurrentStreakZero(currentStreak))
         {
             incrementCurrentStreak()
-            updateLastDayStreakUpdated()
+            updateLastDayStreakWasChangedTimestamp()
         }
-        else if(currentStreak > 0)
+        else if(isCurrentStreakBiggerThanZero(currentStreak))
         {
-            val hoursDiff = getHoursPassedSinceMeditation()
-            if(hoursDiff < 24L)
-            {
+            val hoursPassed= getHoursPassedSinceMeditation()
 
-            }
-
-            else if(hoursDiff in 24L..48L){
-
-                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
-                updateLastDayStreakUpdated()
-
-            }
-            else if(hoursDiff > 48L)
-            {
-                editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 0).apply()
-                updateLastDayStreakUpdated()
-
-            }
+            doNothingIfLessThan24HoursPassed(hoursPassed)
+            incrementStreakIf24To48HoursPassed(hoursPassed)
+            resetStreakIfMoreThan48HoursPassed(hoursPassed)
         }
 
         compareToBestStreak()
     }
 
+    private fun doNothingIfLessThan24HoursPassed(hoursPassed: Long)
+    {
+        if (hoursPassed < 24)
+        {
+
+        }
+    }
+    private fun incrementStreakIf24To48HoursPassed(hoursPassed : Long)
+    {
+        if(has24To48PassedSinceMeditation(hoursPassed)){
+
+            incrementCurrentStreak()
+            updateLastDayStreakWasChangedTimestamp()
+
+        }
+    }
+    private fun has24To48PassedSinceMeditation(hoursPassed: Long) : Boolean
+    {
+        return hoursPassed in 24L..48L
+    }
+    private fun isCurrentStreakZero(currentStreak: Int) : Boolean
+    {
+        return currentStreak == 0
+    }
     private fun incrementCurrentStreak()
 
     {
@@ -197,7 +214,7 @@ class SharedPrefRepository(val context : Context) {
         editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, currentStreak + 1).apply()
     }
 
-    private fun updateLastDayStreakUpdated()
+    private fun updateLastDayStreakWasChangedTimestamp()
     {
         val todayTimeStamp = Instant.now()
         editor.putString(Constants.LAST_DAY_STREAK_UPDATED_PREF, todayTimeStamp.toString())

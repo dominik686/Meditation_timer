@@ -45,7 +45,9 @@ class SettingsFragment : Fragment() {
         setupResetStatsButtonOnClick()
         setupResetMeditationHistoryButtonOnClick()
 
-
+        binding.addDefaultValues.setOnClickListener {
+                viewModel.addDefaultValues()
+        }
 
         return binding.root
     }

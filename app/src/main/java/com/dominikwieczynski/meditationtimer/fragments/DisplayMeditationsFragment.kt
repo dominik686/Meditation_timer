@@ -85,28 +85,47 @@ class DisplayMeditationsFragment : Fragment() {
     {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
-
-            pauseLoadingAnimation()
-            hideLoadingAnimation()
+            stopLoadingAnimation()
             if (allMeditations.isEmpty()) {
-                binding.noMeditationsRecorded.visibility = View.VISIBLE
+                showNoMeditationsRecordedMessage()
             }
             else
             {
-                binding.noMeditationsRecorded.visibility = View.GONE
-                val groupedMeditationsMap = groupByDate(allMeditations)
-                val groupedMeditationsList = mutableListOf<MeditationList>()
-
-                for (entry in groupedMeditationsMap.entries.iterator()) {
-                    val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
-                    groupedMeditationsList.add(meditationsListTemp)
-                }
-                setupRecyclerview(groupedMeditationsList.reversed())
+                hideNoMeditationsRecordedMessage()
+                val preparedList = prepareMeditationList(allMeditations)
+                setupRecyclerview(preparedList)
             }
         }
     }
 // https://advancedrecyclerview.h6ah4i.com/?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1432
 
+    private fun showNoMeditationsRecordedMessage()
+    {
+        binding.noMeditationsRecorded.visibility = View.VISIBLE
+
+    }
+    private fun hideNoMeditationsRecordedMessage()
+    {
+        binding.noMeditationsRecorded.visibility = View.GONE
+
+    }
+
+    private fun prepareMeditationList(allMeditations : List<Meditation>) : List<MeditationList>
+    {
+        val groupedMeditationsMap = groupByDate(allMeditations)
+        val groupedMeditationsList = mutableListOf<MeditationList>()
+
+        for (entry in groupedMeditationsMap.entries.iterator()) {
+            val meditationsListTemp = MeditationList(entry.key, entry.value.reversed())
+            groupedMeditationsList.add(meditationsListTemp)
+        }
+        return groupedMeditationsList.reversed()
+    }
+    private fun stopLoadingAnimation()
+    {
+        pauseLoadingAnimation()
+        hideLoadingAnimation()
+    }
     private fun pauseLoadingAnimation()
     {
         binding.loadingAnimation.pauseAnimation()

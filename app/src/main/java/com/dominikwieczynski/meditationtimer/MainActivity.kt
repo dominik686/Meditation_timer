@@ -33,12 +33,12 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        updateStreakIfNotZero()
+        tryToResetStreak()
     }
 
-    private fun updateStreakIfNotZero()
+    private fun tryToResetStreak()
     {
-        sharedPrefRepository.updateStreakIfNotZero()
+        sharedPrefRepository.tryToResetStreak()
     }
 
     private fun setCurrentFragment(fragment : Fragment) =
