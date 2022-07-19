@@ -13,7 +13,7 @@
 
     <string name="very_bad">Very bad</string>
     <string name="bad">Bad</string>
-    <string name="neutral">Neutral</string>
+    <string name="okay_mood">Okay</string>
     <string name="good">Good</string>
     <string name="great">Great</string>
 
@@ -54,7 +54,7 @@
     <string name="days_meditated_in_a_row">Days meditated in a row:</string>
     <string name="great_mood_count">Great mood count:</string>
     <string name="good_mood_count">Good mood count:</string>
-    <string name="neutral_mood_count">Neutral mood count:</string>
+    <string name="okay_mood_count">Okay mood count:</string>
     <string name="bad_mood_count">Bad mood count:</string>
     <string name="very_bad_mood_count">Very bad mood count:</string>
     <string name="minutes">" minutes"</string>
