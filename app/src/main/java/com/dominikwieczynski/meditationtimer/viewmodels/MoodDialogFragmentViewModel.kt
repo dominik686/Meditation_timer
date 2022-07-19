@@ -21,7 +21,7 @@ class MoodDialogFragmentViewModel : ViewModel()
 
     fun setCurrentEmojiToNeutral()
     {
-        currentEmoji = MoodEmoji.NEUTRAL
+        currentEmoji = MoodEmoji.OKAY
     }
 
     fun setCurrentEmojiToGood()

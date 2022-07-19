@@ -77,7 +77,7 @@ class MeditationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         {
             MoodEmoji.VERY_BAD.name -> return R.drawable.sad
             MoodEmoji.BAD.name -> return R.drawable.confused
-            MoodEmoji.NEUTRAL.name -> return R.drawable.neutral
+            MoodEmoji.OKAY.name -> return R.drawable.neutral
             MoodEmoji.GOOD.name -> return R.drawable.smile
             MoodEmoji.GREAT.name -> return R.drawable.smiling
         }

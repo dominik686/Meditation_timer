@@ -16,6 +16,19 @@ class SharedPrefRepository(val context : Context) {
         Context.MODE_PRIVATE)!!
     private val editor: SharedPreferences.Editor = sharedPref.edit()
 
+    fun editStatisticsDebug()
+    {
+        // (getDaysInARow(), getLongestDaysInARow(), getTotalMeditations(), getMoodCount()
+        editor.putInt(Constants.DAYS_IN_A_ROW_STREAK_PREF, 2).apply()
+        editor.putInt(Constants.LONGEST_STREAK_PREF, 2).apply()
+        editor.putInt(Constants.TOTAL_MEDITATIONS_PREF, 5).apply()
+
+        incrementVeryBadCount()
+        incrementBadCount()
+        incrementOkayCount()
+        incrementGoodCount()
+        incrementGreatCount()
+    }
     fun putBellPreference(string: String)
     {
 
@@ -33,8 +46,8 @@ class SharedPrefRepository(val context : Context) {
     {
         when(mood){
             MoodEmoji.VERY_BAD -> incrementVeryBadCount()
-            MoodEmoji.BAD ->incrementBadCount()
-            MoodEmoji.NEUTRAL -> incrementNeutralCount()
+            MoodEmoji.BAD -> incrementBadCount()
+            MoodEmoji.OKAY -> incrementOkayCount()
             MoodEmoji.GOOD -> incrementGoodCount()
             MoodEmoji.GREAT -> incrementGreatCount()
         }
@@ -53,7 +66,7 @@ class SharedPrefRepository(val context : Context) {
         editor.putInt(Constants.BAD_MOOD_COUNT_PREF, count).apply()
     }
 
-    private fun incrementNeutralCount()
+    private fun incrementOkayCount()
     {
         val count = sharedPref.getInt(Constants.NEUTRAL_MOOD_COUNT_PREF, 0) + 1
         editor.putInt(Constants.NEUTRAL_MOOD_COUNT_PREF, count).apply()
@@ -136,9 +149,8 @@ class SharedPrefRepository(val context : Context) {
         if(isCurrentStreakBiggerThanZero(currentStreak = currentStreak))
         {
             resetStreakIfMoreThan48HoursPassed(getHoursPassedSinceMeditation())
+            compareToBestStreak()
         }
-
-        compareToBestStreak()
     }
 
     private fun isCurrentStreakBiggerThanZero(currentStreak : Int) : Boolean

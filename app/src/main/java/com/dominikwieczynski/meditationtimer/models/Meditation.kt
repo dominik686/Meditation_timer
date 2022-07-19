@@ -15,7 +15,7 @@ data class Meditation(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                       val description: String,
                       val duration: Int,
                       val date: String = SimpleDateFormat("d MMM yyyy 'at' HH:mm").format(Date(System.currentTimeMillis())),
-                      val emoji: MoodEmoji = MoodEmoji.NEUTRAL,
+                      val emoji: MoodEmoji = MoodEmoji.OKAY,
 )
 {
 // Display all those meditations in a calendar
@@ -30,7 +30,7 @@ data class Meditation(@PrimaryKey(autoGenerate = true) val id: Int = 0,
 
 
 enum class MoodEmoji{
-    VERY_BAD, BAD, NEUTRAL, GOOD, GREAT;
+    VERY_BAD, BAD, OKAY, GOOD, GREAT;
 
 
 }

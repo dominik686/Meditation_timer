@@ -47,28 +47,13 @@ abstract class MeditationRoomDatabase : RoomDatabase() {
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO)
                     {
-                        populateDatabase(database.meditatonDao())
                     }
                 }
             }
         }
 
 
-        suspend fun populateDatabase(meditationDao: MeditationDao) {
-            /*
-            meditationDao.insertMeditation(Meditation(description = "1", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "2", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "3", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "4", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "5", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "6", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "7", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "8", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "9", duration = 5,))
-            meditationDao.insertMeditation(Meditation(description = "10", duration = 5,))
 
-             */
-        }
     }
 }
 
