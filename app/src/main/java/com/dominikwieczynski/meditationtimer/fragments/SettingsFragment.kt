@@ -11,13 +11,16 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dominikwieczynski.meditationtimer.*
+import com.dominikwieczynski.meditationtimer.common.AnimationHelper
+import com.dominikwieczynski.meditationtimer.common.Constants
+import com.dominikwieczynski.meditationtimer.common.Utils
 import com.dominikwieczynski.meditationtimer.databinding.SettingsFragmentBinding
 import com.dominikwieczynski.meditationtimer.viewmodels.SettingsViewModel
 import com.dominikwieczynski.meditationtimer.viewmodels.SettingsViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import java.util.*
 
 
 class SettingsFragment : Fragment() {
@@ -46,7 +49,7 @@ class SettingsFragment : Fragment() {
         setupResetMeditationHistoryButtonOnClick()
 
         binding.addDefaultValues.setOnClickListener {
-                viewModel.addDefaultValues()
+                viewModel.addDefaultValues(Locale.getDefault())
         }
 
         return binding.root
@@ -125,7 +128,8 @@ class SettingsFragment : Fragment() {
         {
             resources.getString( R.string.analog_watch) -> viewModel.putBellPreference(Constants.ANALOG_WATCH_BELL_PREF)
             resources.getString( R.string.tibetan_bell) -> viewModel.putBellPreference(Constants.TIBETAN_BELL_PREF)
-            resources.getString( R.string.cartoon_telephone) -> viewModel.putBellPreference(Constants.CARTOON_TELEPHONE_BELL_PREF)
+            resources.getString( R.string.cartoon_telephone) -> viewModel.putBellPreference(
+                Constants.CARTOON_TELEPHONE_BELL_PREF)
             resources.getString( R.string.front_desk_bell) -> viewModel.putBellPreference(Constants.FRONT_DESK_BELL_PREF)
 
         }

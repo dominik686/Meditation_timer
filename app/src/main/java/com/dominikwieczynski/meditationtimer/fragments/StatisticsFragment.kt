@@ -195,7 +195,7 @@ fun MoodCount(count : MoodCount)
             Text(text = count.good.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
-            Text(stringResource(R.string.neutral_mood_count), color = Gray300)
+            Text(stringResource(R.string.okay_mood_count), color = Gray300)
             Text(text = count.neutral.toString(), color = Gray300)
             Divider(modifier = Modifier.padding(bottom = 4.dp, top = 4.dp))
 
@@ -260,7 +260,7 @@ fun MoodCount(count : MoodCount)
 
             var list = listOf(PieEntry(moodCount.great.toFloat(), resources.getString(R.string.great)),
                 PieEntry(moodCount.good.toFloat(), resources.getString(R.string.good)),
-                PieEntry(moodCount.neutral.toFloat(), resources.getString(R.string.neutral)),
+                PieEntry(moodCount.neutral.toFloat(), resources.getString(R.string.okay_mood)),
                 PieEntry(moodCount.bad.toFloat(), resources.getString(R.string.bad)),
                 PieEntry(moodCount.veryBad.toFloat(), resources.getString(R.string.very_bad))
             )

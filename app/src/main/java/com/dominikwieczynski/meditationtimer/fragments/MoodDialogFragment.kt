@@ -16,7 +16,7 @@ import com.dominikwieczynski.meditationtimer.models.MoodEmoji
 import com.dominikwieczynski.meditationtimer.viewmodels.MoodDialogFragmentViewModel
 import com.dominikwieczynski.meditationtimer.viewmodels.MoodDialogFragmentViewModelFactory
 
-import com.dominikwieczynski.meditationtimer.AnimationHelper
+import com.dominikwieczynski.meditationtimer.common.AnimationHelper
 
 
 class MoodDialogFragment(private val listener : MoodChipOnClickListener) : DialogFragment()

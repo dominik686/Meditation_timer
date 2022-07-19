@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dominikwieczynski.meditationtimer.MarginItemDecorator
+import com.dominikwieczynski.meditationtimer.common.MarginItemDecorator
 import com.dominikwieczynski.meditationtimer.R
 import com.dominikwieczynski.meditationtimer.models.MeditationList
 

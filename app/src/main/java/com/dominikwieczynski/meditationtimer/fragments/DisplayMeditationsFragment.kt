@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dominikwieczynski.meditationtimer.MarginItemDecorator
+import com.dominikwieczynski.meditationtimer.common.MarginItemDecorator
 import com.dominikwieczynski.meditationtimer.MeditationApplication
 import com.dominikwieczynski.meditationtimer.R
 import com.dominikwieczynski.meditationtimer.adapters.DisplayMeditationListAdapter

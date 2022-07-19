@@ -1,5 +1,6 @@
 package com.dominikwieczynski.meditationtimer
 
+import com.dominikwieczynski.meditationtimer.common.Utils
 import junit.framework.TestCase
 import org.junit.Test
 
