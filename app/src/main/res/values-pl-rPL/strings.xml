@@ -25,18 +25,18 @@
     <string name="longest_streak">Najdłuższy streak:</string>
     <string name="great_mood_count">Świetny nastrój:</string>
     <string name="good_mood_count">Dobry nastrój:</string>
-    <string name="okay_mood_count">Okej nastrój:</string>
+    <string name="neutral_mood_count">Neutralny nastrój:</string>
     <string name="bad_mood_count">Zły nastrój:</string>
     <string name="very_bad_mood_count">Bardzo zły nastrój:</string>
 
     <string name="reset_statistics">Zresetuj statystyki</string>
-    <string name="reset_meditation_history">Zresetuj historię medytacji</string>
+    <string name="reset_meditation_history">Zresetuj historie medytacji</string>
     <string name="current_bell_sound_hint">Dzwonek:</string>
     <string name="total_meditations_sessions">Liczba medytacji:</string>
     <string name="moods">Nastroje</string>
     <string name="very_bad">Bardzo zły</string>
     <string name="bad">Zły</string>
-    <string name="okay_mood">Okej</string>
+    <string name="neutral">Neutralny</string>
     <string name="good">Dobry</string>
     <string name="great">Świetny</string>
     <string name="whats_on_your_mind">Co słychać?</string>

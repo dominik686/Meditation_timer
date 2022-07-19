@@ -2,7 +2,6 @@ package com.dominikwieczynski.meditationtimer
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.dominikwieczynski.meditationtimer.common.Constants
 import com.dominikwieczynski.meditationtimer.models.MoodCount
 import com.dominikwieczynski.meditationtimer.models.MoodEmoji
 import com.dominikwieczynski.meditationtimer.models.Statistics
@@ -11,8 +10,7 @@ import java.time.Instant
 
 class SharedPrefRepository(val context : Context) {
 
-    private val  sharedPref : SharedPreferences =  context.getSharedPreferences(
-        Constants.USER_PREFERENCES,
+    private val  sharedPref : SharedPreferences =  context.getSharedPreferences(Constants.USER_PREFERENCES,
         Context.MODE_PRIVATE)!!
     private val editor: SharedPreferences.Editor = sharedPref.edit()
 
