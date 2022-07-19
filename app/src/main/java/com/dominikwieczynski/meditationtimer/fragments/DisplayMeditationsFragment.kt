@@ -85,7 +85,6 @@ class DisplayMeditationsFragment : Fragment() {
     {
 
         allMeditationsObserver = Observer<List<Meditation>>{ allMeditations ->
-            stopLoadingAnimation()
             if (allMeditations.isEmpty()) {
                 showNoMeditationsRecordedMessage()
             }
@@ -121,19 +120,7 @@ class DisplayMeditationsFragment : Fragment() {
         }
         return groupedMeditationsList.reversed()
     }
-    private fun stopLoadingAnimation()
-    {
-        pauseLoadingAnimation()
-        hideLoadingAnimation()
-    }
-    private fun pauseLoadingAnimation()
-    {
-        binding.loadingAnimation.pauseAnimation()
-    }
-    private fun hideLoadingAnimation()
-    {
-        binding.loadingAnimation.visibility = View.GONE
-    }
+
 
     private fun groupByDate(meditations: List<Meditation>): Map<String, List<Meditation>> {
 
