@@ -49,7 +49,8 @@ class SettingsFragment : Fragment() {
         setupResetMeditationHistoryButtonOnClick()
 
         binding.addDefaultValues.setOnClickListener {
-                viewModel.addDefaultValues(Locale.getDefault())
+            AnimationHelper.shakeAnimation(it)
+            viewModel.addDefaultValues(Locale.getDefault())
         }
 
         return binding.root

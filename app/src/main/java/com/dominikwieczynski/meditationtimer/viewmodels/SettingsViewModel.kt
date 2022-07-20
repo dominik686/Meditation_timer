@@ -55,7 +55,7 @@ class SettingsViewModel(
         else{
             val med1 = Meditation(description = "I am feeling great" , duration = 10, date = "16 Jul 2022 at 6:01" , emoji = MoodEmoji.GREAT)
             val med2 = Meditation(description = "I am feeling good" , duration = 10, date = "15 Jul 2022 at 14:43" , emoji = MoodEmoji.GOOD)
-            val med3 = Meditation(description = "I am feeling neutral" , duration = 10, date = "13 Jul 2022 at 23:12" , emoji = MoodEmoji.OKAY)
+            val med3 = Meditation(description = "I am feeling okay" , duration = 10, date = "13 Jul 2022 at 23:12" , emoji = MoodEmoji.OKAY)
             val med4 = Meditation(description = "I am feeling bad" , duration = 10, date = "11 Jul 2022 at 12:32" , emoji = MoodEmoji.BAD)
             val med5 = Meditation(description = "I am feeling very bad" , duration = 10, date = "9 Jul 2022 at 11:15" , emoji = MoodEmoji.VERY_BAD)
             viewModelScope.launch {
