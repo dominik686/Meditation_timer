@@ -15,20 +15,28 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
             app:popExitAnim="@anim/to_right"
-            app:destination="@id/history_fragment" />
+            app:destination="@id/history_fragment"
+            app:popUpTo="@id/timer_fragment"
+            app:popUpToInclusive="false"/>
         <action
             android:id="@+id/action_timer_to_settingsFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_left"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"
+            app:popUpTo="@id/timer_fragment"
+            app:popUpToInclusive="false"
+           />
         <action
             android:id="@+id/action_timer_to_statisticsFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
             app:popExitAnim="@anim/to_right"
-            app:destination="@id/statistics_fragment"/>
+            app:destination="@id/statistics_fragment"
+            app:popUpTo="@id/timer_fragment"
+            app:popUpToInclusive="false"
+           />
 
     </fragment>
     <fragment
@@ -41,19 +49,22 @@
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
             app:popExitAnim="@anim/to_left"
-            app:destination="@id/timer_fragment" />
+            app:destination="@id/timer_fragment"
+           />
         <action
             android:id="@+id/action_displayMeditationsFragment_to_statisticsFragment"
             app:destination="@id/statistics_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left" />
+            app:popExitAnim="@anim/to_left"
+           />
         <action
             android:id="@+id/action_displayMeditationsFragment_to_settingsFragment"
             app:destination="@id/settings_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left" />
+            app:popExitAnim="@anim/to_left"
+            />
     </fragment>
     <fragment
         android:id="@+id/settings_fragment"
@@ -64,19 +75,22 @@
             app:destination="@id/history_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right"
+          />
         <action
             android:id="@+id/action_settingsFragment_to_timer"
             app:destination="@id/timer_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+          />
         <action
             android:id="@+id/action_settingsFragment_to_statisticsFragment"
             app:destination="@id/statistics_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+         />
     </fragment>
     <fragment
         android:id="@+id/statistics_fragment"
@@ -88,18 +102,21 @@
             app:destination="@id/settings_fragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+           />
         <action
             android:id="@+id/action_statisticsFragment_to_timer"
             app:destination="@id/timer_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/to_left" />
+            app:popExitAnim="@anim/to_left"
+       />
         <action
             android:id="@+id/action_statisticsFragment_to_displayMeditationsFragment"
             app:destination="@id/history_fragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_left"
-            app:popExitAnim="@anim/from_left" />
+            app:popExitAnim="@anim/from_left"
+ />
     </fragment>
 </navigation>

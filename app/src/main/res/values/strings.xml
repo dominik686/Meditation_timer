@@ -62,4 +62,5 @@
     <string name="reset_meditation_history">Reset meditation history</string>
     <string name="total_meditations_sessions">Total meditations sessions:</string>
     <string name="moods">Moods</string>
+    <string name="add_default_values">Add default values</string>
 </resources>

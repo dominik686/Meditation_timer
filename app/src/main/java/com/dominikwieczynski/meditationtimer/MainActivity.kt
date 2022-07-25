@@ -1,6 +1,7 @@
 package com.dominikwieczynski.meditationtimer
 
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -21,8 +22,16 @@ class MainActivity : AppCompatActivity() {
         initializeSharedPrefRepository()
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
+        this.onBackPressedDispatcher.addCallback(this){
+            if(bottombar.selectedItemId == R.id.timer_fragment)
+            {
+              //  super.onBackPressed()
+                finish()
+            }
+            else{
+                bottombar.selectedItemId = R.id.timer_fragment
+            }
+        }
             //  NavigationUI.setupWithNavController(bottombar, navController)
 
     }

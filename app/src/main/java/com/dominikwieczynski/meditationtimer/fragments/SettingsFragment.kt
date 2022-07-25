@@ -63,18 +63,20 @@ class SettingsFragment : Fragment() {
         var navController = findNavController()
 
         bottombar.setOnItemSelectedListener { item ->
-            findNavController()
             when(item.itemId) {
                 R.id.timer_fragment ->{
                     var action = SettingsFragmentDirections.actionSettingsFragmentToTimer()
+
                     navController.navigate(action)
                 }
                 R.id.history_fragment ->{
                     var action = SettingsFragmentDirections.actionSettingsFragmentToDisplayMeditationsFragment()
+
                     navController.navigate(action)
                 }
                 R.id.statistics_fragment ->{
                     var action = SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment()
+
                     navController.navigate(action)
                 }
             }

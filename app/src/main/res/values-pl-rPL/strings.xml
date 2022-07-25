@@ -40,5 +40,6 @@
     <string name="good">Dobry</string>
     <string name="great">Świetny</string>
     <string name="whats_on_your_mind">Co słychać?</string>
+    <string name="add_default_values">Add default values</string>
 
 </resources>

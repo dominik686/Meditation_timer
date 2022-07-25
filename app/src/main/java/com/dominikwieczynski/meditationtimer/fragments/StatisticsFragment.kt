@@ -78,7 +78,6 @@ class StatisticsFragment : Fragment() {
         var navController = findNavController()
 
         bottombar.setOnItemSelectedListener { item ->
-            findNavController()
             when(item.itemId) {
                 R.id.timer_fragment ->{
                     var action = StatisticsFragmentDirections.actionStatisticsFragmentToTimer()
@@ -87,10 +86,12 @@ class StatisticsFragment : Fragment() {
 
                 R.id.history_fragment ->{
                     var action = StatisticsFragmentDirections.actionStatisticsFragmentToDisplayMeditationsFragment()
+
                     navController.navigate(action)
                 }
                 R.id.settings_fragment ->{
                     var action = StatisticsFragmentDirections.actionStatisticsFragmentToSettingsFragment()
+
                     navController.navigate(action)
                 }
             }
