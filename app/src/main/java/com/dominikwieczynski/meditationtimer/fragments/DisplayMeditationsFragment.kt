@@ -1,5 +1,6 @@
 package com.dominikwieczynski.meditationtimer.fragments
 
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dominikwieczynski.meditationtimer.common.MarginItemDecorator
 import com.dominikwieczynski.meditationtimer.MeditationApplication
 import com.dominikwieczynski.meditationtimer.R
 import com.dominikwieczynski.meditationtimer.adapters.DisplayMeditationListAdapter
+import com.dominikwieczynski.meditationtimer.common.MarginItemDecorator
 import com.dominikwieczynski.meditationtimer.databinding.DisplayMeditationsFragmentBinding
 import com.dominikwieczynski.meditationtimer.models.Meditation
 import com.dominikwieczynski.meditationtimer.models.MeditationList
@@ -62,17 +64,21 @@ class DisplayMeditationsFragment : Fragment() {
     }
     private fun initializeSwipeHelper()
     {
-        swipeHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ){
+        swipeHelper = ItemTouchHelper(object: SimpleCallback(            0,
+            LEFT or RIGHT
+        ) {
+
+
+
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
-            ): Boolean = true
+            ) = true
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                binding.displayMeditationsRecyclerview.adapter?.notifyItemChanged(viewHolder.adapterPosition)
+
             }
 
         })
@@ -110,6 +116,8 @@ class DisplayMeditationsFragment : Fragment() {
             }
             true
         }
+
+
     }
 
     private fun createAllMeditationsObserver()
