@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dominikwieczynski.meditationtimer.common.MarginItemDecorator
 import com.dominikwieczynski.meditationtimer.MeditationApplication
 import com.dominikwieczynski.meditationtimer.R
@@ -24,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class DisplayMeditationsFragment : Fragment() {
 
     // Will need to create a viewmodel factory and initialize it the same way i did in TimerViewModel
+
     companion object {
         fun newInstance() = DisplayMeditationsFragment()
     }
@@ -37,6 +40,8 @@ class DisplayMeditationsFragment : Fragment() {
     private var _binding : DisplayMeditationsFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var allMeditationsObserver : Observer<List<Meditation>>
+    private lateinit var dragHelper : ItemTouchHelper
+    private lateinit var swipeHelper: ItemTouchHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +57,30 @@ class DisplayMeditationsFragment : Fragment() {
        createAllMeditationsObserver()
        observeAllMeditations()
 
+       initializeSwipeHelper()
+       attachSwipeHelper()
+    }
+    private fun initializeSwipeHelper()
+    {
+        swipeHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = true
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            }
+
+        })
+
+    }
+    private fun attachSwipeHelper()
+    {
+        swipeHelper.attachToRecyclerView(binding.displayMeditationsRecyclerview)
     }
 
     private fun initializeBottomBarNavigation()

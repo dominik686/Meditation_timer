@@ -36,13 +36,11 @@ Project is: _in progress_.
 
 ## Room for Improvement
 Room for improvement:
-- Better UI
 - More functionality
 - More custom bell sounds
 
 To do:
-- Add calendar feature
-- Improve statistics UI
+-
 
 
  ## Credits

@@ -82,6 +82,7 @@ if (propFile.canRead()){
 }
 
 dependencies {
+
     def lottieVersion = '5.2.0'
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
